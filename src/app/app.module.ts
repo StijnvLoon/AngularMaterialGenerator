@@ -9,15 +9,23 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
-import { AddFormObjectDialog } from './dialogs/addFormobjectDialog/add-formobject-dialog';
+import { AddFormTypeDialog } from './dialogs/addFormTypeDialog/add-formtype-dialog';
+import { TextInputComponent } from './components/form-gen/formTypeComponents/text-input/text-input.component';
+import { PasswordInputComponent } from './components/form-gen/formTypeComponents/password-input/password-input.component';
+import { DateInputComponent } from './components/form-gen/formTypeComponents/date-input/date-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LobbyComponent,
     FormGenComponent,
-    AddFormObjectDialog
+    AddFormTypeDialog,
+    TextInputComponent,
+    PasswordInputComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,9 @@ import { AddFormObjectDialog } from './dialogs/addFormobjectDialog/add-formobjec
     MatRippleModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

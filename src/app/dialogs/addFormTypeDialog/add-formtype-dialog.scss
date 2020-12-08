@@ -1,0 +1,18 @@
+.container_category {
+    display: flex;
+}
+.container_formtype {
+    width: 200px;
+    height: 100px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+.container_formtype > app-text-input {
+    pointer-events: none !important;
+}
+.container_formtype:hover {
+    background-color: #a0a0a0;
+}
+.selected {
+    background-color: #a0a0a0;
+}
