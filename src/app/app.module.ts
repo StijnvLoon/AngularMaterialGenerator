@@ -8,13 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
+import { AddFormObjectDialog } from './dialogs/addFormobjectDialog/add-formobject-dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LobbyComponent,
-    FormGenComponent
+    FormGenComponent,
+    AddFormObjectDialog
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { FormGenComponent } from './components/form-gen/form-gen.component';
     BrowserAnimationsModule,
     MatRippleModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

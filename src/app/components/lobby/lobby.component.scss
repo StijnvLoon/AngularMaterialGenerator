@@ -13,17 +13,14 @@
     margin: 0px;
 }
 .container {
-    flex-grow : 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-grow: 1;
 }
 .option {
     height: 200px;
     width: 200px;
     background-color: white;
     border-radius: 25px;
-    cursor: pointer;;
+    cursor: pointer;
     user-select: none;
     -webkit-user-drag: none;
     -webkit-tap-highlight-color: transparent;

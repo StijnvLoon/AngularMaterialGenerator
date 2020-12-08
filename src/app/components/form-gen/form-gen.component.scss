@@ -17,3 +17,21 @@
     margin-left: 10px;
     transform: scale(1.2);
 }
+.container {
+    flex-grow: 1;
+    padding: 20px;
+}
+.container_formobjects {
+    width: 300px;
+}
+.add_form_button {
+    background-color: #4fa300a6;
+    color: white;
+    width: 100%;
+    border-radius: 50px;
+    transition: all 0.3s;
+    font-size: 1.2em;
+}
+.add_form_button:hover {
+    background-color: #4fa300;
+}
