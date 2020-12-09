@@ -11,11 +11,7 @@ export class FormTypeService {
   constructor() { }
 
   createFormType(key: FormTypeKey) {
-    return new FormType(
-      key,
-      this.getCategory(key),
-      this.getOptions(key)
-    )
+    return new FormType(key, this.getCategory(key), this.getOptions(key))
   }
 
   getAllFormTypes(): FormType[] {
@@ -45,6 +41,9 @@ export class FormTypeService {
     switch (key) {
       case FormTypeKey.INPUT_PASSWORD: {
         return { modelName: "Example password", toggleVis: true }
+      }
+      case FormTypeKey.INPUT_DATE: {
+        return { modelName: "Example date", editableText: true }
       }
       default: {
         return { modelName: "Example text" }
