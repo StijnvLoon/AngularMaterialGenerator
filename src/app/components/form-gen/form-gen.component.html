@@ -6,7 +6,7 @@
     </div>
 
     <div class="center_content" style="width: 100%;">
-        <h1 class="header_title">Angular Material Forms Generator</h1>
+        <h1 class="header_title">{{formTemplate.name}}</h1>
     </div>
 </div>
 
@@ -38,30 +38,3 @@
     </mat-drawer>
 
 </mat-drawer-container>
-
-<!-- <div class="container">
-    <div style="display: flex; justify-content: center; padding: 20px;">
-        <div class="container_formobjects">
-            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key">
-                <div style="display: flex;">
-                    <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'" [options]="formType.options">
-                    </app-text-input>
-                    <app-password-input style="width: 100%;" *ngSwitchCase="'INPUT_PASSWORD'"
-                        [options]="formType.options">
-                    </app-password-input>
-                    <app-date-input style="width: 100%;" *ngSwitchCase="'INPUT_DATE'" [options]="formType.options">
-                    </app-date-input>
-                    <button mat-fab class="edit_formitem_button" (click)="edittedFormType = formType">
-                        <mat-icon>build</mat-icon>
-                    </button>
-                </div>
-            </div>
-            <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div class="side_bar" [class.side_bar_open]="edittedFormType">
-
-    </div>
-</div> -->

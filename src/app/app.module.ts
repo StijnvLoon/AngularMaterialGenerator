@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule  } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
@@ -40,7 +41,8 @@ import { OptionsDrawerComponent } from './components/form-gen/options-drawer/opt
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

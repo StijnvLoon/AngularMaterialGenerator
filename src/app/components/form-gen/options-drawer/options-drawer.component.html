@@ -1,1 +1,7 @@
-<p>name: {{formType.options.modelName}}</p>
+<div class="container">
+    <mat-form-field class="form_field" *ngIf="formType.options.modelName !== null">
+        <mat-label>Input name</mat-label>
+        <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="formType.options.modelName">
+        <mat-error *ngIf="modelNameControl.invalid">{{getErrorMessage(modelNameControl)}}</mat-error>
+    </mat-form-field>
+</div>
