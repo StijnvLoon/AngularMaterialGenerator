@@ -9,14 +9,14 @@ import { FormType } from 'src/app/models/formType';
 })
 export class OptionsDrawerComponent implements OnInit {
 
-  @Input() formType: FormType
+  @Input() options: any
 
   public modelNameControl: FormControl
 
   constructor() { }
 
   ngOnInit(): void {
-    this.modelNameControl = new FormControl(this.formType.options.modelName, [
+    this.modelNameControl = new FormControl(this.options.modelName, [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(20)

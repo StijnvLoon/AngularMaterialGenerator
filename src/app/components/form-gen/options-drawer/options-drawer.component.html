@@ -1,9 +1,9 @@
 <div class="container">
-    <mat-form-field class="form_field" *ngIf="formType.options.modelName !== null">
+    <mat-form-field class="form_field" *ngIf="options.modelName !== null">
         <mat-label>Model name</mat-label>
-        <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="formType.options.modelName">
+        <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="options.modelName">
         <mat-error *ngIf="modelNameControl.invalid">{{getErrorMessage(modelNameControl)}}</mat-error>
     </mat-form-field>
-    <mat-slide-toggle *ngIf="formType.options.toggleVis !== null" [checked]="formType.options.toggleVis"
-        (change)="formType.options.toggleVis = $event.source.checked">Toggle visibility options</mat-slide-toggle>
+    <mat-slide-toggle *ngIf="options.toggleVis !== undefined" [checked]="options.toggleVis"
+        (change)="options.toggleVis = $event.source.checked">Toggle visibility options</mat-slide-toggle>
 </div>

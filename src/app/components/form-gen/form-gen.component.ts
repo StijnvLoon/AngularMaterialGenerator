@@ -4,7 +4,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MAT_DRAWER_CONTAINER } from '@angular/material/sidenav/drawer';
 import { AddFormTypeDialog } from 'src/app/dialogs/addFormTypeDialog/add-formtype-dialog';
 import { FormType } from 'src/app/models/formType';
-import { FormTemplate } from '../../models/FormTemplate';
+import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
+import { FormTemplate } from '../../models/formTemplate';
+import { FormTypeService } from '../../services/form-type.service';
 
 @Component({
   selector: 'app-form-gen',
@@ -17,12 +19,12 @@ export class FormGenComponent implements OnInit {
   public formTemplate: FormTemplate
   public edittedFormType: FormType
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private formTypeService: FormTypeService) { }
 
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new template')
-    this.formTemplate.formTypeList.push(FormType.INPUT_TEXT)
-    this.formTemplate.formTypeList.push(FormType.INPUT_PASSWORD)
+    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_TEXT))
+    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_PASSWORD))
   }
 
   addFormObjectDialog() {

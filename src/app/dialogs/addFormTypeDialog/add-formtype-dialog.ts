@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormTypeService } from 'src/app/services/form-type.service';
 import { FormType } from '../../models/formType';
 
 export interface DialogData {
@@ -18,10 +19,9 @@ export class AddFormTypeDialog {
 
     constructor(
         public dialogRef: MatDialogRef<AddFormTypeDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-        this.formTypeList.push(FormType.INPUT_TEXT)
-        this.formTypeList.push(FormType.INPUT_DATE)
-        this.formTypeList.push(FormType.INPUT_PASSWORD)
+        @Inject(MAT_DIALOG_DATA) public data: DialogData,
+        public formTypeService: FormTypeService) {
+            this.formTypeList = this.formTypeService.getAllFormTypes()
     }
 
     close(): void {

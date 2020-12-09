@@ -2,7 +2,7 @@
 
 <div mat-dialog-content>
     <div class="container_category">
-        <div *ngFor="let formType of formTypeList" [ngSwitch]="formType.key">
+        <div *ngFor="let formType of formTypeList" [ngSwitch]="formType.key.toString()">
             <button mat-button class="container_formtype center_content" [class.selected]="selectedFormType == formType"
                 (click)="selectedFormType = formType">
                 <app-text-input *ngSwitchCase="'INPUT_TEXT'" style="pointer-events: none !important;"
