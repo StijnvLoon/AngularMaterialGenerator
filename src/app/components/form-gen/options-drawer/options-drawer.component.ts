@@ -21,7 +21,6 @@ export class OptionsDrawerComponent implements OnInit {
       Validators.minLength(4),
       Validators.maxLength(20)
     ]);
-    console.log(this.modelNameControl)
   }
 
   getErrorMessage(formControl: FormControl) {

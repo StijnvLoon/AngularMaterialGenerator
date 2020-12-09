@@ -34,6 +34,10 @@
     </div>
 
     <mat-drawer #drawer mode="side" position="end">
+        <button class="close_side_bar_button" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>close</mat-icon>
+        </button>
+
         <app-options-drawer *ngIf="edittedFormType" [(formType)]="edittedFormType"></app-options-drawer>
     </mat-drawer>
 
