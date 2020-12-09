@@ -11,11 +11,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { AddFormTypeDialog } from './dialogs/addFormTypeDialog/add-formtype-dialog';
 import { TextInputComponent } from './components/form-gen/formTypeComponents/text-input/text-input.component';
 import { PasswordInputComponent } from './components/form-gen/formTypeComponents/password-input/password-input.component';
 import { DateInputComponent } from './components/form-gen/formTypeComponents/date-input/date-input.component';
+import { OptionsDrawerComponent } from './components/form-gen/options-drawer/options-drawer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DateInputComponent } from './components/form-gen/formTypeComponents/dat
     AddFormTypeDialog,
     TextInputComponent,
     PasswordInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    OptionsDrawerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { DateInputComponent } from './components/form-gen/formTypeComponents/dat
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

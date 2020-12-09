@@ -10,11 +10,58 @@
     </div>
 </div>
 
-<div class="container" style="display: flex; justify-content: center;">
-    <div class="container_formobjects">
-        <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
-            <mat-icon>add</mat-icon>
-        </button>
+<mat-drawer-container style="flex-grow: 1; background-color: transparent;" autosize>
+    <div class="drawer_content">
+        <div class="container_formobjects">
+            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key">
+                <div style="display: flex;">
+                    <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'" [options]="formType.options">
+                    </app-text-input>
+                    <app-password-input style="width: 100%;" *ngSwitchCase="'INPUT_PASSWORD'"
+                        [options]="formType.options">
+                    </app-password-input>
+                    <app-date-input style="width: 100%;" *ngSwitchCase="'INPUT_DATE'" [options]="formType.options">
+                    </app-date-input>
+                    <button mat-fab class="edit_formitem_button" (click)="setEdittedFormType(formType)">
+                        <mat-icon>build</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 
-</div>
+    <mat-drawer #drawer mode="side" position="end">
+        <app-options-drawer *ngIf="edittedFormType" [(formType)]="edittedFormType"></app-options-drawer>
+    </mat-drawer>
+
+</mat-drawer-container>
+
+<!-- <div class="container">
+    <div style="display: flex; justify-content: center; padding: 20px;">
+        <div class="container_formobjects">
+            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key">
+                <div style="display: flex;">
+                    <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'" [options]="formType.options">
+                    </app-text-input>
+                    <app-password-input style="width: 100%;" *ngSwitchCase="'INPUT_PASSWORD'"
+                        [options]="formType.options">
+                    </app-password-input>
+                    <app-date-input style="width: 100%;" *ngSwitchCase="'INPUT_DATE'" [options]="formType.options">
+                    </app-date-input>
+                    <button mat-fab class="edit_formitem_button" (click)="edittedFormType = formType">
+                        <mat-icon>build</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="side_bar" [class.side_bar_open]="edittedFormType">
+
+    </div>
+</div> -->

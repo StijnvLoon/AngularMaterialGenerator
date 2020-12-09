@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PasswordInputComponent implements OnInit {
 
+  public visible: boolean = false
+
   //modelName, toggleVis
   @Input() public options: any
 
