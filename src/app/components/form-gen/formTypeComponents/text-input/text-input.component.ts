@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormTypeOptions } from 'src/app/models/formType';
 
 @Component({
   selector: 'app-text-input',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TextInputComponent implements OnInit {
 
   //modelName
-  @Input() public options: any
+  @Input() public options: FormTypeOptions
 
   constructor() { }
 

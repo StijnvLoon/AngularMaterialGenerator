@@ -1,6 +1,7 @@
 import { ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { FormTypeOptions } from 'src/app/models/formType';
 
 @Component({
   selector: 'app-date-input',
@@ -11,7 +12,7 @@ export class DateInputComponent implements OnInit {
   @ViewChild('picker') picker: MatDatepicker<[]>;
 
   //modelName
-  @Input() public options: any
+  @Input() public options: FormTypeOptions
 
   public date: Date
 

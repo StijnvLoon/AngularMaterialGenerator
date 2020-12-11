@@ -1,4 +1,4 @@
-import { FormType } from './formType'
+import { FormType, FormTypeImport } from './formType'
 
 export class FormTemplate {
 
@@ -8,5 +8,19 @@ export class FormTemplate {
     constructor(name: string) {
         this.name = name
         this.formTypeList = []
+    }
+
+    public getImports(): FormTypeImport[] {
+        const imports: FormTypeImport[] = []
+
+        this.formTypeList.forEach(formType => {
+            formType.options.imports.forEach(formTypeImport => {
+                if(!imports.includes(formTypeImport)) {
+                    imports.push(formTypeImport)
+                }
+            });
+        });
+
+        return imports
     }
 }

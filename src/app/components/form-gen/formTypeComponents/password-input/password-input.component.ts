@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormTypeOptions } from 'src/app/models/formType';
 
 @Component({
   selector: 'app-password-input',
@@ -10,7 +11,7 @@ export class PasswordInputComponent implements OnInit {
   public visible: boolean = false
 
   //modelName, toggleVis
-  @Input() public options: any
+  @Input() public options: FormTypeOptions
 
   constructor() { }
 

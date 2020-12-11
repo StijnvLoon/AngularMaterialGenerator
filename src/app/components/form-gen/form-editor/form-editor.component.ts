@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AddFormTypeDialog } from 'src/app/dialogs/addFormTypeDialog/add-formtype-dialog';
 import { FormTemplate } from 'src/app/models/formTemplate';
 import { FormType } from 'src/app/models/formType';
+import { FormTypeService } from 'src/app/services/form-type.service';
 
 @Component({
   selector: 'app-form-editor',
@@ -16,7 +17,7 @@ export class FormEditorComponent implements OnInit {
   @Input() formTemplate: FormTemplate
   public edittedFormType: FormType
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private formTypeService: FormTypeService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,7 @@ export class FormEditorComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async formType => {
       if (formType) {
-        this.formTemplate.formTypeList.push(formType)
+        this.formTemplate.formTypeList.push(this.formTypeService.createFormType(formType.key))
       }
     })
   }
