@@ -10,18 +10,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AddFormTypeDialog } from './dialogs/addFormTypeDialog/add-formtype-dialog';
 import { TextInputComponent } from './components/form-gen/formTypeComponents/text-input/text-input.component';
 import { PasswordInputComponent } from './components/form-gen/formTypeComponents/password-input/password-input.component';
 import { DateInputComponent } from './components/form-gen/formTypeComponents/date-input/date-input.component';
-import { OptionsDrawerComponent } from './components/form-gen/options-drawer/options-drawer.component';
+import { OptionsDrawerComponent } from './components/form-gen/form-editor/options-drawer/options-drawer.component';
+import { FormEditorComponent } from './components/form-gen/form-editor/form-editor.component';
+import { FormCodeComponent } from './components/form-gen/form-code/form-code.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { OptionsDrawerComponent } from './components/form-gen/options-drawer/opt
     TextInputComponent,
     PasswordInputComponent,
     DateInputComponent,
-    OptionsDrawerComponent
+    OptionsDrawerComponent,
+    FormEditorComponent,
+    FormCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { OptionsDrawerComponent } from './components/form-gen/options-drawer/opt
     MatInputModule,
     MatSlideToggleModule,
     MatSidenavModule,
+    MatTabsModule,
     ReactiveFormsModule,
     FormsModule,
     MatDatepickerModule,

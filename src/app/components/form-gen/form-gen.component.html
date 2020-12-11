@@ -10,35 +10,11 @@
     </div>
 </div>
 
-<mat-drawer-container style="flex-grow: 1; background-color: transparent;" autosize>
-    <div class="drawer_content">
-        <div class="container_formobjects">
-            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key.toString()">
-                <div style="display: flex;">
-                    <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'" [options]="formType.options">
-                    </app-text-input>
-                    <app-password-input style="width: 100%;" *ngSwitchCase="'INPUT_PASSWORD'"
-                        [options]="formType.options">
-                    </app-password-input>
-                    <app-date-input style="width: 100%;" *ngSwitchCase="'INPUT_DATE'" [options]="formType.options">
-                    </app-date-input>
-                    <button mat-fab class="edit_formitem_button" (click)="setEdittedFormType(formType)">
-                        <mat-icon>build</mat-icon>
-                    </button>
-                </div>
-            </div>
-            <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-    </div>
-
-    <mat-drawer #drawer mode="side" position="end">
-        <button class="close_side_bar_button" mat-icon-button (click)="drawer.toggle()">
-            <mat-icon>close</mat-icon>
-        </button>
-
-        <app-options-drawer *ngIf="edittedFormType" [(options)]="edittedFormType.options"></app-options-drawer>
-    </mat-drawer>
-
-</mat-drawer-container>
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1;">
+    <mat-tab label="Editor" style="height: 100% !important;">
+        <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
+    </mat-tab>
+    <mat-tab label="Code">
+        <app-form-code [formTemplate]="formTemplate"></app-form-code>
+    </mat-tab>
+</mat-tab-group>
