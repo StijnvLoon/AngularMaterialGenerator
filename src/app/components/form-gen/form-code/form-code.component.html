@@ -1,7 +1,11 @@
 <div class="center_content" style="height: 100%;">
-    <mat-tab-group mat-align-tabs="center">
-        <mat-tab *ngFor="let previewFile of previewFileList" [label]="previewFile.name">
-            <span class="line" *ngFor="let line of previewFile.codeLines">{{line}}<br></span>
+    <mat-tab-group mat-align-tabs="center" style="height: 100% !important;">
+        <mat-tab *ngFor="let previewFile of previewFileList" [label]="previewFile.name"
+            style="height: 100% !important;">
+            <div class="lines_container">
+                <span class="line" *ngFor="let line of previewFile.codeLines"
+                    [class.dots]="line.includes('...')">{{line}}<br></span>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </div>
