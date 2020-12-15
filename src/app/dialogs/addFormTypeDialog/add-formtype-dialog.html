@@ -1,18 +1,23 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 
 <div mat-dialog-content>
-    <div class="container_category">
-        <div *ngFor="let formType of formTypeList" [ngSwitch]="formType.key.toString()">
-            <button mat-button class="container_formtype center_content" [class.selected]="selectedFormType == formType"
-                (click)="selectedFormType = formType">
-                <app-text-input *ngSwitchCase="'INPUT_TEXT'" style="pointer-events: none !important;"
-                    [options]="formType.options"></app-text-input>
-                <app-password-input *ngSwitchCase="'INPUT_PASSWORD'" style="pointer-events: none !important;"
-                    [options]="formType.options"></app-password-input>
-                <app-date-input *ngSwitchCase="'INPUT_DATE'" style="pointer-events: none !important;"
-                    [options]="formType.options"></app-date-input>
-            </button>
+
+    <div *ngFor="let category of formTypeCategorieList">
+        <h4>{{category}}</h4>
+        <div class="formtype_row">
+            <div *ngFor="let formType of getFormTypeListByCategory(category)" [ngSwitch]="formType.key.toString()">
+                <button mat-button class="container_formtype center_content" [class.selected]="selectedFormType == formType"
+                    (click)="selectedFormType = formType">
+                    <app-text-input *ngSwitchCase="'INPUT_TEXT'" style="pointer-events: none !important;"
+                        [options]="formType.options"></app-text-input>
+                    <app-password-input *ngSwitchCase="'INPUT_PASSWORD'" style="pointer-events: none !important;"
+                        [options]="formType.options"></app-password-input>
+                    <app-date-input *ngSwitchCase="'INPUT_DATE'" style="pointer-events: none !important;"
+                        [options]="formType.options"></app-date-input>
+                </button>
+            </div>
         </div>
+
     </div>
 </div>
 

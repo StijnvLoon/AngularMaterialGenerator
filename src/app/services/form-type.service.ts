@@ -24,18 +24,14 @@ export class FormTypeService {
   }
 
   private getCategory(key: FormTypeKey): FormTypeCat {
-    let category: FormTypeCat
-    switch (key) {
-      case FormTypeKey.INPUT_TEXT || FormTypeKey.INPUT_PASSWORD || FormTypeKey.INPUT_DATE: {
-        category = FormTypeCat.INPUT
-        break
-      }
-      default: {
-        category = FormTypeCat.NONE
-      }
-    }
 
-    return category
+    if (key == FormTypeKey.INPUT_TEXT ||
+      key == FormTypeKey.INPUT_PASSWORD ||
+      key == FormTypeKey.INPUT_DATE) {
+      return FormTypeCat.INPUT
+    } else {
+      return FormTypeCat.NONE
+    }
   }
 
   private getOptions(key: FormTypeKey): FormTypeOptions {
