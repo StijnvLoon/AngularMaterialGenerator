@@ -4,8 +4,10 @@
         <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="options.modelName">
         <mat-error *ngIf="modelNameControl.invalid">{{getErrorMessage(modelNameControl)}}</mat-error>
     </mat-form-field>
+
     <mat-slide-toggle *ngIf="options.toggleVis !== undefined" [checked]="options.toggleVis"
         (change)="options.toggleVis = $event.source.checked">Toggle visibility option</mat-slide-toggle>
+        
     <mat-slide-toggle *ngIf="options.editableText !== undefined" [checked]="options.editableText"
         (change)="options.editableText = $event.source.checked">Toggle date text editable</mat-slide-toggle>
 </div>
