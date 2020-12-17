@@ -71,12 +71,30 @@ export class FormCodeComponent implements OnInit {
     const componentTSFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.ts')
 
     componentTSFile.addToCodeLines([
+      "import { Component } from '@angular/core';",
+      "import { FormControl, FormGroup } from '@angular/forms';'",
+      '',
       '@Component({',
-      "  selector: 'app-" + this.formTemplate.name.toLowerCase() + "',",
-      "  templateUrl: './" + this.formTemplate.name.toLowerCase() + ".component.html',",
-      "  styleUrls: ['./" + this.formTemplate.name.toLowerCase() + ".component.scss'],",
-      '})'
+      "  selector: 'app-" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + "',",
+      "  templateUrl: './" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.html',",
+      "  styleUrls: ['./" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.scss'],",
+      '})',
+      'export class ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Component' + '{',
+      '  ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form = new FormGroup({'
     ])
+
+    this.formTemplate.formTypeList.forEach(formType => {
+      componentTSFile.addToCodeLines(['    ' + formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\'),'])
+    });
+
+    componentTSFile.addToCodeLines(['  });', '',])
+
+    componentTSFile.addToCodeLines([
+      '  onSubmit() {',
+      '    console.log(this.' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form.value);',
+      '  }'
+    ])
+    componentTSFile.addToCodeLines(['}'])
 
     return componentTSFile
   }
@@ -84,10 +102,10 @@ export class FormCodeComponent implements OnInit {
   private getComponentHTMLCode(): PreviewFile {
     const componentHTMLFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.html')
 
-    componentHTMLFile.addToCodeLines(['<form [formGroup]="' + this.formTemplate.name.toLowerCase() + 'Form">'])
+    componentHTMLFile.addToCodeLines(['<form [formGroup]="' + this.formTemplate.name.toLowerCase() + 'Form" (ngSubmit)="onSubmit()">'])
 
     this.formTemplate.formTypeList.forEach(formType => {
-      const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "") + 'Control'
+      const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       switch (formType.key) {
         case FormTypeKey.INPUT_TEXT: {
