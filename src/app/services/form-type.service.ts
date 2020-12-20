@@ -11,6 +11,10 @@ export class FormTypeService {
 
   constructor() { }
 
+  cloneFormType(formType: FormType) {
+    return new FormType(formType.key, formType.category, formType.options)
+  }
+
   createFormType(key: FormTypeKey) {
     return new FormType(key, this.getCategory(key), this.getOptions(key))
   }

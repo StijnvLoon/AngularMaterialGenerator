@@ -2,7 +2,7 @@
     display: flex; justify-content: center; padding: 20px;
 }
 .container_formobjects {
-    width: 300px;
+    width: 350px;
 }
 .add_form_button {
     background-color: #4fa300a6;
@@ -16,8 +16,22 @@
     background-color: #4fa300;
 }
 .edit_formitem_button {
-    background-color: #9b9b9b;
-    transform: scale(0.8);
+    background-color: transparent;
+    color: #519bfc;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+.edit_formitem_button_selected {
+    background-color: #519bfc;
+    color: #fff;
+}
+.edit_formitem_button_selected mat-icon {
+    animation: rotate 6s linear infinite;
+}
+.remove_formitem_button {
+    background-color: transparent;
+    color: #fc6969;
+    transform: translateY(10px);
 }
 .side_bar {
     width: 0px;
@@ -30,4 +44,9 @@
 }
 .close_side_bar_button {
     color: #f72727;
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
+import { FormType } from 'src/app/models/formType';
 import { FormTemplate } from '../../models/formTemplate';
 import { FormTypeService } from '../../services/form-type.service';
 import { FormCodeComponent } from './form-code/form-code.component';
+import { FormEditorComponent } from './form-editor/form-editor.component';
 
 @Component({
   selector: 'app-form-gen',
@@ -13,6 +15,7 @@ export class FormGenComponent implements OnInit {
 
   public formTemplate: FormTemplate
   @ViewChild(FormCodeComponent) private formCodeComponent: FormCodeComponent;
+  @ViewChild(FormEditorComponent) private formEditorComponent: FormEditorComponent;
 
   constructor(private formTypeService: FormTypeService) { }
 
@@ -26,5 +29,6 @@ export class FormGenComponent implements OnInit {
     if($event.tab.textLabel == 'Code') {
       this.formCodeComponent.updatePreview()
     }
+    this.formEditorComponent.tabIsActive = $event.tab.textLabel == 'Editor'
   }
 }

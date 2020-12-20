@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AddFormTypeDialog } from './dialogs/addFormTypeDialog/add-formtype-dialog';
+import { ConfirmDialog } from './dialogs/confirmDialog/confirm-dialog';
 import { TextInputComponent } from './components/form-gen/formTypeComponents/text-input/text-input.component';
 import { PasswordInputComponent } from './components/form-gen/formTypeComponents/password-input/password-input.component';
 import { DateInputComponent } from './components/form-gen/formTypeComponents/date-input/date-input.component';
@@ -32,6 +33,7 @@ import { FormCodeComponent } from './components/form-gen/form-code/form-code.com
     LobbyComponent,
     FormGenComponent,
     AddFormTypeDialog,
+    ConfirmDialog,
     TextInputComponent,
     PasswordInputComponent,
     DateInputComponent,
@@ -58,7 +60,7 @@ import { FormCodeComponent } from './components/form-gen/form-code/form-code.com
     MatNativeDateModule,
   ],
   providers: [
-    MatDatepickerModule,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

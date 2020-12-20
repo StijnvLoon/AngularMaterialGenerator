@@ -1,7 +1,7 @@
 <mat-drawer-container style="background-color: transparent; height: 100%;" autosize>
     <div class="drawer_content">
-        <div class="container_formobjects">
-            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key.toString()">
+        <div class="container_formobjects" *ngIf="tabIsActive" @list_anim>
+            <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key.toString()" @items_anim>
                 <div style="display: flex;">
                     <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'"
                         [options]="formType.options">
@@ -12,8 +12,11 @@
                     <app-date-input style="width: 100%;" *ngSwitchCase="'INPUT_DATE'"
                         [options]="formType.options">
                     </app-date-input>
-                    <button mat-fab class="edit_formitem_button" (click)="setEdittedFormType(formType)">
-                        <mat-icon>build</mat-icon>
+                    <button mat-icon-button class="edit_formitem_button" [class.edit_formitem_button_selected]="formType == edittedFormType" (click)="setEdittedFormType(formType)">
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                    <button mat-icon-button class="remove_formitem_button" (click)="removeFormType(formType)">
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </div>
@@ -24,7 +27,7 @@
     </div>
 
     <mat-drawer #drawer mode="side" position="end">
-        <button class="close_side_bar_button" mat-icon-button (click)="drawer.toggle()">
+        <button class="close_side_bar_button" mat-icon-button (click)="closeOptions()">
             <mat-icon>close</mat-icon>
         </button>
 
