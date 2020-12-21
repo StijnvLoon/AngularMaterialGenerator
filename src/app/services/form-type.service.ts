@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { FormTypeKey } from '../models/enums/FormTypeKey';
 import { FormTypeCat } from '../models/enums/formTypeCat';
 import { FormType, FormTypeOptions } from '../models/formType';
-import { nameToComponentDict } from '../services/form-type-comp-loader.service'
+import { DateInputComponent } from '../components/form-gen/formTypeComponents/date-input/date-input.component';
+import { PasswordInputComponent } from '../components/form-gen/formTypeComponents/password-input/password-input.component';
+import { TextInputComponent } from '../components/form-gen/formTypeComponents/text-input/text-input.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormTypeService {
+
+  public edittedFormTypeOptions: FormTypeOptions
 
   constructor() { }
 
@@ -64,4 +68,10 @@ export class FormTypeService {
       }
     }
   }
+}
+
+export const nameToComponentDict = {
+  textinput: TextInputComponent,
+  passwordinput: PasswordInputComponent,
+  dateinput: DateInputComponent
 }

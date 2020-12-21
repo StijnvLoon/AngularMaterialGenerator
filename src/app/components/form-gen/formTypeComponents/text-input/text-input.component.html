@@ -3,11 +3,14 @@
         <mat-label>{{options.modelName}}</mat-label>
         <input type="text" matInput>
     </mat-form-field>
-    
-    <button mat-icon-button class="edit_formitem_button">
+
+    <button mat-icon-button class="edit_formitem_button"
+        [class.edit_formitem_button_selected]="formTypeService.edittedFormTypeOptions == options"
+        (click)="toggleEdit()">
         <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button class="remove_formitem_button">
+    <button mat-icon-button class="remove_formitem_button" (click)="remove()"
+        [disabled]="formTypeService.edittedFormTypeOptions == options">
         <mat-icon>delete</mat-icon>
     </button>
 </div>
