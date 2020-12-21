@@ -26,6 +26,7 @@ import { DateInputComponent } from './components/form-gen/formTypeComponents/dat
 import { OptionsDrawerComponent } from './components/form-gen/form-editor/options-drawer/options-drawer.component';
 import { FormEditorComponent } from './components/form-gen/form-editor/form-editor.component';
 import { FormCodeComponent } from './components/form-gen/form-code/form-code.component';
+import { FormTypeHostDirective } from './directives/form-type-host.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FormCodeComponent } from './components/form-gen/form-code/form-code.com
     DateInputComponent,
     OptionsDrawerComponent,
     FormEditorComponent,
-    FormCodeComponent
+    FormCodeComponent,
+    FormTypeHostDirective
   ],
   imports: [
     BrowserModule,

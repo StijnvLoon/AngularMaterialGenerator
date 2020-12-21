@@ -6,11 +6,13 @@ export class FormType {
     public readonly key: FormTypeKey
     public readonly category: FormTypeCat
     public options: FormTypeOptions
+    public componentName
 
-    constructor(key: FormTypeKey, category: FormTypeCat, options: FormTypeOptions) {
+    constructor(key: FormTypeKey, category: FormTypeCat, options: FormTypeOptions, componentName) {
         this.key = key
         this.category = category
-        this.options = options
+        this.options = options,
+        this.componentName = componentName
     }
 }
 
@@ -20,8 +22,7 @@ export class FormTypeOptions {
     public editableText: boolean
 
     constructor(
-        public readonly modelName: string,
-        public readonly imports: FormTypeImport[]
+        public readonly modelName: string
     ) { }
 }
 

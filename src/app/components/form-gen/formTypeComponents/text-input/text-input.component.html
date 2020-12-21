@@ -1,4 +1,13 @@
-<mat-form-field class="form_field">
-    <mat-label>{{options.modelName}}</mat-label>
-    <input type="text" matInput>
-</mat-form-field>
+<div style="display: flex; width: 100%;">
+    <mat-form-field class="form_field">
+        <mat-label>{{options.modelName}}</mat-label>
+        <input type="text" matInput>
+    </mat-form-field>
+    
+    <button mat-icon-button class="edit_formitem_button">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button class="remove_formitem_button">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>

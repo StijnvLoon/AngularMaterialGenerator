@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormTypeKey } from '../models/enums/FormTypeKey';
 import { FormTypeCat } from '../models/enums/formTypeCat';
-import { FormType, FormTypeImport, FormTypeOptions } from '../models/formType';
-import { ImportsLibrary } from '../models/importsLibrary';
+import { FormType, FormTypeOptions } from '../models/formType';
+import { nameToComponentDict } from '../services/form-type-comp-loader.service'
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,8 @@ export class FormTypeService {
 
   constructor() { }
 
-  cloneFormType(formType: FormType) {
-    return new FormType(formType.key, formType.category, formType.options)
-  }
-
   createFormType(key: FormTypeKey) {
-    return new FormType(key, this.getCategory(key), this.getOptions(key))
+    return new FormType(key, this.getCategory(key), this.getOptions(key), this.getComponentName(key))
   }
 
   getAllFormTypes(): FormType[] {
@@ -25,6 +21,17 @@ export class FormTypeService {
       formTypeList.push(this.createFormType(FormTypeKey[key]))
     });
     return formTypeList
+  }
+
+  private getComponentName(key: FormTypeKey) {
+    switch(key) {
+      case FormTypeKey.INPUT_TEXT:
+        return nameToComponentDict.textinput
+      case FormTypeKey.INPUT_DATE:
+        return nameToComponentDict.dateinput
+      case FormTypeKey.INPUT_PASSWORD:
+        return nameToComponentDict.passwordinput
+    }
   }
 
   private getCategory(key: FormTypeKey): FormTypeCat {
@@ -41,29 +48,19 @@ export class FormTypeService {
   private getOptions(key: FormTypeKey): FormTypeOptions {
     switch (key) {
       case FormTypeKey.INPUT_TEXT:
-        return new FormTypeOptions('Example text', [
-          ImportsLibrary.MATINPUTMODULE
-        ])
+        return new FormTypeOptions('Example text')
       case FormTypeKey.INPUT_PASSWORD: {
-        const options: FormTypeOptions = new FormTypeOptions('Example password', [
-          ImportsLibrary.MATINPUTMODULE,
-          ImportsLibrary.MATICONMODULE
-        ])
+        const options: FormTypeOptions = new FormTypeOptions('Example password')
         options.toggleVis = true
         return options
       }
       case FormTypeKey.INPUT_DATE: {
-        const options: FormTypeOptions = new FormTypeOptions('Example date', [
-          ImportsLibrary.MATINPUTMODULE,
-          ImportsLibrary.MATICONMODULE,
-          ImportsLibrary.MATNATIVEDATEMODULE,
-          ImportsLibrary.MATDATEPICKERMODULE
-        ])
+        const options: FormTypeOptions = new FormTypeOptions('Example date')
         options.editableText = false
         return options
       }
       default: {
-        return new FormTypeOptions('Example text', [])
+        return new FormTypeOptions('Example text')
       }
     }
   }

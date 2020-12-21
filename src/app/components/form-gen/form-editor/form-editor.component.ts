@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AddFormTypeDialog } from 'src/app/dialogs/addFormTypeDialog/add-formtype-dialog';
@@ -7,7 +7,8 @@ import { FormTemplate } from 'src/app/models/formTemplate';
 import { FormType } from 'src/app/models/formType';
 import { FormTypeService } from 'src/app/services/form-type.service';
 import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
-import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
+import { FormTypeCompLoaderService } from 'src/app/services/form-type-comp-loader.service';
+import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
 
 @Component({
   selector: 'app-form-editor',
@@ -17,15 +18,29 @@ import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
 })
 export class FormEditorComponent implements OnInit {
   @ViewChild('drawer') sidenav: MatSidenav;
+  @ViewChild(FormTypeHostDirective, {static: true}) appFormTypeHost: FormTypeHostDirective;
 
   @Input() formTemplate: FormTemplate
   public edittedFormType: FormType
   public tabIsActive: boolean = true
 
-  constructor(private dialog: MatDialog, private formTypeService: FormTypeService) { }
+  constructor(
+    private dialog: MatDialog,
+    private formTypeService: FormTypeService,
+    private formTypeCompLoaderService: FormTypeCompLoaderService,) {
+     }
 
   ngOnInit(): void {
+    //https://stackoverflow.com/questions/57616510/how-to-load-dynamic-components-based-on-a-property-from-object
+    //https://angular.io/guide/dynamic-component-loader
+    //https://medium.com/front-end-weekly/dynamically-add-components-to-the-dom-with-angular-71b0cb535286
+    this.formTypeCompLoaderService.setRootViewContainerRef(this.appFormTypeHost.viewContainerRef)
+    this.formTemplate.formTypeList.forEach(formType => {
+      this.formTypeCompLoaderService.addDynamicComponent(formType.componentName, formType.options)
+    });
   }
+
+  
 
   addFormObjectDialog() {
     const dialogRef = this.dialog.open(AddFormTypeDialog, {
@@ -37,7 +52,9 @@ export class FormEditorComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async formType => {
       if (formType) {
-        this.formTemplate.formTypeList.push(this.formTypeService.createFormType(formType.key))
+        const object: FormType = this.formTypeService.createFormType(formType.key)
+        this.formTemplate.formTypeList.push(object)
+        this.formTypeCompLoaderService.addDynamicComponent(object.componentName, object.options)
       }
     })
   }
