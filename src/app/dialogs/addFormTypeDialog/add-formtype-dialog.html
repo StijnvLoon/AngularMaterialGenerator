@@ -11,9 +11,9 @@
                     <app-text-input *ngSwitchCase="'INPUT_TEXT'" style="pointer-events: none !important;"
                         [options]="formType.options" [showPreview]="true"></app-text-input>
                     <app-password-input *ngSwitchCase="'INPUT_PASSWORD'" style="pointer-events: none !important;"
-                        [options]="formType.options"></app-password-input>
+                        [options]="formType.options" [showPreview]="true"></app-password-input>
                     <app-date-input *ngSwitchCase="'INPUT_DATE'" style="pointer-events: none !important;"
-                        [options]="formType.options"></app-date-input>
+                        [options]="formType.options" [showPreview]="true"></app-date-input>
                 </button>
             </div>
         </div>

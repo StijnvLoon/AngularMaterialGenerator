@@ -22,7 +22,7 @@ export class FormGenComponent implements OnInit {
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
     this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_TEXT))
-    // this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_PASSWORD))
+    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_PASSWORD))
   }
 
   onTabChanged($event) {
