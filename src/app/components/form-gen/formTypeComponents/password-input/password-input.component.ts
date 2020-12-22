@@ -8,7 +8,7 @@ import { IFormType } from '../IformType';
   templateUrl: './password-input.component.html',
   styleUrls: ['./password-input.component.scss']
 })
-export class PasswordInputComponent implements OnInit, IFormType {
+export class PasswordInputComponent implements OnInit {
 
   public visible: boolean = false
 

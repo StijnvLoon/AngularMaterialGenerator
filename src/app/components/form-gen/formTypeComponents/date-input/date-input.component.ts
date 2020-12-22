@@ -10,7 +10,7 @@ import { IFormType } from '../IformType';
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.scss']
 })
-export class DateInputComponent implements OnInit, IFormType {
+export class DateInputComponent implements OnInit {
   @ViewChild('picker') picker: MatDatepicker<[]>;
 
   //modelName

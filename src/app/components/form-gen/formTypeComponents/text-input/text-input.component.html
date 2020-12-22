@@ -1,4 +1,4 @@
-<div style="display: flex; width: 100%;">
+<div class="container" *ngIf="!showPreview" [@verticalListAnimation]="animState">
     <mat-form-field class="form_field">
         <mat-label>{{options.modelName}}</mat-label>
         <input type="text" matInput>
@@ -13,4 +13,11 @@
         [disabled]="formTypeService.edittedFormTypeOptions == options">
         <mat-icon>delete</mat-icon>
     </button>
+</div>
+
+<div class="container" *ngIf="showPreview">
+    <mat-form-field class="form_field">
+        <mat-label>{{options.modelName}}</mat-label>
+        <input type="text" matInput>
+    </mat-form-field>
 </div>

@@ -20,9 +20,8 @@ export class FormEditorComponent implements OnInit {
   @ViewChild(FormTypeHostDirective, { static: true }) appFormTypeHost: FormTypeHostDirective;
 
   @Input() formTemplate: FormTemplate
-  //public edittedOptions: FormTypeOptions
   public tabIsActive: boolean = true
-  
+
   private formTypeComponentMap: Map<FormType, ComponentRef<unknown>> = new Map()
 
   constructor(
@@ -85,9 +84,10 @@ export class FormEditorComponent implements OnInit {
   }
 
   toggleOptionsDrawer(formTypeOptions?: FormTypeOptions) {
-    if(this.sidenav.opened && formTypeOptions == undefined) {
-      this.formTypeService.edittedFormTypeOptions = undefined
-      this.sidenav.close()
+    if (this.sidenav.opened && formTypeOptions == undefined) {
+      this.closeOptions()
+    } else if (this.formTypeService.edittedFormTypeOptions == formTypeOptions) {
+      this.closeOptions()
     } else {
       this.formTypeService.edittedFormTypeOptions = formTypeOptions
       this.sidenav.open()
@@ -98,5 +98,4 @@ export class FormEditorComponent implements OnInit {
     this.sidenav.close()
     this.formTypeService.edittedFormTypeOptions = undefined
   }
-
 }

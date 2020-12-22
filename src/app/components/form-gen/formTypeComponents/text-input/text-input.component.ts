@@ -1,28 +1,46 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormType, FormTypeImport, FormTypeOptions } from 'src/app/models/formType';
 import { ImportsLibrary } from 'src/app/models/importsLibrary';
 import { IFormType } from '../IformType'
-import { verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormTypeService } from 'src/app/services/form-type.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss'],
-  animations: [verticalListItemAnimation]
+  animations: [
+    trigger('verticalListAnimation', [
+      state('close', style({
+        opacity: 0,
+        height: '0px'
+      })),
+      state('open', style({
+        opacity: 1,
+        height: '*'
+      })),
+      transition('close => open', animate('0.3s ease')),
+      transition('open => close', animate('0.3s ease'))
+    ])
+  ]
 })
-export class TextInputComponent implements OnInit, IFormType {
+export class TextInputComponent implements IFormType, AfterViewInit {
 
   @Input() public options: FormTypeOptions
+  @Input() public showPreview: boolean = false
   @Output() onRemove = new EventEmitter();
   @Output() onToggleEdit = new EventEmitter<FormTypeOptions>();
 
+  public animState: string = 'close'
+
   constructor(private dialog: MatDialog, public formTypeService: FormTypeService) { }
 
-  ngOnInit(): void {
-
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.animState = 'open'
+    });
   }
 
   remove() {
@@ -35,7 +53,10 @@ export class TextInputComponent implements OnInit, IFormType {
 
     dialogRef.afterClosed().subscribe(async bool => {
       if (bool) {
-        this.onRemove.emit()
+        this.animState = 'close'
+        setTimeout(() => {
+          this.onRemove.emit()
+        }, 300);
       }
     })
   }
@@ -61,5 +82,4 @@ export class TextInputComponent implements OnInit, IFormType {
       ImportsLibrary.MATINPUTMODULE
     ]
   }
-
 }

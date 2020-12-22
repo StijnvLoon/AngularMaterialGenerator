@@ -9,7 +9,7 @@
                 <button mat-button class="container_formtype center_content" [class.selected]="selectedFormType == formType"
                     (click)="selectedFormType = formType">
                     <app-text-input *ngSwitchCase="'INPUT_TEXT'" style="pointer-events: none !important;"
-                        [options]="formType.options"></app-text-input>
+                        [options]="formType.options" [showPreview]="true"></app-text-input>
                     <app-password-input *ngSwitchCase="'INPUT_PASSWORD'" style="pointer-events: none !important;"
                         [options]="formType.options"></app-password-input>
                     <app-date-input *ngSwitchCase="'INPUT_DATE'" style="pointer-events: none !important;"
