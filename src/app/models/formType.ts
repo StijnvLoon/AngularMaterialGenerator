@@ -1,15 +1,12 @@
-import { FormTypeKey } from './enums/FormTypeKey';
 import { FormTypeCat } from './enums/formTypeCat';
 
 export class FormType {
 
-    public readonly key: FormTypeKey
     public readonly category: FormTypeCat
     public options: FormTypeOptions
-    public componentName
+    public readonly componentName
 
-    constructor(key: FormTypeKey, category: FormTypeCat, options: FormTypeOptions, componentName) {
-        this.key = key
+    constructor(componentName, category: FormTypeCat, options: FormTypeOptions) {
         this.category = category
         this.options = options,
         this.componentName = componentName

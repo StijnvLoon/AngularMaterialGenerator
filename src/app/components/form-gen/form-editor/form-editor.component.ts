@@ -74,11 +74,14 @@ export class FormEditorComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(async formType => {
-      if (formType) {
-        const object: FormType = this.formTypeService.createFormType(formType.key)
-        this.formTemplate.formTypeList.push(object)
-        this.addFormTypeComponent(object)
+    dialogRef.afterClosed().subscribe(async formTypeList => {
+      if (formTypeList) {
+
+        formTypeList.forEach(formType => {
+          const object: FormType = this.formTypeService.createFormType(formType.componentName)
+          this.formTemplate.formTypeList.push(object)
+          this.addFormTypeComponent(object)
+        });
       }
     })
   }

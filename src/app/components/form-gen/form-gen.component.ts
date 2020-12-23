@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
 import { FormType } from 'src/app/models/formType';
 import { FormTemplate } from '../../models/formTemplate';
-import { FormTypeService } from '../../services/form-type.service';
+import { FormTypeService, nameToComponentDict } from '../../services/form-type.service';
 import { FormCodeComponent } from './form-code/form-code.component';
 import { FormEditorComponent } from './form-editor/form-editor.component';
 
@@ -21,8 +20,8 @@ export class FormGenComponent implements OnInit {
 
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
-    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_TEXT))
-    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(FormTypeKey.INPUT_PASSWORD))
+    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(nameToComponentDict.textinput))
+    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(nameToComponentDict.passwordinput))
   }
 
   onTabChanged($event) {
