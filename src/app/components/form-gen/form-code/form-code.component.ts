@@ -3,7 +3,6 @@ import { FormTemplate } from 'src/app/models/formTemplate';
 import { FormTypeImport } from 'src/app/models/formType';
 import { PreviewFile } from 'src/app/models/previewFile';
 import { ImportsLibrary } from 'src/app/models/importsLibrary';
-import { FormTypeKey } from 'src/app/models/enums/FormTypeKey';
 
 @Component({
   selector: 'app-form-code',
@@ -102,69 +101,13 @@ export class FormCodeComponent implements OnInit {
   private getComponentHTMLCode(): PreviewFile {
     const componentHTMLFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.html')
 
-    componentHTMLFile.addToCodeLines(['<form [formGroup]="' + this.formTemplate.name.toLowerCase() + 'Form" (ngSubmit)="onSubmit()">'])
+    componentHTMLFile.addToCodeLines([
+      '<form [formGroup]="' + this.formTemplate.name.toLowerCase() + 'Form" (ngSubmit)="onSubmit()">',
+      ''
+    ])
 
     this.formTemplate.formTypeList.forEach(formType => {
-      const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
-
-      switch (formType.key) {
-        case FormTypeKey.INPUT_TEXT: {
-          componentHTMLFile.addToCodeLines([
-            '    <mat-form-field>',
-            '        <mat-label>' + formType.options.modelName + '</mat-label>',
-            '        <input type="text" matInput formControlName="' + controlName + '"',
-            '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-            '    </mat-form-field>'
-          ])
-          break
-        }
-        case FormTypeKey.INPUT_PASSWORD: {
-          if (formType.options.toggleVis) {
-            componentHTMLFile.addToCodeLines([
-              '    <mat-form-field>',
-              '        <mat-label>' + formType.options.modelName + '</mat-label>',
-              '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
-              '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
-              '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
-              '        </button>',
-              '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-              '    </mat-form-field>'
-            ])
-          } else {
-            componentHTMLFile.addToCodeLines([
-              '    <mat-form-field>',
-              '        <mat-label>' + formType.options.modelName + '</mat-label>',
-              '        <input type="password" matInput formControlName="' + controlName + '>',
-              '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-              '    </mat-form-field>'
-            ])
-          }
-          break
-        }
-        case FormTypeKey.INPUT_DATE: {
-          if(formType.options.editableText) {
-            componentHTMLFile.addToCodeLines([
-              '    <mat-form-field>',
-              '        <mat-label>' + formType.options.modelName + '</mat-label>',
-              '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '>',
-              '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
-              '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
-              '    </mat-form-field>'
-            ])
-          } else {
-            componentHTMLFile.addToCodeLines([
-              '    <mat-form-field (click)="picker.open()">',
-              '        <mat-label>' + formType.options.modelName + '</mat-label>',
-              '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '" disabled>',
-              '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
-              '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
-              '    </mat-form-field>'
-            ])
-          }
-
-          break
-        }
-      }
+      componentHTMLFile.addToCodeLines(new formType.componentName().getHTMLCode(formType))
       componentHTMLFile.addToCodeLines([''])
     });
 

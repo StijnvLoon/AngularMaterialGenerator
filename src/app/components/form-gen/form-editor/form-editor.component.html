@@ -1,6 +1,13 @@
 <mat-drawer-container style="background-color: transparent; height: 100%;" autosize>
     <div class="drawer_content">
-        <div class="container_formobjects" *ngIf="tabIsActive" @list_anim>
+        <div class="container_formobjects">
+            <ng-template appFormTypeHost></ng-template>
+            <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+
+        <!-- <div class="container_formobjects" *ngIf="tabIsActive" @list_anim>
             <div *ngFor="let formType of formTemplate.formTypeList" [ngSwitch]="formType.key.toString()" @items_anim>
                 <div style="display: flex;">
                     <app-text-input style="width: 100%;" *ngSwitchCase="'INPUT_TEXT'"
@@ -23,7 +30,7 @@
             <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
                 <mat-icon>add</mat-icon>
             </button>
-        </div>
+        </div> -->
     </div>
 
     <mat-drawer #drawer mode="side" position="end">
@@ -31,7 +38,7 @@
             <mat-icon>close</mat-icon>
         </button>
 
-        <app-options-drawer *ngIf="edittedFormType" [(options)]="edittedFormType.options"></app-options-drawer>
+        <app-options-drawer *ngIf="formTypeService.edittedFormTypeOptions" [(options)]="formTypeService.edittedFormTypeOptions"></app-options-drawer>
     </mat-drawer>
 
 </mat-drawer-container>

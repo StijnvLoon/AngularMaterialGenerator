@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormTypeCat } from 'src/app/models/enums/formTypeCat';
-import { FormTypeService } from 'src/app/services/form-type.service';
+import { FormTypeService, nameToComponentDict } from 'src/app/services/form-type.service';
 import { FormType } from '../../models/formType';
 
 export interface DialogData {
@@ -13,21 +13,20 @@ export interface DialogData {
     templateUrl: './add-formtype-dialog.html',
     styleUrls: ['./add-formtype-dialog.scss']
 })
-export class AddFormTypeDialog {
+export class AddFormTypeDialog implements OnInit {
 
-    selectedFormType: FormType;
-    formTypeList: FormType[] = [];
-    formTypeCategorieList: string[] = []
+    selectedFormTypeList: FormType[] = [];
+    formTypeCategorieMap: Map<FormTypeCat, FormType[]> = new Map()
+    public nameToComponentDict = nameToComponentDict
 
     constructor(
         public dialogRef: MatDialogRef<AddFormTypeDialog>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
-        public formTypeService: FormTypeService) {
-        this.formTypeList = this.formTypeService.getAllFormTypes()
+        public formTypeService: FormTypeService) {}
 
-        Object.keys(FormTypeCat).forEach(key => {
-            this.formTypeCategorieList.push(FormTypeCat[key])
-        })
+    ngOnInit() {
+        this.formTypeCategorieMap = this.formTypeService.getAllFormTypesMapByCategory()
+        nameToComponentDict.textinput
     }
 
     close(): void {
@@ -35,10 +34,18 @@ export class AddFormTypeDialog {
     }
 
     submit() {
-        this.dialogRef.close(this.selectedFormType)
+        this.dialogRef.close(this.selectedFormTypeList)
     }
 
-    getFormTypeListByCategory(category: string): FormType[] {
-        return this.formTypeList.filter(formtype => formtype.category.toString() == category)
+    toggleSelectedFormType(formType: FormType) {
+        if (this.selectedFormTypeList.includes(formType)) {
+            this.selectedFormTypeList.splice(this.selectedFormTypeList.indexOf(formType), 1)
+        } else {
+            this.selectedFormTypeList.push(formType)
+        }
+    }
+
+    getChecked(formType): boolean {
+        return this.selectedFormTypeList.includes(formType)
     }
 }

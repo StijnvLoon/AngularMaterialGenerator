@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
@@ -26,6 +27,7 @@ import { DateInputComponent } from './components/form-gen/formTypeComponents/dat
 import { OptionsDrawerComponent } from './components/form-gen/form-editor/options-drawer/options-drawer.component';
 import { FormEditorComponent } from './components/form-gen/form-editor/form-editor.component';
 import { FormCodeComponent } from './components/form-gen/form-code/form-code.component';
+import { FormTypeHostDirective } from './directives/form-type-host.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { FormCodeComponent } from './components/form-gen/form-code/form-code.com
     DateInputComponent,
     OptionsDrawerComponent,
     FormEditorComponent,
-    FormCodeComponent
+    FormCodeComponent,
+    FormTypeHostDirective
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { FormCodeComponent } from './components/form-gen/form-code/form-code.com
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule
   ],
   providers: [
     MatDatepickerModule

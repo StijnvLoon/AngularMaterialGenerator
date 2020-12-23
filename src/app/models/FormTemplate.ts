@@ -14,7 +14,7 @@ export class FormTemplate {
         const imports: FormTypeImport[] = []
 
         this.formTypeList.forEach(formType => {
-            formType.options.imports.forEach(formTypeImport => {
+            new formType.componentName().getImports().forEach(formTypeImport => {
                 if(!imports.includes(formTypeImport)) {
                     imports.push(formTypeImport)
                 }

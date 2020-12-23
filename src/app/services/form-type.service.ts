@@ -1,70 +1,65 @@
 import { Injectable } from '@angular/core';
-import { FormTypeKey } from '../models/enums/FormTypeKey';
 import { FormTypeCat } from '../models/enums/formTypeCat';
-import { FormType, FormTypeImport, FormTypeOptions } from '../models/formType';
-import { ImportsLibrary } from '../models/importsLibrary';
+import { FormType, FormTypeOptions } from '../models/formType';
+import { DateInputComponent } from '../components/form-gen/formTypeComponents/date-input/date-input.component';
+import { PasswordInputComponent } from '../components/form-gen/formTypeComponents/password-input/password-input.component';
+import { TextInputComponent } from '../components/form-gen/formTypeComponents/text-input/text-input.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormTypeService {
 
+  public edittedFormTypeOptions: FormTypeOptions
+
   constructor() { }
 
-  cloneFormType(formType: FormType) {
-    return new FormType(formType.key, formType.category, formType.options)
+  createFormType(className): FormType {
+    return this.getAllFormTypes().filter((formType) => formType.componentName == className)[0]
   }
 
-  createFormType(key: FormTypeKey) {
-    return new FormType(key, this.getCategory(key), this.getOptions(key))
+  getAllFormTypesMapByCategory(): Map<FormTypeCat, FormType[]> {
+    const map: Map<FormTypeCat, FormType[]> = new Map()
+
+    this.getAllFormTypes().forEach((formType) => {
+      try {
+        map.get(formType.category).push(formType)
+      } catch(err) {
+        map.set(formType.category, [formType])
+      }
+    })
+
+    return map
   }
 
   getAllFormTypes(): FormType[] {
-    const formTypeList: FormType[] = []
-    Object.keys(FormTypeKey).forEach(key => {
-      formTypeList.push(this.createFormType(FormTypeKey[key]))
-    });
-    return formTypeList
+    return [
+      this.createTextInputType(),
+      this.createPasswordInputType(),
+      this.createDateInputType()
+    ]
   }
 
-  private getCategory(key: FormTypeKey): FormTypeCat {
-
-    if (key == FormTypeKey.INPUT_TEXT ||
-      key == FormTypeKey.INPUT_PASSWORD ||
-      key == FormTypeKey.INPUT_DATE) {
-      return FormTypeCat.INPUT
-    } else {
-      return FormTypeCat.NONE
-    }
+  private createTextInputType(): FormType {
+    const options = new FormTypeOptions('Example text')
+    return new FormType(nameToComponentDict.textinput, FormTypeCat.INPUT, options)
   }
 
-  private getOptions(key: FormTypeKey): FormTypeOptions {
-    switch (key) {
-      case FormTypeKey.INPUT_TEXT:
-        return new FormTypeOptions('Example text', [
-          ImportsLibrary.MATINPUTMODULE
-        ])
-      case FormTypeKey.INPUT_PASSWORD: {
-        const options: FormTypeOptions = new FormTypeOptions('Example password', [
-          ImportsLibrary.MATINPUTMODULE,
-          ImportsLibrary.MATICONMODULE
-        ])
-        options.toggleVis = true
-        return options
-      }
-      case FormTypeKey.INPUT_DATE: {
-        const options: FormTypeOptions = new FormTypeOptions('Example date', [
-          ImportsLibrary.MATINPUTMODULE,
-          ImportsLibrary.MATICONMODULE,
-          ImportsLibrary.MATNATIVEDATEMODULE,
-          ImportsLibrary.MATDATEPICKERMODULE
-        ])
-        options.editableText = false
-        return options
-      }
-      default: {
-        return new FormTypeOptions('Example text', [])
-      }
-    }
+  private createPasswordInputType(): FormType {
+    const options = new FormTypeOptions('Example password')
+    options.toggleVis = true
+    return new FormType(nameToComponentDict.passwordinput, FormTypeCat.INPUT, options)
   }
+
+  private createDateInputType(): FormType {
+    const options = new FormTypeOptions('Example date')
+    options.editableText = false
+    return new FormType(nameToComponentDict.dateinput, FormTypeCat.INPUT, options)
+  }
+}
+
+export const nameToComponentDict = {
+  textinput: TextInputComponent,
+  passwordinput: PasswordInputComponent,
+  dateinput: DateInputComponent
 }
