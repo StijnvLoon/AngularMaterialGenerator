@@ -5,7 +5,7 @@
     <div *ngFor="let category of formTypeCategorieMap.keys()">
         <h4>{{category}}</h4>
 
-        <div class="formtype_row">
+        <div class="formtype_row custom_scrollbar">
             <div *ngFor="let formType of formTypeCategorieMap.get(category)" [ngSwitch]="formType.componentName">
 
                 <div class="container_formtype">

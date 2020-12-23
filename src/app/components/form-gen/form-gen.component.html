@@ -10,11 +10,11 @@
     </div>
 </div>
 
-<mat-tab-group mat-align-tabs="center" style="flex-grow: 1;" (selectedTabChange)="onTabChanged($event);">
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;" (selectedTabChange)="onTabChanged($event);">
     <mat-tab label="Editor" style="height: 100% !important;">
         <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
     </mat-tab>
-    <mat-tab label="Code" style="height: 100% !important;">
+    <mat-tab label="Code" style="height: 100% !important; overflow-y: auto;">
         <app-form-code [formTemplate]="formTemplate"></app-form-code>
     </mat-tab>
 </mat-tab-group>
