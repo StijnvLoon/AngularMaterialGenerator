@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormImport } from 'src/app/models/FormImport';
+import { FormSavable } from 'src/app/models/FormSavable';
 import { FormTemplate } from 'src/app/models/formTemplate';
-import { FormTypeImport } from 'src/app/models/formType';
 import { PreviewFile } from 'src/app/models/previewFile';
-import { ImportsLibrary } from 'src/app/models/importsLibrary';
+import { ImportsLibrary } from 'src/assets/importsLibrary';
 
 @Component({
   selector: 'app-form-code',
@@ -32,36 +33,36 @@ export class FormCodeComponent implements OnInit {
 
   private getAppModuleFile(): PreviewFile {
     const appModuleFile: PreviewFile = new PreviewFile('app.module.ts')
-    const imports: FormTypeImport[] = this.formTemplate.getImports()
+    // const imports: FormImport[] = this.formTemplate.getImports()
 
-    //optional imports
-    appModuleFile.addToCodeLines(['...'])
-    appModuleFile.addToCodeLines(["import { ReactiveFormsModule } from '@angular/forms';"])
-    imports.forEach(formTypeImport => {
-      appModuleFile.addToCodeLines(['import { ' + formTypeImport.moduleName + ' } from \'' + formTypeImport.importLocation + '\';'])
-    });
-    appModuleFile.addToCodeLines(['...'])
+    // //optional imports
+    // appModuleFile.addToCodeLines(['...'])
+    // appModuleFile.addToCodeLines(["import { ReactiveFormsModule } from '@angular/forms';"])
+    // imports.forEach(formTypeImport => {
+    //   appModuleFile.addToCodeLines(['import { ' + formTypeImport.moduleName + ' } from \'' + formTypeImport.importLocation + '\';'])
+    // });
+    // appModuleFile.addToCodeLines(['...'])
 
-    //ngModule
-    appModuleFile.addToCodeLines([
-      '@NgModule({',
-      '  imports: [',
-      '    ...',
-      '    ReactiveFormsModule,'
-    ])
-    imports.forEach(formTypeImport => {
-      appModuleFile.addToCodeLines(['    ' + formTypeImport.moduleName + ','])
-    });
-    appModuleFile.addToCodeLines(['    ...', '  ],'])
+    // //ngModule
+    // appModuleFile.addToCodeLines([
+    //   '@NgModule({',
+    //   '  imports: [',
+    //   '    ...',
+    //   '    ReactiveFormsModule,'
+    // ])
+    // imports.forEach(formTypeImport => {
+    //   appModuleFile.addToCodeLines(['    ' + formTypeImport.moduleName + ','])
+    // });
+    // appModuleFile.addToCodeLines(['    ...', '  ],'])
 
-    //providers
-    if (imports.includes(ImportsLibrary.MATDATEPICKERMODULE)) {
-      appModuleFile.addToCodeLines(['  providers: ['])
-      appModuleFile.addToCodeLines(['    ' + ImportsLibrary.MATDATEPICKERMODULE.moduleName + ','])
-      appModuleFile.addToCodeLines(['  ],'])
-    }
+    // //providers
+    // if (imports.includes(ImportsLibrary.MATDATEPICKERMODULE)) {
+    //   appModuleFile.addToCodeLines(['  providers: ['])
+    //   appModuleFile.addToCodeLines(['    ' + ImportsLibrary.MATDATEPICKERMODULE.moduleName + ','])
+    //   appModuleFile.addToCodeLines(['  ],'])
+    // }
 
-    appModuleFile.addToCodeLines(['})', 'export class AppModule { }'])
+    // appModuleFile.addToCodeLines(['})', 'export class AppModule { }'])
 
     return appModuleFile
   }
@@ -69,31 +70,31 @@ export class FormCodeComponent implements OnInit {
   private getComponentTSCode(): PreviewFile {
     const componentTSFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.ts')
 
-    componentTSFile.addToCodeLines([
-      "import { Component } from '@angular/core';",
-      "import { FormControl, FormGroup } from '@angular/forms';'",
-      '',
-      '@Component({',
-      "  selector: 'app-" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + "',",
-      "  templateUrl: './" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.html',",
-      "  styleUrls: ['./" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.scss'],",
-      '})',
-      'export class ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Component' + '{',
-      '  ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form = new FormGroup({'
-    ])
+    // componentTSFile.addToCodeLines([
+    //   "import { Component } from '@angular/core';",
+    //   "import { FormControl, FormGroup } from '@angular/forms';'",
+    //   '',
+    //   '@Component({',
+    //   "  selector: 'app-" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + "',",
+    //   "  templateUrl: './" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.html',",
+    //   "  styleUrls: ['./" + this.formTemplate.name.toLowerCase().replace(/\s/g, "-") + ".component.scss'],",
+    //   '})',
+    //   'export class ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Component' + '{',
+    //   '  ' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form = new FormGroup({'
+    // ])
 
-    this.formTemplate.formTypeList.forEach(formType => {
-      componentTSFile.addToCodeLines(['    ' + formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\'),'])
-    });
+    // this.formTemplate.formTypeList.forEach(formType => {
+    //   componentTSFile.addToCodeLines(['    ' + formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\'),'])
+    // });
 
-    componentTSFile.addToCodeLines(['  });', '',])
+    // componentTSFile.addToCodeLines(['  });', '',])
 
-    componentTSFile.addToCodeLines([
-      '  onSubmit() {',
-      '    console.log(this.' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form.value);',
-      '  }'
-    ])
-    componentTSFile.addToCodeLines(['}'])
+    // componentTSFile.addToCodeLines([
+    //   '  onSubmit() {',
+    //   '    console.log(this.' + this.formTemplate.name.toLowerCase().replace(/\s/g, "") + 'Form.value);',
+    //   '  }'
+    // ])
+    // componentTSFile.addToCodeLines(['}'])
 
     return componentTSFile
   }
@@ -106,8 +107,8 @@ export class FormCodeComponent implements OnInit {
       ''
     ])
 
-    this.formTemplate.formTypeList.forEach(formType => {
-      componentHTMLFile.addToCodeLines(new formType.componentName().getHTMLCode(formType))
+    this.formTemplate.formSavables.forEach(formSavable => {
+      componentHTMLFile.addToCodeLines(formSavable.getHTMLCode())
       componentHTMLFile.addToCodeLines([''])
     });
 

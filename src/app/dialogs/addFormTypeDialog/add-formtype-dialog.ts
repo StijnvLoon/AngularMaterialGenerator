@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormTypeCat } from 'src/app/models/enums/formTypeCat';
-import { FormTypeService, nameToComponentDict } from 'src/app/services/form-type.service';
-import { FormType } from '../../models/formType';
+import { FormSavable } from 'src/app/models/FormSavable';
 
 export interface DialogData {
     title: string
@@ -15,18 +14,17 @@ export interface DialogData {
 })
 export class AddFormTypeDialog implements OnInit {
 
-    selectedFormTypeList: FormType[] = [];
-    formTypeCategorieMap: Map<FormTypeCat, FormType[]> = new Map()
-    public nameToComponentDict = nameToComponentDict
+    // selectedFormTypeList: FormType[] = [];
+    // formTypeCategorieMap: Map<FormTypeCat, FormType[]> = new Map()
+    // public nameToComponentDict = nameToComponentDict
 
     constructor(
         public dialogRef: MatDialogRef<AddFormTypeDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData,
-        public formTypeService: FormTypeService) {}
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
     ngOnInit() {
-        this.formTypeCategorieMap = this.formTypeService.getAllFormTypesMapByCategory()
-        nameToComponentDict.textinput
+        // this.formTypeCategorieMap = this.formTypeService.getAllFormTypesMapByCategory()
+        // nameToComponentDict.textinput
     }
 
     close(): void {
@@ -34,18 +32,19 @@ export class AddFormTypeDialog implements OnInit {
     }
 
     submit() {
-        this.dialogRef.close(this.selectedFormTypeList)
+        //this.dialogRef.close(this.selectedFormTypeList)
     }
 
-    toggleSelectedFormType(formType: FormType) {
-        if (this.selectedFormTypeList.includes(formType)) {
-            this.selectedFormTypeList.splice(this.selectedFormTypeList.indexOf(formType), 1)
-        } else {
-            this.selectedFormTypeList.push(formType)
-        }
+    toggleSelectedFormType(formSavable: FormSavable) {
+        // if (this.selectedFormTypeList.includes(formType)) {
+        //     this.selectedFormTypeList.splice(this.selectedFormTypeList.indexOf(formType), 1)
+        // } else {
+        //     this.selectedFormTypeList.push(formType)
+        // }
     }
 
     getChecked(formType): boolean {
-        return this.selectedFormTypeList.includes(formType)
+        //return this.selectedFormTypeList.includes(formType)
+        return true
     }
 }

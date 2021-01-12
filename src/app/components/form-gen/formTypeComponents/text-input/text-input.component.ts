@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormType, FormTypeImport, FormTypeOptions } from 'src/app/models/formType';
-import { ImportsLibrary } from 'src/app/models/importsLibrary';
+import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
+import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType'
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormTypeService } from 'src/app/services/form-type.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { FormOptions } from 'src/app/models/FormOptions';
 
 @Component({
   selector: 'app-text-input',
@@ -28,14 +27,14 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class TextInputComponent implements IFormType, AfterViewInit {
 
-  @Input() public options: FormTypeOptions
-  @Input() public showPreview: boolean = false
+  public options: FormOptions
+  public showPreview: boolean = false
   @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormTypeOptions>();
+  @Output() onToggleEdit = new EventEmitter<FormOptions>();
 
   public animState: string = 'close'
 
-  constructor(private dialog: MatDialog, public formTypeService: FormTypeService) { }
+  constructor(private dialog: MatDialog) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -65,21 +64,44 @@ export class TextInputComponent implements IFormType, AfterViewInit {
     this.onToggleEdit.emit(this.options)
   }
 
-  getHTMLCode(formType?: FormType): string[] {
-    const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+  getHTMLCodeCallback() {
+    return () => {
+      return this.getHTMLCode()
+    }
+  }
+
+  private getHTMLCode(): string[] {
+    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
     return [
       '    <mat-form-field>',
-      '        <mat-label>' + formType.options.modelName + '</mat-label>',
+      '        <mat-label>' + this.options.modelName + '</mat-label>',
       '        <input type="text" matInput formControlName="' + controlName + '"',
       '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
       '    </mat-form-field>'
     ]
   }
 
-  getImports(): FormTypeImport[] {
+  getTSCode() {
+    throw new Error('Method not implemented.');
+  }
+
+  getImports() {
     return [
       ImportsLibrary.MATINPUTMODULE
     ]
+  }
+
+  private toggled: boolean = true
+
+  test() {
+    if(this.toggled) {
+      this.options.modelName = ' teeeest'
+    } else {
+      this.options.modelName = 'poep'
+    }
+
+    this.toggled = !this.toggled
+
   }
 }

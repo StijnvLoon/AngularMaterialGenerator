@@ -4,9 +4,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormType, FormTypeImport, FormTypeOptions } from 'src/app/models/formType';
-import { ImportsLibrary } from 'src/app/models/importsLibrary';
-import { FormTypeService } from 'src/app/services/form-type.service';
+import { FormImport } from 'src/app/models/FormImport';
+import { FormOptions } from 'src/app/models/FormOptions';
+import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
 @Component({
@@ -31,15 +31,21 @@ import { IFormType } from '../IformType';
 export class DateInputComponent implements IFormType, AfterViewInit {
   @ViewChild('picker') picker: MatDatepicker<[]>;
 
-  @Input() public options: FormTypeOptions
+  @Input() public options: FormOptions
   @Input() public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormTypeOptions>();
+  @Output() onToggleEdit = new EventEmitter<FormOptions>();
   
   public animState: string = 'close';
   public date: Date
 
-  constructor(private dialog: MatDialog, public formTypeService: FormTypeService) { }
+  constructor(private dialog: MatDialog) { }
+  getHTMLCodeCallback() {
+    throw new Error('Method not implemented.');
+  }
+  getTSCode() {
+    throw new Error('Method not implemented.');
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -75,13 +81,13 @@ export class DateInputComponent implements IFormType, AfterViewInit {
     }
   }
 
-  getHTMLCode(formType?: FormType): string[] {
-    const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+  getHTMLCode(): string[] {
+    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
-      if (formType.options.editableText) {
+      if (this.options.editableText) {
         return [
           '    <mat-form-field>',
-          '        <mat-label>' + formType.options.modelName + '</mat-label>',
+          '        <mat-label>' + this.options.modelName + '</mat-label>',
           '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '>',
           '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
           '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
@@ -90,7 +96,7 @@ export class DateInputComponent implements IFormType, AfterViewInit {
       } else {
         return [
           '    <mat-form-field (click)="picker.open()">',
-          '        <mat-label>' + formType.options.modelName + '</mat-label>',
+          '        <mat-label>' + this.options.modelName + '</mat-label>',
           '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '" disabled>',
           '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
           '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
@@ -99,12 +105,8 @@ export class DateInputComponent implements IFormType, AfterViewInit {
       }
   }
 
-  getImports(): FormTypeImport[] {
+  getImports(): FormImport[] {
     return [
-      ImportsLibrary.MATINPUTMODULE,
-      ImportsLibrary.MATICONMODULE,
-      ImportsLibrary.MATNATIVEDATEMODULE,
-      ImportsLibrary.MATDATEPICKERMODULE
     ]
   }
 }

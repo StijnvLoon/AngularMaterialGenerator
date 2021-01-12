@@ -1,15 +1,15 @@
 import { EventEmitter } from '@angular/core';
-import { FormType, FormTypeImport, FormTypeOptions } from '../../../models/formType'
+import { FormOptions } from 'src/app/models/FormOptions';
 
 export interface IFormType {
     //the actual options
-    options: FormTypeOptions
+    options: FormOptions
     //there must be a preview for the picker dialog
     showPreview: boolean
     //the remove emitter
     onRemove: EventEmitter<any>
-    //the toggle emitter
-    onToggleEdit: EventEmitter<FormTypeOptions>
+    //the edit toggle emitter
+    onToggleEdit: EventEmitter<FormOptions>
     //for animations
     animState: string
     //to remove
@@ -17,7 +17,9 @@ export interface IFormType {
     //to toggle options menu
     toggleEdit()
     //retrieve html code
-    getHTMLCode(formType?: FormType): string[]
+    getHTMLCodeCallback()
+    //retrieve ts code
+    getTSCode()
     //retrieve imports
-    getImports(): FormTypeImport[]
+    getImports()
 }

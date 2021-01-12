@@ -1,22 +1,31 @@
-import { FormType, FormTypeImport } from './formType'
+import { FormImport } from "./FormImport"
+import { FormSavable } from "./FormSavable"
 
 export class FormTemplate {
 
     public name: string
-    public formTypeList: FormType[]
+    public formSavables: FormSavable[]
 
     constructor(name: string) {
         this.name = name
-        this.formTypeList = []
+        this.formSavables = []
     }
 
-    public getImports(): FormTypeImport[] {
-        const imports: FormTypeImport[] = []
+    public addFormSavable(formSavable: FormSavable) {
+        this.formSavables.push(formSavable)
+    }
 
-        this.formTypeList.forEach(formType => {
-            new formType.componentName().getImports().forEach(formTypeImport => {
-                if(!imports.includes(formTypeImport)) {
-                    imports.push(formTypeImport)
+    public removeFormSavable(formSavable: FormSavable) {
+        this.formSavables.splice(this.formSavables.indexOf(formSavable), 1)
+    }
+
+    public getImports(): FormImport[] {
+        const imports: FormImport[] = []
+
+        this.formSavables.forEach(formSavable => {
+            formSavable.getImports().forEach(formImport => {
+                if(!imports.includes(formImport)) {
+                    imports.push(formImport)
                 }
             });
         });

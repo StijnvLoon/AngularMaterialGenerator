@@ -4,10 +4,10 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AddFormTypeDialog } from 'src/app/dialogs/addFormTypeDialog/add-formtype-dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormTemplate } from 'src/app/models/formTemplate';
-import { FormType, FormTypeOptions } from 'src/app/models/formType';
-import { FormTypeService } from 'src/app/services/form-type.service';
 import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
+import { IFormType } from '../formTypeComponents/IformType';
+import { FormSavable } from 'src/app/models/FormSavable';
 
 @Component({
   selector: 'app-form-editor',
@@ -22,11 +22,9 @@ export class FormEditorComponent implements OnInit {
   @Input() formTemplate: FormTemplate
   public tabIsActive: boolean = true
 
-  private formTypeComponentMap: Map<FormType, ComponentRef<unknown>> = new Map()
 
   constructor(
     private dialog: MatDialog,
-    public formTypeService: FormTypeService,
     private factoryResolver: ComponentFactoryResolver) {
   }
 
@@ -34,35 +32,35 @@ export class FormEditorComponent implements OnInit {
     //https://stackoverflow.com/questions/57616510/how-to-load-dynamic-components-based-on-a-property-from-object
     //https://angular.io/guide/dynamic-component-loader
     //https://medium.com/front-end-weekly/dynamically-add-components-to-the-dom-with-angular-71b0cb535286
-    this.formTemplate.formTypeList.forEach(formType => {
-      this.addFormTypeComponent(formType)
+    this.formTemplate.formSavables.forEach(formSavable => {
+      this.convertFormSavableToLayout(formSavable)
     });
   }
 
-  addFormTypeComponent(formType: FormType) {
-    const factory = this.factoryResolver.resolveComponentFactory(formType.componentName)
-    const componentRef: ComponentRef<unknown> = factory.create(this.appFormTypeHost.viewContainerRef.injector)
-    const instance = <any>componentRef.instance
+  convertFormSavableToLayout(formSavable: FormSavable) {
+    const factory = this.factoryResolver.resolveComponentFactory(formSavable.name)
+    const componentRef: ComponentRef<any>= factory.create(this.appFormTypeHost.viewContainerRef.injector)
+    const instance: IFormType = componentRef.instance
 
-    instance.options = formType.options
+    instance.options = formSavable.formOptions
     instance.onRemove.subscribe(() => {
-      this.removeFormTypeComponent(formType)
+      this.removeFormSavable(formSavable)
     })
     instance.onToggleEdit.subscribe((options) => {
-      this.toggleOptionsDrawer(options)
+      //this.toggleOptionsDrawer(options)
     })
 
-    this.formTypeComponentMap.set(formType, componentRef)
+    formSavable.view = componentRef
+    formSavable.getHTMLCode = instance.getHTMLCodeCallback()
+
     this.appFormTypeHost.viewContainerRef.insert(componentRef.hostView)
   }
 
-  removeFormTypeComponent(formType: FormType) {
+  removeFormSavable(formSavable: FormSavable) {
     //remove from layout
-    this.appFormTypeHost.viewContainerRef.remove(this.appFormTypeHost.viewContainerRef.indexOf(this.formTypeComponentMap.get(formType).hostView))
+    this.appFormTypeHost.viewContainerRef.remove(this.appFormTypeHost.viewContainerRef.indexOf(formSavable.view.hostView))
     //remove from formtemplate
-    this.formTemplate.formTypeList.splice(this.formTemplate.formTypeList.indexOf(formType), 1)
-    //remove from map
-    this.formTypeComponentMap.delete(formType)
+    this.formTemplate.removeFormSavable(formSavable)
   }
 
 
@@ -74,31 +72,31 @@ export class FormEditorComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(async formTypeList => {
-      if (formTypeList) {
+    // dialogRef.afterClosed().subscribe(async formTypeList => {
+    //   if (formTypeList) {
 
-        formTypeList.forEach(formType => {
-          const object: FormType = this.formTypeService.createFormType(formType.componentName)
-          this.formTemplate.formTypeList.push(object)
-          this.addFormTypeComponent(object)
-        });
-      }
-    })
+    //     formTypeList.forEach(formType => {
+    //       const object: FormType = this.formTypeService.createFormType(formType.componentName)
+    //       this.formTemplate.formTypeList.push(object)
+    //       this.convertFormSavableToLayout(object)
+    //     });
+    //   }
+    // })
   }
 
-  toggleOptionsDrawer(formTypeOptions?: FormTypeOptions) {
-    if (this.sidenav.opened && formTypeOptions == undefined) {
-      this.closeOptions()
-    } else if (this.formTypeService.edittedFormTypeOptions == formTypeOptions) {
-      this.closeOptions()
-    } else {
-      this.formTypeService.edittedFormTypeOptions = formTypeOptions
-      this.sidenav.open()
-    }
-  }
+  // toggleOptionsDrawer(formTypeOptions?: FormTypeOptions) {
+  //   if (this.sidenav.opened && formTypeOptions == undefined) {
+  //     this.closeOptions()
+  //   } else if (this.formTypeService.edittedFormTypeOptions == formTypeOptions) {
+  //     this.closeOptions()
+  //   } else {
+  //     this.formTypeService.edittedFormTypeOptions = formTypeOptions
+  //     this.sidenav.open()
+  //   }
+  // }
 
   closeOptions() {
     this.sidenav.close()
-    this.formTypeService.edittedFormTypeOptions = undefined
+    //this.formTypeService.edittedFormTypeOptions = undefined
   }
 }

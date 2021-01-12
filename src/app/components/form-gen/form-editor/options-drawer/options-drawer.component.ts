@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { FormType } from 'src/app/models/formType';
 
 @Component({
   selector: 'app-options-drawer',

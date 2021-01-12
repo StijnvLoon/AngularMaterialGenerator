@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormType } from 'src/app/models/formType';
+import { FormOptions } from 'src/app/models/FormOptions';
+import { FormSavable } from 'src/app/models/FormSavable';
+import { FormComponentDict } from 'src/assets/formComponentLibrary';
 import { FormTemplate } from '../../models/formTemplate';
-import { FormTypeService, nameToComponentDict } from '../../services/form-type.service';
 import { FormCodeComponent } from './form-code/form-code.component';
 import { FormEditorComponent } from './form-editor/form-editor.component';
 
@@ -16,12 +17,16 @@ export class FormGenComponent implements OnInit {
   @ViewChild(FormCodeComponent) private formCodeComponent: FormCodeComponent;
   @ViewChild(FormEditorComponent) private formEditorComponent: FormEditorComponent;
 
-  constructor(private formTypeService: FormTypeService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
-    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(nameToComponentDict.textinput))
-    this.formTemplate.formTypeList.push(this.formTypeService.createFormType(nameToComponentDict.passwordinput))
+
+    var savable1: FormSavable = new FormSavable(FormComponentDict.textinput, new FormOptions('Input Text'))
+    //var savable2: FormSavable = new FormSavable(FormComponentDict.passwordinput, new FormOptions('Input password'))
+
+    this.formTemplate.addFormSavable(savable1)
+    //this.formTemplate.addFormSavable(savable2)
   }
 
   onTabChanged($event) {

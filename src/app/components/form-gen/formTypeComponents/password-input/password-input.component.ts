@@ -2,9 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormType, FormTypeImport, FormTypeOptions } from 'src/app/models/formType';
-import { ImportsLibrary } from 'src/app/models/importsLibrary';
-import { FormTypeService } from 'src/app/services/form-type.service';
+import { FormOptions } from 'src/app/models/FormOptions';
 import { IFormType } from '../IformType';
 
 @Component({
@@ -28,14 +26,21 @@ import { IFormType } from '../IformType';
 })
 export class PasswordInputComponent implements IFormType, AfterViewInit {
 
-  @Input() public options: FormTypeOptions
+  public options: FormOptions
   @Input() public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormTypeOptions>();
+  @Output() onToggleEdit = new EventEmitter<FormOptions>();
   
   public animState: string = 'close';
 
-  constructor(private dialog: MatDialog, public formTypeService: FormTypeService) { }
+  constructor(private dialog: MatDialog) { }
+
+  getHTMLCodeCallback() {
+    throw new Error('Method not implemented.');
+  }
+  getTSCode() {
+    throw new Error('Method not implemented.');
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -65,13 +70,13 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
     this.onToggleEdit.emit(this.options)
   }
 
-  getHTMLCode(formType?: FormType): string[] {
-    const controlName = formType.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+  getHTMLCode(): string[] {
+    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
     
-    if (formType.options.toggleVis) {
+    if (this.options.toggleVis) {
       return [
         '    <mat-form-field>',
-        '        <mat-label>' + formType.options.modelName + '</mat-label>',
+        '        <mat-label>' + this.options.modelName + '</mat-label>',
         '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
         '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
         '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
@@ -82,7 +87,7 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
     } else {
       return [
         '    <mat-form-field>',
-        '        <mat-label>' + formType.options.modelName + '</mat-label>',
+        '        <mat-label>' + this.options.modelName + '</mat-label>',
         '        <input type="password" matInput formControlName="' + controlName + '>',
         '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
         '    </mat-form-field>'
@@ -90,10 +95,8 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
     }
   }
 
-  getImports(): FormTypeImport[] {
+  getImports(): FormOptions[] {
     return [
-      ImportsLibrary.MATINPUTMODULE,
-      ImportsLibrary.MATICONMODULE
     ]
   }
 
