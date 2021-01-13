@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AddFormTypeDialog } from 'src/app/dialogs/addFormTypeDialog/add-formtype-dialog';
@@ -8,6 +8,8 @@ import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animat
 import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
 import { IFormType } from '../formTypeComponents/IformType';
 import { FormSavable } from 'src/app/models/FormSavable';
+import { FormOptions } from 'src/app/models/FormOptions';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-form-editor',
@@ -15,17 +17,18 @@ import { FormSavable } from 'src/app/models/FormSavable';
   styleUrls: ['./form-editor.component.scss'],
   animations: [verticalListAnimation, verticalListItemAnimation]
 })
-export class FormEditorComponent implements OnInit {
+export class FormEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('drawer') sidenav: MatSidenav;
   @ViewChild(FormTypeHostDirective, { static: true }) appFormTypeHost: FormTypeHostDirective;
 
   @Input() formTemplate: FormTemplate
   public tabIsActive: boolean = true
-
+  public activeFormOptions: FormOptions
 
   constructor(
     private dialog: MatDialog,
-    private factoryResolver: ComponentFactoryResolver) {
+    private factoryResolver: ComponentFactoryResolver,
+    public sidenavService: SidenavService) {
   }
 
   ngOnInit(): void {
@@ -37,9 +40,13 @@ export class FormEditorComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.sidenavService.sidenav = this.sidenav
+  }
+
   convertFormSavableToLayout(formSavable: FormSavable) {
     const factory = this.factoryResolver.resolveComponentFactory(formSavable.name)
-    const componentRef: ComponentRef<any>= factory.create(this.appFormTypeHost.viewContainerRef.injector)
+    const componentRef: ComponentRef<any> = factory.create(this.appFormTypeHost.viewContainerRef.injector)
     const instance: IFormType = componentRef.instance
 
     instance.options = formSavable.formOptions
@@ -47,11 +54,13 @@ export class FormEditorComponent implements OnInit {
       this.removeFormSavable(formSavable)
     })
     instance.onToggleEdit.subscribe((options) => {
-      //this.toggleOptionsDrawer(options)
+      this.sidenavService.toggle(options)
     })
 
     formSavable.view = componentRef
     formSavable.getHTMLCode = instance.getHTMLCodeCallback()
+    formSavable.getTSCode = instance.getTSCodeCallback()
+    formSavable.getImports = instance.getImportsCallback()
 
     this.appFormTypeHost.viewContainerRef.insert(componentRef.hostView)
   }
@@ -82,21 +91,5 @@ export class FormEditorComponent implements OnInit {
     //     });
     //   }
     // })
-  }
-
-  // toggleOptionsDrawer(formTypeOptions?: FormTypeOptions) {
-  //   if (this.sidenav.opened && formTypeOptions == undefined) {
-  //     this.closeOptions()
-  //   } else if (this.formTypeService.edittedFormTypeOptions == formTypeOptions) {
-  //     this.closeOptions()
-  //   } else {
-  //     this.formTypeService.edittedFormTypeOptions = formTypeOptions
-  //     this.sidenav.open()
-  //   }
-  // }
-
-  closeOptions() {
-    this.sidenav.close()
-    //this.formTypeService.edittedFormTypeOptions = undefined
   }
 }

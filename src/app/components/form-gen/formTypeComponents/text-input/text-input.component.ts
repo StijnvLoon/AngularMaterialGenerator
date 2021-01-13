@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormOptions } from 'src/app/models/FormOptions';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-text-input',
@@ -34,7 +35,7 @@ export class TextInputComponent implements IFormType, AfterViewInit {
 
   public animState: string = 'close'
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -66,42 +67,30 @@ export class TextInputComponent implements IFormType, AfterViewInit {
 
   getHTMLCodeCallback() {
     return () => {
-      return this.getHTMLCode()
+      const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+
+      return [
+        '    <mat-form-field>',
+        '        <mat-label>' + this.options.modelName + '</mat-label>',
+        '        <input type="text" matInput formControlName="' + controlName + '"',
+        '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
+        '    </mat-form-field>'
+      ]
     }
   }
 
-  private getHTMLCode(): string[] {
-    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
-
-    return [
-      '    <mat-form-field>',
-      '        <mat-label>' + this.options.modelName + '</mat-label>',
-      '        <input type="text" matInput formControlName="' + controlName + '"',
-      '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-      '    </mat-form-field>'
-    ]
-  }
-
-  getTSCode() {
-    throw new Error('Method not implemented.');
-  }
-
-  getImports() {
-    return [
-      ImportsLibrary.MATINPUTMODULE
-    ]
-  }
-
-  private toggled: boolean = true
-
-  test() {
-    if(this.toggled) {
-      this.options.modelName = ' teeeest'
-    } else {
-      this.options.modelName = 'poep'
+  getTSCodeCallback() {
+    return () => {
+      return []
     }
-
-    this.toggled = !this.toggled
-
   }
+
+  getImportsCallback() {
+    return () => {
+      return [
+        ImportsLibrary.MATINPUTMODULE
+      ]
+    }
+  }
+
 }

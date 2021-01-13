@@ -9,11 +9,11 @@
     </div>
 
     <mat-drawer #drawer mode="side" position="end">
-        <button class="close_side_bar_button" mat-icon-button (click)="closeOptions()">
+        <button class="close_side_bar_button" mat-icon-button (click)="sidenavService.close()">
             <mat-icon>close</mat-icon>
         </button>
 
-        <!-- <app-options-drawer *ngIf="formTypeService.edittedFormTypeOptions" [(options)]="formTypeService.edittedFormTypeOptions"></app-options-drawer> -->
+        <app-options-drawer *ngIf="sidenavService.activeFormOptions" [(options)]="sidenavService.activeFormOptions"></app-options-drawer>
     </mat-drawer>
 
 </mat-drawer-container>

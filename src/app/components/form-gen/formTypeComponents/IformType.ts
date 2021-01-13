@@ -19,7 +19,7 @@ export interface IFormType {
     //retrieve html code
     getHTMLCodeCallback()
     //retrieve ts code
-    getTSCode()
+    getTSCodeCallback()
     //retrieve imports
-    getImports()
+    getImportsCallback()
 }

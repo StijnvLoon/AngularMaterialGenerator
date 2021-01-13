@@ -23,10 +23,12 @@ export class FormGenComponent implements OnInit {
     this.formTemplate = new FormTemplate('new_form')
 
     var savable1: FormSavable = new FormSavable(FormComponentDict.textinput, new FormOptions('Input Text'))
-    //var savable2: FormSavable = new FormSavable(FormComponentDict.passwordinput, new FormOptions('Input password'))
+    var savable2: FormSavable = new FormSavable(FormComponentDict.passwordinput, new FormOptions('Input password'))
+    var savable3: FormSavable = new FormSavable(FormComponentDict.dateinput, new FormOptions('Input date'))
 
     this.formTemplate.addFormSavable(savable1)
-    //this.formTemplate.addFormSavable(savable2)
+    this.formTemplate.addFormSavable(savable2)
+    this.formTemplate.addFormSavable(savable3)
   }
 
   onTabChanged($event) {

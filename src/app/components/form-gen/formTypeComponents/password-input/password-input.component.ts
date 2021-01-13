@@ -3,6 +3,8 @@ import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
+import { SidenavService } from 'src/app/services/sidenav.service';
+import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
 @Component({
@@ -33,19 +35,16 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
   
   public animState: string = 'close';
 
-  constructor(private dialog: MatDialog) { }
-
-  getHTMLCodeCallback() {
-    throw new Error('Method not implemented.');
-  }
-  getTSCode() {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.animState = 'open'
     });
+
+    if(this.options.toggleVis == undefined) {
+      this.options.toggleVis = true
+    }
   }
 
   remove() {
@@ -70,34 +69,45 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
     this.onToggleEdit.emit(this.options)
   }
 
-  getHTMLCode(): string[] {
-    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+  getHTMLCodeCallback() {
+    return () => {
+      const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
     
-    if (this.options.toggleVis) {
-      return [
-        '    <mat-form-field>',
-        '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
-        '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
-        '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
-        '        </button>',
-        '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-        '    </mat-form-field>'
-      ]
-    } else {
-      return [
-        '    <mat-form-field>',
-        '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input type="password" matInput formControlName="' + controlName + '>',
-        '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-        '    </mat-form-field>'
-      ]
+      if (this.options.toggleVis) {
+        return [
+          '    <mat-form-field>',
+          '        <mat-label>' + this.options.modelName + '</mat-label>',
+          '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
+          '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
+          '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
+          '        </button>',
+          '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
+          '    </mat-form-field>'
+        ]
+      } else {
+        return [
+          '    <mat-form-field>',
+          '        <mat-label>' + this.options.modelName + '</mat-label>',
+          '        <input type="password" matInput formControlName="' + controlName + '>',
+          '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
+          '    </mat-form-field>'
+        ]
+      }
+    }
+  }
+  getTSCodeCallback() {
+    return () => {
+      return []
     }
   }
 
-  getImports(): FormOptions[] {
-    return [
-    ]
+  getImportsCallback() {
+    return () => {
+      return [
+        ImportsLibrary.MATINPUTMODULE,
+        ImportsLibrary.MATICONMODULE
+      ]
+    }
   }
 
 }

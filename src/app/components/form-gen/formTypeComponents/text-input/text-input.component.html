@@ -4,19 +4,15 @@
         <input type="text" matInput>
     </mat-form-field>
 
-    <button mat-icon-button class="edit_formitem_button" (click)="test()">
-        <mat-icon>settings</mat-icon>
-    </button>
-
-    <!-- <button mat-icon-button class="edit_formitem_button"
-        [class.edit_formitem_button_selected]="formTypeService.edittedFormTypeOptions == options"
+    <button mat-icon-button class="edit_formitem_button"
+        [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options"
         (click)="toggleEdit()">
         <mat-icon>settings</mat-icon>
     </button>
     <button mat-icon-button class="remove_formitem_button" (click)="remove()"
-        [disabled]="formTypeService.edittedFormTypeOptions == options">
+        [disabled]="sidenavService.activeFormOptions == options">
         <mat-icon>delete</mat-icon>
-    </button> -->
+    </button>
 </div>
 
 <div class="container" *ngIf="showPreview">

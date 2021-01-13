@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormImport } from 'src/app/models/FormImport';
 import { FormOptions } from 'src/app/models/FormOptions';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
@@ -31,21 +32,15 @@ import { IFormType } from '../IformType';
 export class DateInputComponent implements IFormType, AfterViewInit {
   @ViewChild('picker') picker: MatDatepicker<[]>;
 
-  @Input() public options: FormOptions
-  @Input() public showPreview: boolean = false;
+  public options: FormOptions
+  public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
   @Output() onToggleEdit = new EventEmitter<FormOptions>();
-  
+
   public animState: string = 'close';
   public date: Date
 
-  constructor(private dialog: MatDialog) { }
-  getHTMLCodeCallback() {
-    throw new Error('Method not implemented.');
-  }
-  getTSCode() {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -81,8 +76,9 @@ export class DateInputComponent implements IFormType, AfterViewInit {
     }
   }
 
-  getHTMLCode(): string[] {
-    const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+  getHTMLCodeCallback() {
+    return () => {
+      const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       if (this.options.editableText) {
         return [
@@ -103,10 +99,23 @@ export class DateInputComponent implements IFormType, AfterViewInit {
           '    </mat-form-field>'
         ]
       }
+    }
   }
 
-  getImports(): FormImport[] {
-    return [
-    ]
+  getTSCodeCallback() {
+    return () => {
+      return []
+    }
+  }
+
+  getImportsCallback() {
+    return () => {
+      return [
+        ImportsLibrary.MATINPUTMODULE,
+        ImportsLibrary.MATICONMODULE,
+        ImportsLibrary.MATNATIVEDATEMODULE,
+        ImportsLibrary.MATDATEPICKERMODULE
+      ]
+    }
   }
 }
