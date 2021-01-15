@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { FormSavable } from 'src/app/models/FormSavable';
-import { FormComponentDict } from 'src/assets/formComponentLibrary';
+import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { FormTemplate } from '../../models/formTemplate';
 import { FormCodeComponent } from './form-code/form-code.component';
 import { FormEditorComponent } from './form-editor/form-editor.component';
@@ -22,9 +22,9 @@ export class FormGenComponent implements OnInit {
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
 
-    var savable1: FormSavable = new FormSavable(FormComponentDict.textinput, new FormOptions('Input Text'))
-    var savable2: FormSavable = new FormSavable(FormComponentDict.passwordinput, new FormOptions('Input password'))
-    var savable3: FormSavable = new FormSavable(FormComponentDict.dateinput, new FormOptions('Input date'))
+    var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text'))
+    var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password'))
+    var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date'))
 
     this.formTemplate.addFormSavable(savable1)
     this.formTemplate.addFormSavable(savable2)

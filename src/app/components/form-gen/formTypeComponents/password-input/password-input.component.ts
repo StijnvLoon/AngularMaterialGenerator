@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
@@ -28,8 +29,9 @@ import { IFormType } from '../IformType';
 })
 export class PasswordInputComponent implements IFormType, AfterViewInit {
 
+  public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
-  @Input() public showPreview: boolean = false;
+  public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
   @Output() onToggleEdit = new EventEmitter<FormOptions>();
   

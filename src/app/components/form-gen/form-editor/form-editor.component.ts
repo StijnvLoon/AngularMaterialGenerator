@@ -10,6 +10,7 @@ import { IFormType } from '../formTypeComponents/IformType';
 import { FormSavable } from 'src/app/models/FormSavable';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 
 @Component({
   selector: 'app-form-editor',
@@ -81,15 +82,15 @@ export class FormEditorComponent implements OnInit, AfterViewInit {
       }
     });
 
-    // dialogRef.afterClosed().subscribe(async formTypeList => {
-    //   if (formTypeList) {
+    dialogRef.afterClosed().subscribe(async formNames => {
+      if (formNames) {
 
-    //     formTypeList.forEach(formType => {
-    //       const object: FormType = this.formTypeService.createFormType(formType.componentName)
-    //       this.formTemplate.formTypeList.push(object)
-    //       this.convertFormSavableToLayout(object)
-    //     });
-    //   }
-    // })
+        formNames.forEach(formName => {
+          const formSavable = new FormSavable(FormComponentLibrary[formName], new FormOptions(formName + ' model'))
+          this.formTemplate.addFormSavable(formSavable)
+          this.convertFormSavableToLayout(formSavable)
+        });
+      }
+    })
   }
 }

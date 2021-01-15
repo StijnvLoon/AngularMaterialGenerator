@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType'
 import { MatDialog } from '@angular/material/dialog';
@@ -6,6 +6,7 @@ import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 
 @Component({
   selector: 'app-text-input',
@@ -28,6 +29,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class TextInputComponent implements IFormType, AfterViewInit {
 
+  public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
   public showPreview: boolean = false
   @Output() onRemove = new EventEmitter();

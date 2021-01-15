@@ -2,7 +2,7 @@ import { DateInputComponent } from "src/app/components/form-gen/formTypeComponen
 import { PasswordInputComponent } from "src/app/components/form-gen/formTypeComponents/password-input/password-input.component";
 import { TextInputComponent } from "src/app/components/form-gen/formTypeComponents/text-input/text-input.component";
 
-export const FormComponentDict = {
+export const FormComponentLibrary = {
   textinput: TextInputComponent,
   passwordinput: PasswordInputComponent,
   dateinput: DateInputComponent

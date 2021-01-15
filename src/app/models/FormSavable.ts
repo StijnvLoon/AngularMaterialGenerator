@@ -12,16 +12,4 @@ export class FormSavable {
         public name: any,
         public formOptions: FormOptions
     ) { }
-
-    public setHTMLCallback(cb) {
-        this.getHTMLCode = cb
-    }
-
-    public setTSCallback(cb) {
-        this.getTSCode = cb
-    }
-
-    public setImportsCallback(cb) {
-        this.getImports = cb
-    }
 }

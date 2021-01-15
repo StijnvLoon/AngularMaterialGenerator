@@ -1,25 +1,53 @@
-<!-- <h1 mat-dialog-title>{{data.title}}</h1>
+<h1 mat-dialog-title>{{data.title}}</h1>
 
 <div mat-dialog-content>
 
-    <div *ngFor="let category of formTypeCategorieMap.keys()">
+    <div *ngFor="let category of categories">
+        <h4>{{formCategoryLibrary[category]}}</h4>
+
+        <div style="display: flex;">
+            <div *ngFor="let component of getComponentsByCategory(category)">
+                <div class="container_formtype">
+                    <mat-checkbox class="checkbox_formtype" [checked]="selectedFormNameList.includes(component)">
+                    </mat-checkbox>
+    
+                    <button mat-button class="button_formtype" (click)="toggleSelectedFormName(component)">
+                        <app-component-holder style="pointer-events: none !important;" [componentName]="component">
+                        </app-component-holder>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button (click)="submit()" [disabled]="selectedFormNameList.length == 0">Add</button>
+</div>
+
+<!-- <h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content *ngIf="loaded">
+
+    <div *ngFor="let category of formSavableCategorieMap.keys()">
         <h4>{{category}}</h4>
 
         <div class="formtype_row custom_scrollbar">
-            <div *ngFor="let formType of formTypeCategorieMap.get(category)" [ngSwitch]="formType.componentName">
+            <div *ngFor="let formSavable of formSavableCategorieMap.get(category)" [ngSwitch]="formSavable.componentName">
 
                 <div class="container_formtype">
-                    <mat-checkbox class="checkbox_formtype" [checked]="selectedFormTypeList.includes(formType)"></mat-checkbox>
+                    <mat-checkbox class="checkbox_formtype" [checked]="selectedFormSavableList.includes(formSavable)"></mat-checkbox>
 
-                    <button mat-button class="button_formtype" (click)="toggleSelectedFormType(formType)">
-                        <app-text-input *ngSwitchCase="nameToComponentDict.textinput"
-                            style="pointer-events: none !important;" [options]="formType.options" [showPreview]="true">
+                    <button mat-button class="button_formtype" (click)="toggleSelectedFormType(formSavable)">
+                        <app-text-input *ngSwitchCase="formComponentLibrary.textinput"
+                            style="pointer-events: none !important;" [options]="formSavable.options" [showPreview]="true">
                         </app-text-input>
-                        <app-password-input *ngSwitchCase="nameToComponentDict.passwordinput"
-                            style="pointer-events: none !important;" [options]="formType.options" [showPreview]="true">
+                        <app-password-input *ngSwitchCase="formComponentLibrary.passwordinput"
+                            style="pointer-events: none !important;" [options]="formSavable.options" [showPreview]="true">
                         </app-password-input>
-                        <app-date-input *ngSwitchCase="nameToComponentDict.dateinput"
-                            style="pointer-events: none !important;" [options]="formType.options" [showPreview]="true">
+                        <app-date-input *ngSwitchCase="formComponentLibrary.dateinput"
+                            style="pointer-events: none !important;" [options]="formSavable.options" [showPreview]="true">
                         </app-date-input>
                     </button>
                 </div>
@@ -30,5 +58,5 @@
 
 <div mat-dialog-actions>
     <button mat-button (click)="close()">Close</button>
-    <button mat-button (click)="submit()" [disabled]="selectedFormTypeList.length == 0">Add</button>
+    <button mat-button (click)="submit()" [disabled]="selectedFormSavableList.length == 0">Add</button>
 </div> -->

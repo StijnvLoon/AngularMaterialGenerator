@@ -1,4 +1,4 @@
-export enum FormTypeCat {
+export enum FormCategoryLibrary {
   NONE = "Rest",
   INPUT = "Input",
   TEXTAREA = "Textarea",

@@ -7,6 +7,7 @@ import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormImport } from 'src/app/models/FormImport';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
@@ -32,6 +33,7 @@ import { IFormType } from '../IformType';
 export class DateInputComponent implements IFormType, AfterViewInit {
   @ViewChild('picker') picker: MatDatepicker<[]>;
 
+  public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
   public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
@@ -46,6 +48,10 @@ export class DateInputComponent implements IFormType, AfterViewInit {
     setTimeout(() => {
       this.animState = 'open'
     });
+
+    if(this.options.editableText == undefined) {
+      this.options.editableText = false
+    }
   }
 
   remove() {

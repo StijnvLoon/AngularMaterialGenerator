@@ -28,6 +28,7 @@ import { OptionsDrawerComponent } from './components/form-gen/form-editor/option
 import { FormEditorComponent } from './components/form-gen/form-editor/form-editor.component';
 import { FormCodeComponent } from './components/form-gen/form-code/form-code.component';
 import { FormTypeHostDirective } from './directives/form-type-host.directive';
+import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-holder/component-holder.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FormTypeHostDirective } from './directives/form-type-host.directive';
     OptionsDrawerComponent,
     FormEditorComponent,
     FormCodeComponent,
-    FormTypeHostDirective
+    FormTypeHostDirective,
+    ComponentHolderComponent
   ],
   imports: [
     BrowserModule,

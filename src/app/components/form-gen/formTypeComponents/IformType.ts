@@ -1,7 +1,10 @@
 import { EventEmitter } from '@angular/core';
 import { FormOptions } from 'src/app/models/FormOptions';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 
 export interface IFormType {
+    //the category
+    readonly category: FormCategoryLibrary
     //the actual options
     options: FormOptions
     //there must be a preview for the picker dialog
