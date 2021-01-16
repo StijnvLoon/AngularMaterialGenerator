@@ -1,8 +1,8 @@
 export enum FormCategoryLibrary {
-  NONE = "Rest",
+  // NONE = "Rest",
   INPUT = "Input",
-  TEXTAREA = "Textarea",
-  SWITCH = "Switch",
-  SLIDER = "Slider",
-  CHECKBOX = "Checkbox"
+  // TEXTAREA = "Textarea",
+  // SWITCH = "Switch",
+  // SLIDER = "Slider",
+  // CHECKBOX = "Checkbox"
 }  

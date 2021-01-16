@@ -32,4 +32,8 @@ export class FormTemplate {
 
         return imports
     }
+
+    public getCodeName() {
+        return this.name.toLowerCase().replace(/\s/g, "-")
+    }
 }
