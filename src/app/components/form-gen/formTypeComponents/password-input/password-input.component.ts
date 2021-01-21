@@ -11,7 +11,7 @@ import { IFormType } from '../IformType';
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
-  styleUrls: ['./password-input.component.scss'],
+  styleUrls: ['./password-input.component.scss', '../typeGeneral.scss'],
   animations: [
     trigger('verticalListAnimation', [
       state('close', style({

@@ -1,0 +1,64 @@
+.form_field {
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.drag_button {
+    cursor: s-resize;
+    color: #797979;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.edit_formitem_button {
+    background-color: transparent;
+    color: #519bfc;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+.edit_formitem_button_selected {
+    background-color: #519bfc;
+    color: #fff;
+}
+.edit_formitem_button_selected mat-icon {
+    animation: rotate 6s linear infinite;
+}
+.remove_formitem_button {
+    background-color: transparent;
+    color: #fc6969;
+    transform: translateY(10px);
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    border-radius: 2px;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    background-color: inherit;
+}
+
+.drag_button:active .container {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+
+//animatie werkt niet goed :(
+// .container:not(.cdk-drag-placeholder) {
+//     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+
+.cdk-drag-placeholder {
+    opacity: 0 !important;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

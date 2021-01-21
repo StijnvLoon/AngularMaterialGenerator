@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -56,6 +57,7 @@ import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    DragDropModule,
     MatSlideToggleModule,
     MatSidenavModule,
     MatTabsModule,

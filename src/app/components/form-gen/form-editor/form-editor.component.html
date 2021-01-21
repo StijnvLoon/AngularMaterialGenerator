@@ -1,7 +1,10 @@
 <mat-drawer-container style="background-color: transparent; height: 100%;" autosize>
     <div class="drawer_content">
         <div class="container_formobjects">
-            <ng-template appFormTypeHost></ng-template>
+            <div cdkDropList [cdkDropListData]="formTemplate.formSavables" (cdkDropListDropped)="drop($event)">
+                <ng-template appFormTypeHost class="droplist"></ng-template>
+            </div>
+
             <button mat-button class="add_form_button mat-elevation-z2" (click)="addFormObjectDialog()">
                 <mat-icon>add</mat-icon>
             </button>
@@ -13,7 +16,8 @@
             <mat-icon>close</mat-icon>
         </button>
 
-        <app-options-drawer *ngIf="sidenavService.activeFormOptions" [(options)]="sidenavService.activeFormOptions"></app-options-drawer>
+        <app-options-drawer *ngIf="sidenavService.activeFormOptions" [(options)]="sidenavService.activeFormOptions">
+        </app-options-drawer>
     </mat-drawer>
 
 </mat-drawer-container>

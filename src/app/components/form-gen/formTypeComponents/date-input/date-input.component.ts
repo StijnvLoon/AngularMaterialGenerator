@@ -14,7 +14,7 @@ import { IFormType } from '../IformType';
 @Component({
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
-  styleUrls: ['./date-input.component.scss'],
+  styleUrls: ['./date-input.component.scss', '../typeGeneral.scss'],
   animations: [
     trigger('verticalListAnimation', [
       state('close', style({

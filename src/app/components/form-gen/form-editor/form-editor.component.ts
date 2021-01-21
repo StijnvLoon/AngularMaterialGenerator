@@ -11,6 +11,7 @@ import { FormSavable } from 'src/app/models/FormSavable';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-form-editor',
@@ -18,7 +19,7 @@ import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
   styleUrls: ['./form-editor.component.scss'],
   animations: [verticalListAnimation, verticalListItemAnimation]
 })
-export class FormEditorComponent implements OnInit, AfterViewInit {
+export class FormEditorComponent implements OnInit {
   @ViewChild('drawer') sidenav: MatSidenav;
   @ViewChild(FormTypeHostDirective, { static: true }) appFormTypeHost: FormTypeHostDirective;
 
@@ -92,5 +93,14 @@ export class FormEditorComponent implements OnInit, AfterViewInit {
         });
       }
     })
+  }
+
+  drop(event) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    
+    this.appFormTypeHost.viewContainerRef.move(
+      event.container.data[event.currentIndex].view.hostView,
+      event.currentIndex
+    )
   }
 }

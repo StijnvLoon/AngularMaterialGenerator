@@ -11,7 +11,7 @@ import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss'],
+  styleUrls: ['./text-input.component.scss', '../typeGeneral.scss'],
   animations: [
     trigger('verticalListAnimation', [
       state('close', style({

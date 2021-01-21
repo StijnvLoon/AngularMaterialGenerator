@@ -1,12 +1,13 @@
-<div class="container" *ngIf="!showPreview" [@verticalListAnimation]="animState">
+<div class="container" *ngIf="!showPreview" [@verticalListAnimation]="animState" cdkDragLockAxis="y" cdkDrag>
+    <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
+
     <mat-form-field class="form_field">
         <mat-label>{{options.modelName}}</mat-label>
         <input type="text" matInput>
     </mat-form-field>
 
     <button mat-icon-button class="edit_formitem_button"
-        [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options"
-        (click)="toggleEdit()">
+        [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
         <mat-icon>settings</mat-icon>
     </button>
     <button mat-icon-button class="remove_formitem_button" (click)="remove()"

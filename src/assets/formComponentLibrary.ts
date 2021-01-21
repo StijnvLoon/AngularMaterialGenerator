@@ -5,5 +5,5 @@ import { TextInputComponent } from "src/app/components/form-gen/formTypeComponen
 export const FormComponentLibrary = {
   textinput: TextInputComponent,
   passwordinput: PasswordInputComponent,
-  dateinput: DateInputComponent
+  dateinput: DateInputComponent,
 }
