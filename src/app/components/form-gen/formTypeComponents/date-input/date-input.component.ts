@@ -1,10 +1,9 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AfterViewInit, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormImport } from 'src/app/models/FormImport';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';

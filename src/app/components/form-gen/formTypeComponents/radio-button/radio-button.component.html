@@ -1,0 +1,35 @@
+<div class="container" *ngIf="!showPreview" [@verticalListAnimation]="animState" cdkDragLockAxis="y" cdkDrag>
+    <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
+
+    <!-- <mat-form-field class="form_field">
+        <mat-label>{{options.modelName}}</mat-label>
+        <input type="text" matInput>
+    </mat-form-field> -->
+
+    <div class="form_field">
+        <label>{{options.modelName}}</label>
+        <mat-radio-group>
+            <mat-radio-button *ngFor="let option of options.radioOptions" [value]="option">{{option}}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+
+
+    <button mat-icon-button class="edit_formitem_button"
+        [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button class="remove_formitem_button" (click)="remove()"
+        [disabled]="sidenavService.activeFormOptions == options">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+
+<div class="container" *ngIf="showPreview">
+    <div class="form_field">
+        <mat-radio-group>
+            <mat-radio-button value="1">Option 1</mat-radio-button>
+            <mat-radio-button value="2">Option 2</mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>

@@ -25,10 +25,12 @@ export class FormGenComponent implements OnInit {
     var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text'))
     var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password'))
     var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date'))
+    var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group'))
 
     this.formTemplate.addFormSavable(savable1)
     this.formTemplate.addFormSavable(savable2)
     this.formTemplate.addFormSavable(savable3)
+    this.formTemplate.addFormSavable(savable4)
   }
 
   onTabChanged($event) {

@@ -1,5 +1,12 @@
-<div class="container">
-    <mat-form-field class="form_field" *ngIf="options.modelName !== null">
+<div class="tab" id="main">
+    <div class="tab_header">
+        <button class="close_side_bar_button" mat-icon-button (click)="sidenavService.close()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <h2>Options</h2>
+    </div>
+
+    <mat-form-field class="form_field" *ngIf="options.modelName !== null" appearance="fill">
         <mat-label>Model name</mat-label>
         <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="options.modelName">
         <mat-error *ngIf="modelNameControl.invalid">{{getErrorMessage(modelNameControl)}}</mat-error>
@@ -7,7 +14,38 @@
 
     <mat-slide-toggle *ngIf="options.toggleVis !== undefined" [checked]="options.toggleVis"
         (change)="options.toggleVis = $event.source.checked">Toggle visibility option</mat-slide-toggle>
-        
+
     <mat-slide-toggle *ngIf="options.editableText !== undefined" [checked]="options.editableText"
         (change)="options.editableText = $event.source.checked">Toggle date text editable</mat-slide-toggle>
+
+    <button mat-stroked-button *ngIf="options.radioOptions !== undefined" (click)="switchTab('radio-options')"
+        class="form_field list_button">
+        Options
+    </button>
+
+</div>
+
+<div class="tab" id="radio-options">
+    <div class="tab_header">
+        <button class="back_side_bar_button" mat-icon-button (click)="switchTab('main')">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <h2>Radio options</h2>
+    </div>
+
+    <mat-list>
+        <mat-list-item *ngFor="let option of options.radioOptions; last as last">
+            <h4 mat-line>{{option}}</h4>
+            <button class="close_side_bar_button" mat-icon-button
+                (click)="options.radioOptions.splice(options.radioOptions.indexOf(option), 1)">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-divider *ngIf="!last"></mat-divider>
+        </mat-list-item>
+    </mat-list>
+
+    <button mat-stroked-button (click)="addRadioOptionDialog()" class="form_field list_button">
+        Add
+    </button>
+
 </div>

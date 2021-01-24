@@ -14,8 +14,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
@@ -30,6 +36,8 @@ import { FormEditorComponent } from './components/form-gen/form-editor/form-edit
 import { FormCodeComponent } from './components/form-gen/form-code/form-code.component';
 import { FormTypeHostDirective } from './directives/form-type-host.directive';
 import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-holder/component-holder.component';
+import { RadioButtonComponent } from './components/form-gen/formTypeComponents/radio-button/radio-button.component';
+import { TextDialog } from './dialogs/textDialog/text-dialog';
 
 @NgModule({
   declarations: [
@@ -37,6 +45,7 @@ import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-
     LobbyComponent,
     FormGenComponent,
     AddFormTypeDialog,
+    TextDialog,
     ConfirmDialog,
     TextInputComponent,
     PasswordInputComponent,
@@ -45,7 +54,8 @@ import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-
     FormEditorComponent,
     FormCodeComponent,
     FormTypeHostDirective,
-    ComponentHolderComponent
+    ComponentHolderComponent,
+    RadioButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +67,12 @@ import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatListModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatDividerModule,
     DragDropModule,
     MatSlideToggleModule,
     MatSidenavModule,
