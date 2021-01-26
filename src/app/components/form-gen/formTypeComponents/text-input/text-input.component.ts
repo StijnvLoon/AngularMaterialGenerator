@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, EventEmitter, Input, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType'
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-text-input',
@@ -27,7 +28,7 @@ import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
     ])
   ]
 })
-export class TextInputComponent implements IFormType, AfterViewInit {
+export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
 
   public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
@@ -36,8 +37,26 @@ export class TextInputComponent implements IFormType, AfterViewInit {
   @Output() onToggleEdit = new EventEmitter<FormOptions>();
 
   public animState: string = 'close'
+  public textFormControl: FormControl = new FormControl('')
+  public iterableDiffer: IterableDiffer<unknown>
 
-  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
+  constructor(
+    private dialog: MatDialog,
+    public sidenavService: SidenavService,
+    private iterableDiffers: IterableDiffers) {
+    this.iterableDiffer = this.iterableDiffers.find([]).create(null);
+  }
+
+  ngDoCheck() {
+    let changes = this.iterableDiffer.diff(this.options.rules);
+    if (changes) {
+      this.textFormControl.setValidators(this.options.getValidators())
+    }
+  }
+
+  ngOnInit() {
+    this.textFormControl.setValidators(this.options.getValidators())
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -92,6 +111,18 @@ export class TextInputComponent implements IFormType, AfterViewInit {
       return [
         ImportsLibrary.MATINPUTMODULE
       ]
+    }
+  }
+
+  getErrorMessage(formControl: FormControl) {
+    if (formControl.hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (formControl.hasError('minlength')) {
+      return 'The text must at least contain ' + formControl.errors.minlength.requiredLength + ' characters';
+    }
+    if (formControl.hasError('maxlength')) {
+      return 'The text can\'t exceed ' + formControl.errors.maxlength.requiredLength + ' characters';
     }
   }
 

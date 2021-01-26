@@ -23,7 +23,7 @@ export class OptionsDrawerComponent implements OnInit {
     this.modelNameControl = new FormControl(this.options.modelName, [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(20)
+      Validators.maxLength(20),
     ]);
 
     document.getElementById('main').style.display = "block";
