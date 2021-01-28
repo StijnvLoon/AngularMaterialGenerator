@@ -1,4 +1,5 @@
 import { Validator, ValidatorFn } from "@angular/forms"
+import { ErrorIdentifier } from "src/assets/errorIdentifier"
 import { Rule } from "./Rule"
 
 export class FormOptions {
@@ -20,5 +21,25 @@ export class FormOptions {
         });
 
         return list
+    }
+
+    getErrorIdentifiers(): ErrorIdentifier[] {
+        const list: ErrorIdentifier[] = []
+
+        this.rules.forEach(rule => {
+            list.push(rule.errorIdentifier)
+        });
+
+        return list
+    }
+
+    getErrorMessage(errorIdentifier: ErrorIdentifier): string {
+        const rule = this.rules.filter((rule) => rule.errorIdentifier == errorIdentifier)[0]
+
+        if(rule) {
+            return rule.errorMessage
+        } else {
+            return ''
+        }
     }
 }

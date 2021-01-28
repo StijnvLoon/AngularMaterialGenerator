@@ -3,7 +3,6 @@
 
     <mat-form-field class="form_field">
         <mat-label>{{options.modelName}}</mat-label>
-        <!-- [formControl]="textFormControl" [(ngModel)]="text"  -->
         <input type="text" matInput [formControl]="textFormControl">
         <mat-error *ngIf="textFormControl.invalid">{{getErrorMessage(textFormControl)}}</mat-error>
     </mat-form-field>

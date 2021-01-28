@@ -38,6 +38,7 @@ import { FormTypeHostDirective } from './directives/form-type-host.directive';
 import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-holder/component-holder.component';
 import { RadioButtonComponent } from './components/form-gen/formTypeComponents/radio-button/radio-button.component';
 import { TextDialog } from './dialogs/textDialog/text-dialog';
+import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TextDialog } from './dialogs/textDialog/text-dialog';
     LobbyComponent,
     FormGenComponent,
     AddFormTypeDialog,
+    AddRuleDialog,
     TextDialog,
     ConfirmDialog,
     TextInputComponent,

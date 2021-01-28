@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AddRuleDialog } from 'src/app/dialogs/addRuleDialog/add-rule-dialog';
 import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -66,6 +67,22 @@ export class OptionsDrawerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async text => {
       if (text) {
         this.options.radioOptions.push(text)
+      }
+    })
+  }
+
+  addRuleDialog() {
+    const dialogRef = this.dialog.open(AddRuleDialog, {
+      width: '800px',
+      data: {
+        title: 'Add rule',
+        occupiedIdentifiers: this.options.getErrorIdentifiers()
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(async rule => {
+      if (rule) {
+        this.options.rules.push(rule)
       }
     })
   }

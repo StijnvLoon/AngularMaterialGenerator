@@ -1,9 +1,11 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, EventEmitter, Input, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
@@ -27,24 +29,42 @@ import { IFormType } from '../IformType';
     ])
   ]
 })
-export class PasswordInputComponent implements IFormType, AfterViewInit {
+export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
 
   public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
   public showPreview: boolean = false;
   @Output() onRemove = new EventEmitter();
   @Output() onToggleEdit = new EventEmitter<FormOptions>();
-  
-  public animState: string = 'close';
 
-  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
+  public animState: string = 'close';
+  public textFormControl: FormControl = new FormControl('')
+  public iterableDiffer: IterableDiffer<unknown>
+
+  constructor(
+    private dialog: MatDialog,
+    public sidenavService: SidenavService,
+    private iterableDiffers: IterableDiffers) {
+    this.iterableDiffer = this.iterableDiffers.find([]).create(null)
+  }
+
+  ngDoCheck() {
+    let changes = this.iterableDiffer.diff(this.options.rules);
+    if (changes) {
+      this.textFormControl.setValidators(this.options.getValidators())
+    }
+  }
+
+  ngOnInit() {
+    this.textFormControl.setValidators(this.options.getValidators())
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.animState = 'open'
     });
 
-    if(this.options.toggleVis == undefined) {
+    if (this.options.toggleVis == undefined) {
       this.options.toggleVis = true
     }
   }
@@ -74,7 +94,7 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
   getHTMLCodeCallback() {
     return () => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
-    
+
       if (this.options.toggleVis) {
         return [
           '    <mat-form-field>',
@@ -110,6 +130,14 @@ export class PasswordInputComponent implements IFormType, AfterViewInit {
         ImportsLibrary.MATICONMODULE
       ]
     }
+  }
+
+  getErrorMessage(formControl: FormControl) {
+    const enumId: string = Object.keys(formControl.errors)[0].toUpperCase()
+
+    return this.options.getErrorMessage(
+      ErrorIdentifier[enumId]
+    )
   }
 
 }

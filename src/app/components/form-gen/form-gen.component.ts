@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { FormSavable } from 'src/app/models/FormSavable';
 import { Rule } from 'src/app/models/Rule';
+import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { FormTemplate } from '../../models/formTemplate';
 import { FormCodeComponent } from './form-code/form-code.component';
@@ -25,12 +26,14 @@ export class FormGenComponent implements OnInit {
     this.formTemplate = new FormTemplate('new_form')
 
     var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text',[
-      new Rule(Validators.required, 'Required'),
-      new Rule(Validators.minLength(4), 'minlength: 4')
+      new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED),
+      new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH)
     ]))
-    var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password'))
-    var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date'))
-    var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group'))
+    var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password', [
+      new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN)
+    ]))
+    var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date', []))
+    var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group', []))
 
     this.formTemplate.addFormSavable(savable1)
     this.formTemplate.addFormSavable(savable2)

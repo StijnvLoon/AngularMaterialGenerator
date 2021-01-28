@@ -48,7 +48,7 @@
 
     <mat-list>
         <mat-list-item *ngFor="let rule of options.rules; last as last">
-            <h4 mat-line>{{rule.displayName}}</h4>
+            <h4 mat-line>{{rule.errorIdentifier}}</h4>
             <button class="close_side_bar_button" mat-icon-button
                 (click)="options.rules.splice(options.rules.indexOf(rule), 1)">
                 <mat-icon>close</mat-icon>
@@ -57,7 +57,7 @@
         </mat-list-item>
     </mat-list>
 
-    <button mat-stroked-button class="form_field list_button">
+    <button mat-stroked-button class="form_field list_button" (click)="addRuleDialog()">
         Add
     </button>
 
