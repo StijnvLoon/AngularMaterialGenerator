@@ -1,19 +1,13 @@
-<div class="container" *ngIf="!showPreview" [@verticalListAnimation]="animState" cdkDragLockAxis="y" cdkDrag>
+<div class="container" *ngIf="!showPreview" [@Anim-formtype]="animState" cdkDragLockAxis="y" cdkDrag>
     <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
-
-    <!-- <mat-form-field class="form_field">
-        <mat-label>{{options.modelName}}</mat-label>
-        <input type="text" matInput>
-    </mat-form-field> -->
 
     <div class="form_field">
         <label>{{options.modelName}}</label>
-        <mat-radio-group>
-            <mat-radio-button *ngFor="let option of options.radioOptions" [value]="option">{{option}}</mat-radio-button>
+        <mat-radio-group @Anim-ListVerHost>
+            <mat-radio-button *ngFor="let option of options.radioOptions" [value]="option" @Anim-ListVerItems>{{option}}
+            </mat-radio-button>
         </mat-radio-group>
     </div>
-
-
 
     <button mat-icon-button class="edit_formitem_button"
         [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">

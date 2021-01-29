@@ -3,24 +3,6 @@ import { trigger, animate, transition, style, query, group } from '@angular/anim
 export const routeAnimation =
 
     trigger('routeAnimation', [
-        // transition('* => *', [
-
-        //     style({ transform: 'translateY(20px)', opacity: 0 }),
-        //     animate('0.3s ease', style({
-        //         transform: 'translateY(0)',
-        //         opacity: 1
-        //     })),
-
-        // ])
-        // transition('* => *', [
-        //     query(':leave',
-        //         [
-        //             style({ opacity: 1 }),
-        //             animate('0.3s', style({ opacity: 0 }))
-        //         ],
-        //         { optional: true }
-        //     ),
-        // ])
         transition('* => *', [
             query(':enter',
                 [

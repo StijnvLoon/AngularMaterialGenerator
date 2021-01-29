@@ -1,6 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
+import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -12,18 +14,9 @@ import { IFormType } from '../IformType';
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss', '../typeGeneral.scss'],
   animations: [
-    trigger('verticalListAnimation', [
-      state('close', style({
-        opacity: 0,
-        height: '0px'
-      })),
-      state('open', style({
-        opacity: 1,
-        height: '*'
-      })),
-      transition('close => open', animate('0.3s ease')),
-      transition('open => close', animate('0.3s ease'))
-    ])
+    verticalListAnimation,
+    verticalListItemAnimation,
+    formTypeAnimation
   ]
 })
 export class RadioButtonComponent implements AfterViewInit, IFormType {

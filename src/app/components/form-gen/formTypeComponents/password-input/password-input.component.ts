@@ -2,6 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { AfterViewInit, Component, DoCheck, EventEmitter, Input, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -14,20 +15,7 @@ import { IFormType } from '../IformType';
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrls: ['./password-input.component.scss', '../typeGeneral.scss'],
-  animations: [
-    trigger('verticalListAnimation', [
-      state('close', style({
-        opacity: 0,
-        height: '0px'
-      })),
-      state('open', style({
-        opacity: 1,
-        height: '*'
-      })),
-      transition('close => open', animate('0.3s ease')),
-      transition('open => close', animate('0.3s ease'))
-    ])
-  ]
+  animations: [formTypeAnimation]
 })
 export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
 

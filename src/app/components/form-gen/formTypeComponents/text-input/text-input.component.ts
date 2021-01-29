@@ -9,25 +9,13 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
+import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
 
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss', '../typeGeneral.scss'],
-  animations: [
-    trigger('verticalListAnimation', [
-      state('close', style({
-        opacity: 0,
-        height: '0px'
-      })),
-      state('open', style({
-        opacity: 1,
-        height: '*'
-      })),
-      transition('close => open', animate('0.3s ease')),
-      transition('open => close', animate('0.3s ease'))
-    ])
-  ]
+  animations: [formTypeAnimation]
 })
 export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
 

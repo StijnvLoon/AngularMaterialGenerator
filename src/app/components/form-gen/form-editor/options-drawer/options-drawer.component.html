@@ -46,13 +46,14 @@
         <h2>Rules</h2>
     </div>
 
-    <mat-list>
-        <mat-list-item *ngFor="let rule of options.rules; last as last">
+    <mat-list @Anim-ListVerHost>
+        <mat-list-item *ngFor="let rule of options.rules; last as last" @Anim-ListVerItems>
             <h4 mat-line>{{rule.errorIdentifier}}</h4>
-            <button class="close_side_bar_button" mat-icon-button
+            <button class="remove_button" mat-icon-button
                 (click)="options.rules.splice(options.rules.indexOf(rule), 1)">
-                <mat-icon>close</mat-icon>
+                <mat-icon>delete</mat-icon>
             </button>
+            <div mat-line class="rule_message">{{rule.errorMessage}}</div>
             <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>
     </mat-list>
@@ -71,12 +72,12 @@
         <h2>Radio options</h2>
     </div>
 
-    <mat-list>
-        <mat-list-item *ngFor="let option of options.radioOptions; last as last">
+    <mat-list @Anim-ListVerHost>
+        <mat-list-item *ngFor="let option of options.radioOptions; last as last" @Anim-ListVerItems>
             <h4 mat-line>{{option}}</h4>
-            <button class="close_side_bar_button" mat-icon-button
+            <button class="remove_button" mat-icon-button
                 (click)="options.radioOptions.splice(options.radioOptions.indexOf(option), 1)">
-                <mat-icon>close</mat-icon>
+                <mat-icon>delete</mat-icon>
             </button>
             <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>

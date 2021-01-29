@@ -1,15 +1,21 @@
 .close_side_bar_button {
     color: #f72727;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 .back_side_bar_button {
     color: #585858;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
 .tab {
     width: 300px;
     padding: 10px;
     display: none;
-    animation: fadeEffect 1s;
+    animation: fadeEffect 0.5s;
 }
 .tab_header {
     display: flex;
@@ -40,8 +46,13 @@
     background-color: transparent;
     color: #fc6969;
 }
+.rule_message {
+    white-space: unset !important;
+    font-size: 0.7em;
+    color: #acacac;
+}
 
 @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1.0);}
   }

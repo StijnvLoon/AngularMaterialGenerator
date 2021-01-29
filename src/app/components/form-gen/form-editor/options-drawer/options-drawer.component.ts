@@ -1,6 +1,8 @@
+import { trigger, transition, style, animate, animateChild, query, stagger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { AddRuleDialog } from 'src/app/dialogs/addRuleDialog/add-rule-dialog';
 import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
@@ -9,7 +11,11 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 @Component({
   selector: 'app-options-drawer',
   templateUrl: './options-drawer.component.html',
-  styleUrls: ['./options-drawer.component.scss']
+  styleUrls: ['./options-drawer.component.scss'],
+  animations: [
+    verticalListAnimation,
+    verticalListItemAnimation
+  ]
 })
 export class OptionsDrawerComponent implements OnInit {
 
@@ -35,10 +41,10 @@ export class OptionsDrawerComponent implements OnInit {
       return 'You must enter a value';
     }
     if (formControl.hasError('minlength')) {
-      return 'The text must at least contain ' + formControl.errors.minlength.requiredLength + ' characters' ;
+      return 'The text must at least contain ' + formControl.errors.minlength.requiredLength + ' characters';
     }
     if (formControl.hasError('maxlength')) {
-      return 'The text can\'t exceed ' + formControl.errors.maxlength.requiredLength + ' characters' ;
+      return 'The text can\'t exceed ' + formControl.errors.maxlength.requiredLength + ' characters';
     }
   }
 
@@ -51,9 +57,9 @@ export class OptionsDrawerComponent implements OnInit {
         const htmlElement: HTMLElement = <HTMLElement>tabs[i]
         htmlElement.style.display = "none";
       }
-  
+
       document.getElementById(id).style.display = "block";
-    }, 200);
+    }, 50);
   }
 
   addRadioOptionDialog() {
