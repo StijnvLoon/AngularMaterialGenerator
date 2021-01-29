@@ -18,7 +18,7 @@ export class ComponentHolderComponent implements OnInit {
   constructor(private factoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
-    const formSavable: FormSavable = new FormSavable(FormComponentLibrary[this.componentName], new FormOptions(this.componentName))
+    const formSavable: FormSavable = new FormSavable(FormComponentLibrary[this.componentName], new FormOptions(this.componentName, []))
     this.convertFormSavableToLayout(formSavable)
   }
 

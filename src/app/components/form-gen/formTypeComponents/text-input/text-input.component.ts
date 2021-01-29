@@ -33,7 +33,9 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
     private dialog: MatDialog,
     public sidenavService: SidenavService,
     private iterableDiffers: IterableDiffers) {
-    this.iterableDiffer = this.iterableDiffers.find([]).create(null)
+      try {
+        this.iterableDiffer = this.iterableDiffers.find([]).create(null)
+      } catch(err) { }
   }
 
   ngDoCheck() {
