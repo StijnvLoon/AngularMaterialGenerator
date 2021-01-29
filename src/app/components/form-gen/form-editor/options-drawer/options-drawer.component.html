@@ -6,29 +6,29 @@
         <h2>Options</h2>
     </div>
 
-    <mat-list>
-        <mat-list-item *ngIf="options.modelName !== null">
+    <mat-list @Anim-ListVerHost>
+        <mat-list-item *ngIf="options.modelName !== null" @Anim-ListVerItems>
             <mat-form-field class="form_field" appearance="fill">
                 <mat-label>Model name</mat-label>
                 <input type="text" matInput [formControl]="modelNameControl" [(ngModel)]="options.modelName">
                 <mat-error *ngIf="modelNameControl.invalid">{{getErrorMessage(modelNameControl)}}</mat-error>
             </mat-form-field>
         </mat-list-item>
-        <mat-list-item *ngIf="options.toggleVis !== undefined">
+        <mat-list-item *ngIf="options.toggleVis !== undefined" @Anim-ListVerItems>
             <mat-slide-toggle  [checked]="options.toggleVis"
                 (change)="options.toggleVis = $event.source.checked">Toggle visibility option</mat-slide-toggle>
         </mat-list-item>
-        <mat-list-item *ngIf="options.editableText !== undefined">
+        <mat-list-item *ngIf="options.editableText !== undefined" @Anim-ListVerItems>
             <mat-slide-toggle [checked]="options.editableText"
                 (change)="options.editableText = $event.source.checked">Toggle date text editable</mat-slide-toggle>
         </mat-list-item>
-        <mat-list-item *ngIf="options.rules !== undefined">
+        <mat-list-item *ngIf="options.rules !== undefined" @Anim-ListVerItems>
             <button mat-stroked-button (click)="switchTab('rules')"
                 class="form_field list_button">
                 Rules
             </button>
         </mat-list-item>
-        <mat-list-item *ngIf="options.radioOptions !== undefined">
+        <mat-list-item *ngIf="options.radioOptions !== undefined" @Anim-ListVerItems>
             <button mat-stroked-button (click)="switchTab('radio-options')"
                 class="form_field list_button">
                 Options

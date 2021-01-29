@@ -7,10 +7,11 @@
     color: rgb(156, 156, 156);
 }
 .lines_container {
+    width: 80vw;
     background-color: #303030;
     border-radius: 2px;
     padding: 0px 10px;
-    max-height: 80%;
+    height: 90%;
     overflow-y: auto;
 }
 ::-webkit-scrollbar {
