@@ -1,0 +1,21 @@
+<div class="tab_header">
+    <button class="back_side_bar_button" mat-icon-button (click)="sidenavService.switchTab('main')">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <h2>Radio options</h2>
+</div>
+
+<mat-list @Anim-ListVerHost>
+    <mat-list-item *ngFor="let option of options.radioOptions; last as last" @Anim-ListVerItems>
+        <h4 mat-line>{{option}}</h4>
+        <button class="remove_button" mat-icon-button
+            (click)="options.radioOptions.splice(options.radioOptions.indexOf(option), 1)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <mat-divider *ngIf="!last"></mat-divider>
+    </mat-list-item>
+</mat-list>
+
+<button mat-stroked-button (click)="addRadioOptionDialog()" class="form_field list_button">
+    Add
+</button>

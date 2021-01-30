@@ -1,0 +1,39 @@
+.back_side_bar_button {
+    color: #585858;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.tab_header {
+    display: flex;
+    width: 100%;
+}
+.tab_header h2 {
+    width: 100%;
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+}
+.form_field {
+    width: 100%;
+}
+.list_button {
+    background-color: #ededed;
+}
+.add_button {
+    background-color: #4fa300a6;
+    color: white;
+    width: 100%;
+    border-radius: 50px;
+    transition: all 0.3s;
+    font-size: 1.2em;
+}
+.remove_button {
+    background-color: transparent;
+    color: #fc6969;
+}
+.rule_message {
+    white-space: unset !important;
+    font-size: 0.7em;
+    color: #acacac;
+}

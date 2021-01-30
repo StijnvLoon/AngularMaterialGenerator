@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { FormSavable } from 'src/app/models/FormSavable';
 import { Rule } from 'src/app/models/Rule';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { FormTemplate } from '../../models/formTemplate';
@@ -20,7 +21,7 @@ export class FormGenComponent implements OnInit {
   @ViewChild(FormCodeComponent) private formCodeComponent: FormCodeComponent;
   @ViewChild(FormEditorComponent) private formEditorComponent: FormEditorComponent;
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
@@ -32,7 +33,7 @@ export class FormGenComponent implements OnInit {
     var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password', [
       new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$\')')
     ]))
-    var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date', []))
+    var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date'))
     var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group'))
 
     this.formTemplate.addFormSavable(savable1)
@@ -43,6 +44,7 @@ export class FormGenComponent implements OnInit {
 
   onTabChanged($event) {
     if ($event.tab.textLabel == 'Code') {
+      this.sidenavService.close()
       this.formCodeComponent.updatePreview()
     }
     this.formEditorComponent.tabIsActive = $event.tab.textLabel == 'Editor'

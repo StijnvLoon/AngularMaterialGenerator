@@ -1,0 +1,22 @@
+<div class="tab_header">
+    <button class="back_side_bar_button" mat-icon-button (click)="sidenavService.switchTab('main')">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <h2>Rules</h2>
+</div>
+
+<mat-list @Anim-ListVerHost>
+    <mat-list-item *ngFor="let rule of options.rules; last as last" @Anim-ListVerItems>
+        <h4 mat-line>{{rule.errorIdentifier}}</h4>
+        <button class="remove_button" mat-icon-button
+            (click)="options.rules.splice(options.rules.indexOf(rule), 1)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <div mat-line class="rule_message">{{rule.errorMessage}}</div>
+        <mat-divider *ngIf="!last"></mat-divider>
+    </mat-list-item>
+</mat-list>
+
+<button mat-stroked-button class="form_field list_button" (click)="addRuleDialog()">
+    Add
+</button>

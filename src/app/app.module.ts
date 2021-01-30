@@ -39,6 +39,9 @@ import { ComponentHolderComponent } from './dialogs/addFormTypeDialog/component-
 import { RadioButtonComponent } from './components/form-gen/formTypeComponents/radio-button/radio-button.component';
 import { TextDialog } from './dialogs/textDialog/text-dialog';
 import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
+import { TabMainComponent } from './components/form-gen/form-editor/options-drawer/tabs/tab-main/tab-main.component';
+import { TabRulesComponent } from './components/form-gen/form-editor/options-drawer/tabs/tab-rules/tab-rules.component';
+import { TabRadioOptionsComponent } from './components/form-gen/form-editor/options-drawer/tabs/tab-radio-options/tab-radio-options.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
     FormCodeComponent,
     FormTypeHostDirective,
     ComponentHolderComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    TabMainComponent,
+    TabRulesComponent,
+    TabRadioOptionsComponent
   ],
   imports: [
     BrowserModule,
