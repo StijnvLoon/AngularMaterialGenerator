@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormImport } from 'src/app/models/FormImport';
 import { FormTemplate } from 'src/app/models/formTemplate';
 import { PreviewFile } from 'src/app/models/previewFile';
+import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 
 @Component({
@@ -82,18 +83,35 @@ export class FormCodeComponent implements OnInit {
       '  ' + this.formTemplate.getCodeName() + 'Form = new FormGroup({'
     ])
 
+    //formcontrols + validators
     this.formTemplate.formSavables.forEach(formSavable => {
-      componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\'),'])
+
+      if(formSavable.formOptions.rules !== undefined) {
+        if (formSavable.formOptions.rules.length > 0) {
+          componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\', ['])
+        } else {
+          componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\')'])
+        }
+  
+        formSavable.formOptions.rules.forEach(rule => {
+          componentTSFile.addToCodeLines([rule.code])
+        });
+  
+        if (formSavable.formOptions.rules.length > 0) {
+          componentTSFile.addToCodeLines(['    ]),'])
+        }  
+      }
+      
     });
 
-    componentTSFile.addToCodeLines(['  });', '',])
-
     componentTSFile.addToCodeLines([
+      '  })',
+      '',
       '  onSubmit() {',
-      '    console.log(this.' + this.formTemplate.getCodeName() + 'Form.value);',
-      '  }'
+      '    console.log(this.' + this.formTemplate.getCodeName() + 'Form.value)',
+      '  }',
+      '}'
     ])
-    componentTSFile.addToCodeLines(['}'])
 
     return componentTSFile
   }

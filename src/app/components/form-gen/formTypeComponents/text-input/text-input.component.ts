@@ -81,13 +81,19 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
     return () => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
-      return [
+      const array: string[] = [
         '    <mat-form-field>',
         '        <mat-label>' + this.options.modelName + '</mat-label>',
         '        <input type="text" matInput formControlName="' + controlName + '"',
-        '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-        '    </mat-form-field>'
       ]
+
+      this.options.rules.forEach(rule => {
+        array.push('        <mat-error *ngIf="' + controlName + '.hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
+      });
+
+      array.push('    </mat-form-field>')
+
+      return array
     }
   }
 

@@ -6,6 +6,7 @@ export class Rule {
     constructor(
         public readonly validator: ValidatorFn,
         public readonly errorMessage: string,
-        public readonly errorIdentifier: ErrorIdentifier
+        public readonly errorIdentifier: ErrorIdentifier,
+        public readonly code: string
     ) { }
 }

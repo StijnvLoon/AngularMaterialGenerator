@@ -3,8 +3,8 @@
 
     <div class="form_field">
         <label>{{options.modelName}}</label>
-        <mat-radio-group @Anim-ListVerHost>
-            <mat-radio-button *ngFor="let option of options.radioOptions" [value]="option" @Anim-ListVerItems>{{option}}
+        <mat-radio-group @Anim-ListVerHost [(ngModel)]="selectedOption">
+            <mat-radio-button *ngFor="let option of options.radioOptions; let first as first" [selected]="first" [value]="option">{{option}}
             </mat-radio-button>
         </mat-radio-group>
     </div>

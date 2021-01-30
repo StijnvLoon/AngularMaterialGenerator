@@ -25,15 +25,15 @@ export class FormGenComponent implements OnInit {
   ngOnInit(): void {
     this.formTemplate = new FormTemplate('new_form')
 
-    var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text',[
-      new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED),
-      new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH)
+    var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text', [
+      new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
+      new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH, '      Validators.minlength(4)')
     ]))
     var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password', [
-      new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN)
+      new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$\')')
     ]))
     var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date', []))
-    var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group', []))
+    var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group'))
 
     this.formTemplate.addFormSavable(savable1)
     this.formTemplate.addFormSavable(savable2)
@@ -42,7 +42,7 @@ export class FormGenComponent implements OnInit {
   }
 
   onTabChanged($event) {
-    if($event.tab.textLabel == 'Code') {
+    if ($event.tab.textLabel == 'Code') {
       this.formCodeComponent.updatePreview()
     }
     this.formEditorComponent.tabIsActive = $event.tab.textLabel == 'Editor'

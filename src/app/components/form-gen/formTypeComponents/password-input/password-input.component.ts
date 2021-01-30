@@ -52,11 +52,11 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.animState = 'open'
+      
+      if (this.options.toggleVis == undefined) {
+        this.options.toggleVis = true
+      }
     });
-
-    if (this.options.toggleVis == undefined) {
-      this.options.toggleVis = true
-    }
   }
 
   remove() {
@@ -85,26 +85,32 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
     return () => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
+      var array: string[] = []
+
       if (this.options.toggleVis) {
-        return [
+        array = array.concat([
           '    <mat-form-field>',
           '        <mat-label>' + this.options.modelName + '</mat-label>',
           '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
           '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
           '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
           '        </button>',
-          '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-          '    </mat-form-field>'
-        ]
+        ])
       } else {
-        return [
+        array = array.concat([
           '    <mat-form-field>',
           '        <mat-label>' + this.options.modelName + '</mat-label>',
           '        <input type="password" matInput formControlName="' + controlName + '>',
-          '        <mat-error *ngIf="' + controlName + '.invalid">{{getErrorMessage(' + controlName + ')}}</mat-error>',
-          '    </mat-form-field>'
-        ]
+        ])
       }
+
+      this.options.rules.forEach(rule => {
+        array.push('        <mat-error *ngIf="' + controlName + '.hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
+      });
+
+      array.push('    </mat-form-field>')
+
+      return array
     }
   }
   getTSCodeCallback() {
