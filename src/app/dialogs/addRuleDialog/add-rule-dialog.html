@@ -32,10 +32,9 @@
         </mat-list-item>
     </mat-list>
 
-
 </div>
 
-<div mat-dialog-actions>
+<div mat-dialog-actions align="end">
     <button mat-button (click)="close()">Close</button>
-    <button mat-button (click)="submit()">Add</button>
+    <button mat-button (click)="submit()" [disabled]="selectedIdentifier == undefined">Add</button>
 </div>

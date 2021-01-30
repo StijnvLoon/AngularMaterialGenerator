@@ -9,6 +9,7 @@
     <mat-list-item *ngFor="let option of options.radioOptions; last as last" @Anim-ListVerItems>
         <h4 mat-line>{{option}}</h4>
         <button class="remove_button" mat-icon-button
+            [disabled]="options.radioOptions.length <= 2"
             (click)="options.radioOptions.splice(options.radioOptions.indexOf(option), 1)">
             <mat-icon>delete</mat-icon>
         </button>
