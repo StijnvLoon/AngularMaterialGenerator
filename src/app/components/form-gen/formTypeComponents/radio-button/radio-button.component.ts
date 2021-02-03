@@ -94,7 +94,28 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
 
   getTSCodeCallback() {
     return () => {
-      return []
+      return [
+
+      ]
+    }
+  }
+
+  getCssCodeCallback() {
+    return () => {
+      return [
+        '.mat-radio-group {',
+        '    display: flex;',
+        '    flex-direction: column;',
+        '}'
+      ]
+    }
+  }
+
+  getFormControlCallback() {
+    return () => {
+      return [
+          '    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'' + this.options.radioOptions[0].toLowerCase().replace(/\s/g, "_") + '\'),'
+      ]
     }
   }
 

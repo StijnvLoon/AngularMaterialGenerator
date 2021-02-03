@@ -78,17 +78,17 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
   }
 
   getHTMLCodeCallback() {
-    return () => {
+    return (formGroupName: string) => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       const array: string[] = [
         '    <mat-form-field>',
         '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input type="text" matInput formControlName="' + controlName + '"',
+        '        <input type="text" matInput formControlName="' + controlName + '">',
       ]
 
       this.options.rules.forEach(rule => {
-        array.push('        <mat-error *ngIf="' + controlName + '.hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
+        array.push('        <mat-error *ngIf="' + formGroupName + '.get(\'' + controlName.toLowerCase() + '\').hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
       });
 
       array.push('    </mat-form-field>')
@@ -108,6 +108,32 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
       return [
         ImportsLibrary.MATINPUTMODULE
       ]
+    }
+  }
+
+  getCssCodeCallback() {
+    return () => {
+      return []
+    }
+  }
+
+  getFormControlCallback() {
+    return () => {
+      const array: string[] = []
+
+        if (this.options.rules.length > 0) {
+          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
+
+          this.options.rules.forEach(rule => {
+            array.push(rule.code + ',')
+          });
+
+          array.push('    ]),')
+        } else {
+          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
+        }
+
+      return array
     }
   }
 

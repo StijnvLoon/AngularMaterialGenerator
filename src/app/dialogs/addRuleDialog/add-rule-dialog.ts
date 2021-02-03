@@ -42,7 +42,6 @@ export class AddRuleDialog implements OnInit {
     }
 
     submit() {
-        console.log(this.getCode())
         var rule: Rule = new Rule(this.getValidator(), this.errorMessage, this.selectedIdentifier, this.getCode());
         this.dialogRef.close(rule)
     }
@@ -59,8 +58,9 @@ export class AddRuleDialog implements OnInit {
     }
 
     getCode(): string {
+        console.log(this.selectedIdentifier)
         if(this.selectionIsPattern()) {
-            return '      Validators.' + this.selectedIdentifier + '(' + this.regexString + ')'
+            return '      Validators.' + this.selectedIdentifier + '(' + this.regexString.replace('\\', '\\\\') + ')'
         }
         if(this.selectionIsNumber()) {
             return '      Validators.' + this.selectedIdentifier + '(' + this.chosenAmount + ')' 

@@ -2,6 +2,7 @@ import { FormImport } from '../app/models/FormImport'
 
 export class ImportsLibrary {
 
+    static readonly MATBUTTONMODULE: FormImport = new FormImport('MatButtonModule', '@angular/material/button')
     static readonly MATINPUTMODULE: FormImport = new FormImport('MatInputModule', '@angular/material/input')
     static readonly MATICONMODULE: FormImport = new FormImport('MatIconModule', '@angular/material/icon')
     static readonly MATNATIVEDATEMODULE: FormImport = new FormImport('MatNativeDateModule', '@angular/material/core')

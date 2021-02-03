@@ -63,6 +63,8 @@ export class FormEditorComponent implements OnInit {
     formSavable.getHTMLCode = instance.getHTMLCodeCallback()
     formSavable.getTSCode = instance.getTSCodeCallback()
     formSavable.getImports = instance.getImportsCallback()
+    formSavable.getFormControl = instance.getFormControlCallback()
+    formSavable.getCssCode = instance.getCssCodeCallback()
 
     this.appFormTypeHost.viewContainerRef.insert(componentRef.hostView)
   }

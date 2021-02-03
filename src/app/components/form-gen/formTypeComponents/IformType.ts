@@ -25,4 +25,8 @@ export interface IFormType {
     getTSCodeCallback()
     //retrieve imports
     getImportsCallback()
+    //retrieve Css code
+    getCssCodeCallback()
+    //retrieve formcontrol
+    getFormControlCallback()
 }

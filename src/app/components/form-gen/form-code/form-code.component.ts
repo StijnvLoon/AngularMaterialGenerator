@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormImport } from 'src/app/models/FormImport';
+import { FormSavable } from 'src/app/models/FormSavable';
 import { FormTemplate } from 'src/app/models/formTemplate';
 import { PreviewFile } from 'src/app/models/previewFile';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
@@ -27,7 +28,8 @@ export class FormCodeComponent implements OnInit {
     return [
       this.getAppModuleFile(),
       this.getComponentTSCode(),
-      this.getComponentHTMLCode()
+      this.getComponentHTMLCode(),
+      this.getComponentCSSCode()
     ]
   }
 
@@ -86,27 +88,40 @@ export class FormCodeComponent implements OnInit {
     //formcontrols + validators
     this.formTemplate.formSavables.forEach(formSavable => {
 
-      if(formSavable.formOptions.rules !== undefined) {
-        if (formSavable.formOptions.rules.length > 0) {
-          componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\', ['])
-        } else {
-          componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control = new FormControl(\'\')'])
-        }
-  
-        formSavable.formOptions.rules.forEach(rule => {
-          componentTSFile.addToCodeLines([rule.code])
-        });
-  
-        if (formSavable.formOptions.rules.length > 0) {
-          componentTSFile.addToCodeLines(['    ]),'])
-        }  
-      }
-      
+      componentTSFile.addToCodeLines(formSavable.getFormControl())
+
+      // if (formSavable.formOptions.rules !== undefined) {
+      //   if (formSavable.formOptions.rules.length > 0) {
+      //     componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', ['])
+      //   } else {
+      //     componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),'])
+      //   }
+
+      //   formSavable.formOptions.rules.forEach(rule => {
+      //     componentTSFile.addToCodeLines([rule.code + ','])
+      //   });
+
+      //   if (formSavable.formOptions.rules.length > 0) {
+      //     componentTSFile.addToCodeLines(['    ]),'])
+      //   }
+      // } else {
+      //   componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),'])
+      // }
+
     });
+
 
     componentTSFile.addToCodeLines([
       '  })',
       '',
+    ])
+
+    //if there is tscode, add it
+    this.formTemplate.formSavables.forEach(formSavable => {
+      componentTSFile.addToCodeLines(formSavable.getTSCode())
+    });
+
+    componentTSFile.addToCodeLines([
       '  onSubmit() {',
       '    console.log(this.' + this.formTemplate.getCodeName() + 'Form.value)',
       '  }',
@@ -118,19 +133,43 @@ export class FormCodeComponent implements OnInit {
 
   private getComponentHTMLCode(): PreviewFile {
     const componentHTMLFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.html')
+    const formGroupName: string = this.formTemplate.name.toLowerCase() + 'Form'
 
     componentHTMLFile.addToCodeLines([
-      '<form [formGroup]="' + this.formTemplate.name.toLowerCase() + 'Form" (ngSubmit)="onSubmit()">',
+      '<form [formGroup]="' + formGroupName + '" (ngSubmit)="onSubmit()">',
       ''
     ])
 
     this.formTemplate.formSavables.forEach(formSavable => {
-      componentHTMLFile.addToCodeLines(formSavable.getHTMLCode())
+      componentHTMLFile.addToCodeLines(formSavable.getHTMLCode(formGroupName))
       componentHTMLFile.addToCodeLines([''])
     });
 
-    componentHTMLFile.addToCodeLines(['</form>'])
+    componentHTMLFile.addToCodeLines([
+      '   <button mat-button type="submit" [disabled]="' + formGroupName + '.invalid">submit</button>',
+      '',
+      '</form>'
+    ])
 
     return componentHTMLFile
+  }
+
+  private getComponentCSSCode() : PreviewFile {
+    const componentCSSFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.css')
+
+    componentCSSFile.addToCodeLines([
+      'form {',
+      '    display: flex;',
+      '    flex-direction: column;',
+      '    width: 400px;',
+      '}',
+      '',
+    ])
+
+    this.formTemplate.formSavables.forEach(formSavable => {
+      componentCSSFile.addToCodeLines(formSavable.getCssCode())
+    });
+
+    return componentCSSFile
   }
 }

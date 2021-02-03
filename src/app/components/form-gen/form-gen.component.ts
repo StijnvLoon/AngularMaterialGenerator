@@ -28,10 +28,10 @@ export class FormGenComponent implements OnInit {
 
     var savable1: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Input Text', [
       new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
-      new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH, '      Validators.minlength(4)')
+      new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH, '      Validators.minLength(4)')
     ]))
     var savable2: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Input password', [
-      new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$\')')
+      new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\\\S*?[A-Z])(?=\\\\S*?[a-z])(?=\\\\S*?[0-9]).{6,})\\\\S$\')')
     ]))
     var savable3: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Input date'))
     var savable4: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, new FormOptions('Radio button group'))

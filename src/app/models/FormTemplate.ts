@@ -1,3 +1,4 @@
+import { ImportsLibrary } from "src/assets/importsLibrary"
 import { FormImport } from "./FormImport"
 import { FormSavable } from "./FormSavable"
 
@@ -20,7 +21,9 @@ export class FormTemplate {
     }
 
     public getImports(): FormImport[] {
-        const imports: FormImport[] = []
+        const imports: FormImport[] = [
+            ImportsLibrary.MATRADIOBUTTONMODULE
+        ]
 
         this.formSavables.forEach(formSavable => {
             formSavable.getImports().forEach(formImport => {

@@ -82,7 +82,7 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
   }
 
   getHTMLCodeCallback() {
-    return () => {
+    return (formGroupName: string) => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       var array: string[] = []
@@ -91,8 +91,8 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
         array = array.concat([
           '    <mat-form-field>',
           '        <mat-label>' + this.options.modelName + '</mat-label>',
-          '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '>',
-          '        <button mat-button matSuffix mat-icon-button (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
+          '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '">',
+          '        <button mat-button matSuffix mat-icon-button type="button" (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
           '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
           '        </button>',
         ])
@@ -100,12 +100,12 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
         array = array.concat([
           '    <mat-form-field>',
           '        <mat-label>' + this.options.modelName + '</mat-label>',
-          '        <input type="password" matInput formControlName="' + controlName + '>',
+          '        <input type="password" matInput formControlName="' + controlName + '">',
         ])
       }
 
       this.options.rules.forEach(rule => {
-        array.push('        <mat-error *ngIf="' + controlName + '.hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
+        array.push('        <mat-error *ngIf="' + formGroupName + '.get(\'' + controlName.toLowerCase() + '\').hasError(\'' + rule.errorIdentifier + '\')">' + rule.errorMessage + '</mat-error>')
       });
 
       array.push('    </mat-form-field>')
@@ -115,7 +115,12 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
   }
   getTSCodeCallback() {
     return () => {
-      return []
+      if(this.options.toggleVis) {
+        const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
+        return ['  ' + controlName + 'Visible: boolean = false', '']
+      } else {
+        return []
+      }
     }
   }
 
@@ -125,6 +130,32 @@ export class PasswordInputComponent implements IFormType, AfterViewInit, OnInit,
         ImportsLibrary.MATINPUTMODULE,
         ImportsLibrary.MATICONMODULE
       ]
+    }
+  }
+
+  getCssCodeCallback() {
+    return () => {
+      return []
+    }
+  }
+
+  getFormControlCallback() {
+    return () => {
+      const array: string[] = []
+
+        if (this.options.rules.length > 0) {
+          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
+
+          this.options.rules.forEach(rule => {
+            array.push(rule.code + ',')
+          });
+
+          array.push('    ]),')
+        } else {
+          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
+        }
+
+      return array
     }
   }
 

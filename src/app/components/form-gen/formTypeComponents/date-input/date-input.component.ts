@@ -101,6 +101,18 @@ export class DateInputComponent implements IFormType, AfterViewInit {
     }
   }
 
+  getCssCodeCallback() {
+    return () => {
+      return []
+    }
+  }
+
+  getFormControlCallback() {
+    return () => {
+      return ['    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),']
+    }
+  }
+
   getImportsCallback() {
     return () => {
       return [
