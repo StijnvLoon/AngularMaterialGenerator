@@ -43,6 +43,9 @@ import { TabMainComponent } from './components/form-gen/form-editor/options-draw
 import { TabRulesComponent } from './components/form-gen/form-editor/options-drawer/tabs/tab-rules/tab-rules.component';
 import { TabRadioOptionsComponent } from './components/form-gen/form-editor/options-drawer/tabs/tab-radio-options/tab-radio-options.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +69,7 @@ import { TabRadioOptionsComponent } from './components/form-gen/form-editor/opti
     TabRadioOptionsComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
