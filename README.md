@@ -3,4 +3,4 @@ This project is created to generate Angular Material Components by simply design
 
 ## Urls
 
-* [Link](https://angularmaterialgenerator.web.app/lobby)
+* [Website](https://angularmaterialgenerator.web.app/lobby)
