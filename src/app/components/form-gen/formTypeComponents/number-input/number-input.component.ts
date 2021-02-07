@@ -1,57 +1,57 @@
-import { AfterViewInit, Component, DoCheck, EventEmitter, Input, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
-import { ImportsLibrary } from 'src/assets/importsLibrary';
-import { IFormType } from '../IformType'
+import { AfterViewInit, Component, DoCheck, EventEmitter, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
 import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { FormOptions } from 'src/app/models/FormOptions';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
-import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
+import { ImportsLibrary } from 'src/assets/importsLibrary';
+import { IFormType } from '../IformType';
 
 @Component({
-  selector: 'app-text-input',
-  templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss', '../typeGeneral.scss'],
+  selector: 'app-number-input',
+  templateUrl: './number-input.component.html',
+  styleUrls: ['./number-input.component.scss', '../typeGeneral.scss'],
   animations: [formTypeAnimation]
 })
-export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
+export class NumberInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
 
   public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
   public options: FormOptions
   public showPreview: boolean = false
   @Output() onRemove = new EventEmitter();
   @Output() onToggleEdit = new EventEmitter<FormOptions>();
-
   public animState: string = 'close'
-  public textFormControl: FormControl = new FormControl('')
+
+  public numberFormControl: FormControl = new FormControl('')
   public iterableDiffer: IterableDiffer<unknown>
 
   constructor(
     private dialog: MatDialog,
     public sidenavService: SidenavService,
     private iterableDiffers: IterableDiffers) {
-      try {
-        this.iterableDiffer = this.iterableDiffers.find([]).create(null)
-      } catch(err) { }
+    try {
+      this.iterableDiffer = this.iterableDiffers.find([]).create(null)
+    } catch (err) { }
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
     let changes = this.iterableDiffer.diff(this.options.rules);
     if (changes) {
-      this.textFormControl.setValidators(this.options.getValidators())
+      this.numberFormControl.setValidators(this.options.getValidators())
     }
-  }
-
-  ngOnInit() {
-    this.textFormControl.setValidators(this.options.getValidators())
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
       this.animState = 'open'
     });
+  }
+
+  ngOnInit() {
+    this.numberFormControl.setValidators(this.options.getValidators())
   }
 
   remove() {
@@ -83,7 +83,7 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
       const array: string[] = [
         '    <mat-form-field>',
         '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input type="text" matInput formControlName="' + controlName + '">',
+        '        <input type="number" matInput formControlName="' + controlName + '">',
       ]
 
       this.options.rules.forEach(rule => {
@@ -120,17 +120,17 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
     return () => {
       const array: string[] = []
 
-        if (this.options.rules.length > 0) {
-          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
+      if (this.options.rules.length > 0) {
+        array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
 
-          this.options.rules.forEach(rule => {
-            array.push(rule.code + ',')
-          });
+        this.options.rules.forEach(rule => {
+          array.push(rule.code + ',')
+        });
 
-          array.push('    ]),')
-        } else {
-          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
-        }
+        array.push('    ]),')
+      } else {
+        array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
+      }
 
       return array
     }

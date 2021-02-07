@@ -30,7 +30,6 @@ export class AddFormTypeDialog implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     submit() {

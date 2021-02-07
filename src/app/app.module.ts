@@ -46,6 +46,7 @@ import { TabRadioOptionsComponent } from './components/form-gen/form-editor/opti
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { NumberInputComponent } from './components/form-gen/formTypeComponents/number-input/number-input.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/sel
     RadioButtonComponent,
     TabMainComponent,
     TabRulesComponent,
-    TabRadioOptionsComponent
+    TabRadioOptionsComponent,
+    NumberInputComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
