@@ -45,6 +45,7 @@ import { TabRadioOptionsComponent } from './components/form-gen/form-editor/opti
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { environment } from 'src/environments/environment';
     LobbyComponent,
     FormGenComponent,
     AddFormTypeDialog,
+    SelectFormTemplateDialog,
     AddRuleDialog,
     TextDialog,
     ConfirmDialog,
@@ -69,7 +71,7 @@ import { environment } from 'src/environments/environment';
     TabRadioOptionsComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

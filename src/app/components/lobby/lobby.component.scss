@@ -27,3 +27,7 @@
     margin: 20px;
     outline: 0;
 }
+.options_disabled {
+    pointer-events: none;
+    color: #727272;
+}

@@ -4,7 +4,7 @@ import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
 
 const routes: Routes = [
-  { path: 'forms', component: FormGenComponent },
+  { path: 'forms/:id', component: FormGenComponent },
   { path: 'lobby', component: LobbyComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'lobby' }
 ];
