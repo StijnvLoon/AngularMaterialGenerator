@@ -72,6 +72,11 @@ export class FormGenComponent implements OnInit {
           new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\\\S*?[A-Z])(?=\\\\S*?[a-z])(?=\\\\S*?[0-9]).{6,})\\\\S$\')')
         ]))
 
+        var emailSavable: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Email', [
+          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
+          new Rule(Validators.email, 'Please, enter a valid email', ErrorIdentifier.EMAIL, '      Validators.email')
+        ]))
+
         var birthdaySavable: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Birthday'))
 
         var genderOptions: FormOptions = new FormOptions('Gender')
@@ -81,6 +86,7 @@ export class FormGenComponent implements OnInit {
         const formTemplate: FormTemplate = new FormTemplate('register_form')
         formTemplate.addFormSavable(usernameSavable)
         formTemplate.addFormSavable(passwordSavable)
+        formTemplate.addFormSavable(emailSavable)
         formTemplate.addFormSavable(birthdaySavable)
         formTemplate.addFormSavable(genderSavable)
 

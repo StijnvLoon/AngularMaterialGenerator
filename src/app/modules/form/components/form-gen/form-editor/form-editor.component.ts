@@ -78,7 +78,7 @@ export class FormEditorComponent implements OnInit {
 
   addFormObjectDialog() {
     const dialogRef = this.dialog.open(AddFormTypeDialog, {
-      width: '800px',
+      width: '80%',
       data: {
         title: 'Add form component'
       }

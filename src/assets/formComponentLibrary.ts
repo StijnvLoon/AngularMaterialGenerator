@@ -1,3 +1,4 @@
+import { ColorInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/color-input/color-input.component";
 import { DateInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/date-input/date-input.component";
 import { NumberInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/number-input/number-input.component";
 import { PasswordInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/password-input/password-input.component";
@@ -9,5 +10,6 @@ export const FormComponentLibrary = {
   passwordinput: PasswordInputComponent,
   numberinput: NumberInputComponent,
   dateinput: DateInputComponent,
+  colorinput: ColorInputComponent,
   radiobutton: RadioButtonComponent
 }

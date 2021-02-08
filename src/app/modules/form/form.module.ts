@@ -41,6 +41,7 @@ import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directi
 import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
 import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { ColorInputComponent } from './components/form-gen/formTypeComponents/color-input/color-input.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog
     TabRulesComponent,
     TabRadioOptionsComponent,
     NumberInputComponent,
-    FormGenComponent
+    FormGenComponent,
+    ColorInputComponent
   ],
   imports: [
     CommonModule,
