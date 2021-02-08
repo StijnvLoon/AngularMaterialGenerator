@@ -12,7 +12,7 @@ import { FormModule } from './modules/form/form.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LobbyComponent
+    LobbyComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

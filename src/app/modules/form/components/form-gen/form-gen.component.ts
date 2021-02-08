@@ -54,9 +54,14 @@ export class FormGenComponent implements OnInit {
         passwordOptions.toggleVis = false
         var passwordSavable: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, passwordOptions)
 
+        var rememberOptions: FormOptions = new FormOptions('Remember')
+        rememberOptions.optionalText = 'Remember me!'
+        var rememberSavable: FormSavable = new FormSavable(FormComponentLibrary.checkbox, rememberOptions)
+
         const formTemplate: FormTemplate = new FormTemplate('login_form')
         formTemplate.addFormSavable(usernameSavable)
         formTemplate.addFormSavable(passwordSavable)
+        formTemplate.addFormSavable(rememberSavable)
 
         return formTemplate
       }

@@ -42,6 +42,7 @@ import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
 import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 import { ColorInputComponent } from './components/form-gen/formTypeComponents/color-input/color-input.component';
+import { CheckboxComponent } from './components/form-gen/formTypeComponents/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ColorInputComponent } from './components/form-gen/formTypeComponents/co
     TabRadioOptionsComponent,
     NumberInputComponent,
     FormGenComponent,
-    ColorInputComponent
+    ColorInputComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,

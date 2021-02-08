@@ -7,6 +7,7 @@ export class FormOptions {
     public toggleVis: boolean
     public editableText: boolean
     public radioOptions: string[]
+    public optionalText: string
     public rules: Rule[] = []
 
     constructor(public modelName: string, rules?: Rule[]) {

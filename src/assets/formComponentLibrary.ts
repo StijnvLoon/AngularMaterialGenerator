@@ -1,3 +1,4 @@
+import { CheckboxComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/checkbox/checkbox.component";
 import { ColorInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/color-input/color-input.component";
 import { DateInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/date-input/date-input.component";
 import { NumberInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/number-input/number-input.component";
@@ -11,5 +12,6 @@ export const FormComponentLibrary = {
   numberinput: NumberInputComponent,
   dateinput: DateInputComponent,
   colorinput: ColorInputComponent,
-  radiobutton: RadioButtonComponent
+  radiobutton: RadioButtonComponent,
+  checkbox: CheckboxComponent
 }

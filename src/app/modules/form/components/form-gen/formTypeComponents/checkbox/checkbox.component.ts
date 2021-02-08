@@ -1,5 +1,4 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
@@ -11,14 +10,14 @@ import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType';
 
 @Component({
-  selector: 'app-radio-button',
-  templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.scss', '../typeGeneral.scss'],
+  selector: 'app-checkbox',
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss', '../typeGeneral.scss'],
   animations: [formTypeAnimation]
 })
-export class RadioButtonComponent implements AfterViewInit, IFormType {
+export class CheckboxComponent implements AfterViewInit, IFormType {
 
-  public category: FormCategoryLibrary = FormCategoryLibrary.RADIOBUTTON;
+  public category: FormCategoryLibrary = FormCategoryLibrary.CHECKBOX;
   public options: FormOptions;
   public showPreview: boolean = false
   @Output() onRemove = new EventEmitter();
@@ -33,14 +32,9 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
     setTimeout(() => {
       this.animState = 'open'
 
-      if(this.options.radioOptions == undefined) {
-        this.options.radioOptions = [
-          'option 1',
-          'option 2'
-        ]
+      if (this.options.optionalText == undefined) {
+        this.options.optionalText = 'Optional'
       }
-
-      this.selectedOption = this.options.radioOptions[0]
     });
   }
 
@@ -71,18 +65,10 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       const array: string[] = [
-        '    <div>',
-        '        <label>' + this.options.modelName + '</label>',
-        '        <mat-radio-group formControlName="' + controlName + '">',
+        '    <section>',
+        '        <mat-checkbox formControlName="' + controlName + '">' + this.options.optionalText + '</mat-checkbox>',
+        '    </section>'
       ]
-
-      this.options.radioOptions.forEach(radioOption => {
-        const valueName = radioOption.toLowerCase().replace(/\s/g, "_")
-        array.push("           <mat-radio-button value='" + valueName + "'>" + radioOption + "</mat-radio-button>")
-      });
-      
-      array.push('        </mat-radio-group>')
-      array.push('    </div>')
 
       return array
     }
@@ -99,10 +85,7 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
   getCssCodeCallback() {
     return () => {
       return [
-        '.mat-radio-group {',
-        '    display: flex;',
-        '    flex-direction: column;',
-        '}'
+
       ]
     }
   }
@@ -110,7 +93,7 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
   getFormControlCallback() {
     return () => {
       return [
-          '    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'' + this.options.radioOptions[0].toLowerCase().replace(/\s/g, "_") + '\'),'
+        '    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(false),'
       ]
     }
   }
@@ -118,7 +101,7 @@ export class RadioButtonComponent implements AfterViewInit, IFormType {
   getImportsCallback() {
     return () => {
       return [
-        ImportsLibrary.MATRADIOBUTTONMODULE
+        ImportsLibrary.MATCHECKBOXMODULE
       ]
     }
   }

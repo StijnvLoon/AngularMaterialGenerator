@@ -17,6 +17,7 @@ export class TabMainComponent implements OnInit {
 
   @Input() options: FormOptions
   public modelNameControl: FormControl
+  public optionalTextControl: FormControl
 
   constructor(public sidenavService: SidenavService) { }
 
@@ -26,5 +27,8 @@ export class TabMainComponent implements OnInit {
       Validators.minLength(4),
       Validators.maxLength(20),
     ]);
+    this.optionalTextControl = new FormControl(this.options.optionalText, [
+      Validators.required
+    ])
   }
 }
