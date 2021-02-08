@@ -1,4 +1,4 @@
-import { FormImport } from '../app/models/FormImport'
+import { FormImport } from '../app/modules/form/models/FormImport'
 
 export class ImportsLibrary {
 
