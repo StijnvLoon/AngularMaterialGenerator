@@ -88,7 +88,7 @@ export class FormEditorComponent implements OnInit {
       if (formNames) {
 
         formNames.forEach(formName => {
-          const formSavable = new FormSavable(FormComponentLibrary[formName], new FormOptions(formName + ' model', []))
+          const formSavable = new FormSavable(FormComponentLibrary[formName], new FormOptions(formName + ' model'))
           this.formTemplate.addFormSavable(formSavable)
           this.convertFormSavableToLayout(formSavable)
         });

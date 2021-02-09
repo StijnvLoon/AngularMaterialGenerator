@@ -1,40 +1,42 @@
-import { AfterViewInit, Component, DoCheck, EventEmitter, Input, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { IFormType } from '../IformType'
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
-import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
-import { FormOptions } from 'src/app/modules/form/models/FormOptions';
+import { FormTypeConcrete } from '../FormTypeConcrete';
 
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss', '../typeGeneral.scss'],
-  animations: [formTypeAnimation]
+  styleUrls: ['./text-input.component.scss', '../typeGeneral.scss']
 })
-export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
+export class TextInputComponent extends FormTypeConcrete implements IFormType, OnInit, DoCheck, AfterViewInit {
 
   public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
-  public options: FormOptions
-  public showPreview: boolean = false
-  @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormOptions>();
 
-  public animState: string = 'close'
   public textFormControl: FormControl = new FormControl('')
   public iterableDiffer: IterableDiffer<unknown>
 
   constructor(
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     public sidenavService: SidenavService,
     private iterableDiffers: IterableDiffers) {
-      try {
-        this.iterableDiffer = this.iterableDiffers.find([]).create(null)
-      } catch(err) { }
+    super(dialog)
+    try {
+      this.iterableDiffer = this.iterableDiffers.find([]).create(null)
+    } catch (err) { }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.animState = 'open'
+      if (this.options.rules == undefined) {
+        this.options.rules = []
+      }
+    });
   }
 
   ngDoCheck() {
@@ -46,34 +48,6 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
 
   ngOnInit() {
     this.textFormControl.setValidators(this.options.getValidators())
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.animState = 'open'
-    });
-  }
-
-  remove() {
-    const dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '800px',
-      data: {
-        title: 'Are you sure you want to remove this form component?'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(async bool => {
-      if (bool) {
-        this.animState = 'close'
-        setTimeout(() => {
-          this.onRemove.emit()
-        }, 300);
-      }
-    })
-  }
-
-  toggleEdit() {
-    this.onToggleEdit.emit(this.options)
   }
 
   getHTMLCodeCallback() {
@@ -120,17 +94,17 @@ export class TextInputComponent implements IFormType, AfterViewInit, OnInit, DoC
     return () => {
       const array: string[] = []
 
-        if (this.options.rules.length > 0) {
-          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
+      if (this.options.rules.length > 0) {
+        array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', [')
 
-          this.options.rules.forEach(rule => {
-            array.push(rule.code + ',')
-          });
+        this.options.rules.forEach(rule => {
+          array.push(rule.code + ',')
+        });
 
-          array.push('    ]),')
-        } else {
-          array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
-        }
+        array.push('    ]),')
+      } else {
+        array.push('    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),')
+      }
 
       return array
     }

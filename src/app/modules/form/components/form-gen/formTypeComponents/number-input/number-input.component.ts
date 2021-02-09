@@ -1,37 +1,29 @@
-import { AfterViewInit, Component, DoCheck, EventEmitter, IterableDiffer, IterableDiffers, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
-import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormOptions } from 'src/app/modules/form/models/FormOptions';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
+import { FormTypeConcrete } from '../FormTypeConcrete';
 import { IFormType } from '../IformType';
 
 @Component({
   selector: 'app-number-input',
   templateUrl: './number-input.component.html',
-  styleUrls: ['./number-input.component.scss', '../typeGeneral.scss'],
-  animations: [formTypeAnimation]
+  styleUrls: ['./number-input.component.scss', '../typeGeneral.scss']
 })
-export class NumberInputComponent implements IFormType, AfterViewInit, OnInit, DoCheck {
+export class NumberInputComponent extends FormTypeConcrete implements IFormType, AfterViewInit, OnInit, DoCheck {
 
   public readonly category: FormCategoryLibrary = FormCategoryLibrary.INPUT
-  public options: FormOptions
-  public showPreview: boolean = false
-  @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormOptions>();
-  public animState: string = 'close'
-
   public numberFormControl: FormControl = new FormControl('')
   public iterableDiffer: IterableDiffer<unknown>
 
   constructor(
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     public sidenavService: SidenavService,
     private iterableDiffers: IterableDiffers) {
+    super(dialog)
     try {
       this.iterableDiffer = this.iterableDiffers.find([]).create(null)
     } catch (err) { }
@@ -47,33 +39,14 @@ export class NumberInputComponent implements IFormType, AfterViewInit, OnInit, D
   ngAfterViewInit() {
     setTimeout(() => {
       this.animState = 'open'
+      if (this.options.rules == undefined) {
+        this.options.rules = []
+      }
     });
   }
 
   ngOnInit() {
     this.numberFormControl.setValidators(this.options.getValidators())
-  }
-
-  remove() {
-    const dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '800px',
-      data: {
-        title: 'Are you sure you want to remove this form component?'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(async bool => {
-      if (bool) {
-        this.animState = 'close'
-        setTimeout(() => {
-          this.onRemove.emit()
-        }, 300);
-      }
-    })
-  }
-
-  toggleEdit() {
-    this.onToggleEdit.emit(this.options)
   }
 
   getHTMLCodeCallback() {

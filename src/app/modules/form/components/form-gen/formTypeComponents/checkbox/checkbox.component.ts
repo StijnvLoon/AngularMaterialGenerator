@@ -1,32 +1,24 @@
-import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { formTypeAnimation } from 'src/app/animations/formTypeAnim';
-import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
-import { FormOptions } from 'src/app/modules/form/models/FormOptions';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
+import { FormTypeConcrete } from '../FormTypeConcrete';
 import { IFormType } from '../IformType';
 
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss', '../typeGeneral.scss'],
-  animations: [formTypeAnimation]
+  styleUrls: ['./checkbox.component.scss', '../typeGeneral.scss']
 })
-export class CheckboxComponent implements AfterViewInit, IFormType {
+export class CheckboxComponent extends FormTypeConcrete implements AfterViewInit, IFormType {
 
   public category: FormCategoryLibrary = FormCategoryLibrary.CHECKBOX;
-  public options: FormOptions;
-  public showPreview: boolean = false
-  @Output() onRemove = new EventEmitter();
-  @Output() onToggleEdit = new EventEmitter<FormOptions>();
-
-  public animState: string = 'close'
   public selectedOption: string
 
-  constructor(private dialog: MatDialog, public sidenavService: SidenavService) { }
+  constructor(public dialog: MatDialog, public sidenavService: SidenavService) {
+    super(dialog)
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -36,28 +28,6 @@ export class CheckboxComponent implements AfterViewInit, IFormType {
         this.options.optionalText = 'Optional'
       }
     });
-  }
-
-  remove() {
-    const dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '800px',
-      data: {
-        title: 'Are you sure you want to remove this form component?'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(async bool => {
-      if (bool) {
-        this.animState = 'close'
-        setTimeout(() => {
-          this.onRemove.emit()
-        }, 300);
-      }
-    })
-  }
-
-  toggleEdit() {
-    this.onToggleEdit.emit(this.options)
   }
 
   getHTMLCodeCallback() {
