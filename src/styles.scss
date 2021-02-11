@@ -1,3 +1,5 @@
+@import './styles/material-theme';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa; }
 
@@ -27,4 +29,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 
 ::-webkit-scrollbar-thumb:hover {
     background: #519bfc;
+}
+
+.mat-app-background {
+    transition: all 0.3s ease;
 }

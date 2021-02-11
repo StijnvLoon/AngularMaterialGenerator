@@ -1,5 +1,5 @@
 <div class="tab_header">
-    <button class="back_side_bar_button" mat-icon-button (click)="sidenavService.switchTab('main')">
+    <button class="back_side_bar_button" mat-icon-button color="warn" (click)="sidenavService.switchTab('main')">
         <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <h2>Rules</h2>
@@ -17,6 +17,6 @@
     </mat-list-item>
 </mat-list>
 
-<button mat-stroked-button class="form_field list_button" (click)="addRuleDialog()">
+<button mat-flat-button color="accent" class="form_field list_button" (click)="addRuleDialog()">
     Add
 </button>

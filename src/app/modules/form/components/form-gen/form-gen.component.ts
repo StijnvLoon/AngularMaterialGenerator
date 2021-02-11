@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
+import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { FormOptions } from '../../models/FormOptions';
@@ -22,7 +24,7 @@ export class FormGenComponent implements OnInit {
   @ViewChild(FormCodeComponent) private formCodeComponent: FormCodeComponent;
   @ViewChild(FormEditorComponent) private formEditorComponent: FormEditorComponent;
 
-  constructor(private sidenavService: SidenavService, private route: ActivatedRoute) { }
+  constructor(private sidenavService: SidenavService, private route: ActivatedRoute, private sheet: MatBottomSheet) { }
 
   ngOnInit(): void {
     let id: string = this.route.snapshot.paramMap.get('id')
@@ -36,6 +38,10 @@ export class FormGenComponent implements OnInit {
       this.formCodeComponent.updatePreview()
     }
     this.formEditorComponent.tabIsActive = $event.tab.textLabel == 'Editor'
+  }
+
+  openThemeSheet() {
+    this.sheet.open(ThemeSheet);
   }
 
   getFormtemplateById(id: number): FormTemplate {

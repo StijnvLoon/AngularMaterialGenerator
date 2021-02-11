@@ -1,17 +1,17 @@
 <h1 mat-dialog-title>Choose template</h1>
 
-<div class="templates">
-    <div class="template center_content mat-elevation-z4" routerLink="/forms/0" (click)="close()" matRipple>
+<mat-dialog-content class="templates" [className]="themeService.selectedThemeClass">
+    <button mat-button class="template mat-elevation-z8" routerLink="/forms/0" (click)="close()">
         Custom form
-    </div>
-    <div class="template center_content mat-elevation-z4" routerLink="/forms/1" (click)="close()" matRipple>
+    </button>
+    <button mat-button class="template mat-elevation-z8" routerLink="/forms/1" (click)="close()">
         Login form
-    </div>
-    <div class="template center_content mat-elevation-z4" routerLink="/forms/2" (click)="close()" matRipple>
+    </button>
+    <button mat-button class="template mat-elevation-z8" routerLink="/forms/2" (click)="close()">
         Register form
-    </div>
-</div>
+    </button>
+</mat-dialog-content>
 
-<div mat-dialog-actions align="end">
+<mat-dialog-actions align="end">
     <button mat-button (click)="close()">Cancel</button>
-</div>
+</mat-dialog-actions>

@@ -1,5 +1,5 @@
 <div class="tab_header">
-    <button class="close_side_bar_button" mat-icon-button (click)="sidenavService.close()">
+    <button class="close_side_bar_button" mat-icon-button color="warn" (click)="sidenavService.close()">
         <mat-icon>close</mat-icon>
     </button>
     <h2>Options</h2>
@@ -31,13 +31,13 @@
             (change)="options.editableText = $event.source.checked">Toggle date text editable</mat-slide-toggle>
     </mat-list-item>
     <mat-list-item *ngIf="options.rules !== undefined" @Anim-ListVerItems>
-        <button mat-stroked-button (click)="sidenavService.switchTab('rules')"
+        <button mat-flat-button color="accent" (click)="sidenavService.switchTab('rules')"
             class="form_field list_button">
             Rules
         </button>
     </mat-list-item>
     <mat-list-item *ngIf="options.radioOptions !== undefined" @Anim-ListVerItems>
-        <button mat-stroked-button (click)="sidenavService.switchTab('radio-options')"
+        <button mat-flat-button color="accent" (click)="sidenavService.switchTab('radio-options')"
             class="form_field list_button">
             Options
         </button>

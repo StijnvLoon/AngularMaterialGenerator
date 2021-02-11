@@ -6,10 +6,13 @@
     width: 100vw;
 }
 .header {
-    max-width: 100%;
-    height: 50px;
-    display: flex;
-    z-index: 10;
+    position: relative;
+    font-weight: 500;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.mat-toolbar div h1 {
+    font-size: 1.4em;
 }
 .header_title {
     margin: 0px;
@@ -17,4 +20,18 @@
 .back_button {
     margin-left: 10px;
     transform: scale(1.2);
+}
+.btn_themes {
+    font-size: 1em;
+    border-radius: 20px;
+}
+.btn_themes_fake {
+    font-size: 1em;
+    border-radius: 20px;
+}
+.btn_themes span {
+    transition: ease 0.3s all;
+}
+.btn_themes:hover span {
+    color: transparent;
 }

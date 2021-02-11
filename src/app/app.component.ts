@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { routeAnimation } from './animations/routeTransit';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { routeAnimation } from './animations/routeTransit';
   animations: [routeAnimation]
 })
 export class AppComponent {
+
+  constructor(public themeService: ThemeService) {
+    
+  }
 
   public getRouterOutletState(outlet) {
     return outlet.isActivated ? outlet.activatedRoute : '';
