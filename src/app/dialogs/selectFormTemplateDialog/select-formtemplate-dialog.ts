@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'select-formtemplate-dialog',
@@ -9,7 +10,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class SelectFormTemplateDialog {
 
     constructor(
-        public dialogRef: MatDialogRef<SelectFormTemplateDialog>) {
+        public dialogRef: MatDialogRef<SelectFormTemplateDialog>,
+        public themeService: ThemeService) {
     }
 
     close(): void {

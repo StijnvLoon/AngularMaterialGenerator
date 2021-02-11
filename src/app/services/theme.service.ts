@@ -9,15 +9,22 @@ export class ThemeService {
 
   constructor() {
     try {
-      this.selectedThemeClass = localStorage.getItem('theme')
+      this.setThemeClass(localStorage.getItem('theme'))
     } catch (err) {
-      this.selectedThemeClass = 'none'
+      this.setThemeClass(this.getAvailableThemes()[0].className)
     }
   }
 
   setThemeClass(themeClass: string) {
-    this.selectedThemeClass = themeClass
-    localStorage.setItem('theme', themeClass)
+    const bodyElement = document.body;
+
+    if (bodyElement) {
+      bodyElement.classList.remove(this.selectedThemeClass);
+      bodyElement.classList.add(themeClass);
+
+      this.selectedThemeClass = themeClass
+      localStorage.setItem('theme', themeClass)
+    }
   }
 
   getAvailableThemes(): ITheme[] {

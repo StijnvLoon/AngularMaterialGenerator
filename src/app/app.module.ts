@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ThemeSheet } from './sheets/theme-sheet/theme-sheet';
 import { MatListModule } from '@angular/material/list';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
     BrowserAnimationsModule,
     FormModule,
     MatToolbarModule,
+    MatRippleModule,
     MatButtonModule,
     MatBottomSheetModule,
     MatListModule
