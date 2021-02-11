@@ -1,0 +1,7 @@
+<mat-nav-list>
+  <a mat-list-item *ngFor="let theme of themes" (click)="setTheme(theme.className)">
+    <span mat-line>
+      <button mat-button class="globe" [style.background-color]="theme.primary"></button>
+    </span>
+  </a>
+</mat-nav-list>

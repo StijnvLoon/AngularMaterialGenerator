@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectFormTemplateDialog } from 'src/app/dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 
 @Component({
   selector: 'app-lobby',
@@ -9,7 +11,7 @@ import { SelectFormTemplateDialog } from 'src/app/dialogs/selectFormTemplateDial
 })
 export class LobbyComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private sheet: MatBottomSheet) { }
 
   ngOnInit(): void {
   }
@@ -20,4 +22,10 @@ export class LobbyComponent implements OnInit {
     });
   }
 
+  openThemeSheet() {
+    this.sheet.open(ThemeSheet);
+  }
+
 }
+
+

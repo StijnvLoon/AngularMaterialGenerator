@@ -1,3 +1,3 @@
-<div [@routeAnimation]="getRouterOutletState(o)">
+<div [@routeAnimation]="getRouterOutletState(o)" [className]="themeService.selectedThemeClass">
     <router-outlet #o="outlet"></router-outlet>
 </div>

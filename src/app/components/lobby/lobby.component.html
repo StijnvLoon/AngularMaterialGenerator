@@ -1,14 +1,35 @@
-<div class="header center_content mat-elevation-z2">
-    <h1 class="header_title">Angular Material Generator</h1>
-</div>
-<div class="container center_content">
-    <div class="option center_content mat-elevation-z4" (click)="selectFormTemplateDialog()" matRipple>
+<mat-toolbar color="primary" class="header mat-elevation-z6">
+    <h1>Angular Material Generator</h1>
+    <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
+        <button mat-button class="btn_themes_fake">
+            <span style="color: #ff4242;">T</span>
+            <span style="color: #26ddfd;">h</span>
+            <span style="color: #d11ad1;">e</span>
+            <span style="color: #49e422;">m</span>
+            <span style="color: #e2cf24;">e</span>
+            <span style="color: #2343f7;">s</span>
+        </button>
+    </div>
+    <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
+        <button mat-button class="btn_themes" (click)="openThemeSheet()">
+            <span>T</span>
+            <span>h</span>
+            <span>e</span>
+            <span>m</span>
+            <span>e</span>
+            <span>s</span>
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="container center_content mat-app-background">
+    <div class="option center_content mat-elevation-z8" (click)="selectFormTemplateDialog()" matRipple>
         Forms
     </div>
-    <div class="option options_disabled center_content mat-elevation-z4" matRipple>
+    <div class="option options_disabled center_content mat-elevation-z8" matRipple>
         Backgrounds
     </div>
-    <div class="option options_disabled center_content mat-elevation-z4" matRipple>
+    <div class="option options_disabled center_content mat-elevation-z8" matRipple>
         Themes
     </div>
 </div>
