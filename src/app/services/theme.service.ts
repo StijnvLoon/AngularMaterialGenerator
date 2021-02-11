@@ -30,7 +30,11 @@ export class ThemeService {
   getAvailableThemes(): ITheme[] {
     return [
       { className: 'light-blue', primary: '#03A9F4' },
-      { className: 'dark-yellow', primary: '#ffeb3b' }
+      { className: 'light-pink', primary: '#EA1E63'},
+      { className: 'light-green', primary: '#88C44B'},
+      { className: 'dark-yellow', primary: '#FEC107' },
+      { className: 'dark-red', primary: '#FE5722'},
+      { className: 'dark-purple', primary: '#9C28AF'}
     ]
   }
 }
