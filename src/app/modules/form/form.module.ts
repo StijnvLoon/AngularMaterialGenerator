@@ -43,6 +43,7 @@ import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
 import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 import { ColorInputComponent } from './components/form-gen/formTypeComponents/color-input/color-input.component';
 import { CheckboxComponent } from './components/form-gen/formTypeComponents/checkbox/checkbox.component';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { CheckboxComponent } from './components/form-gen/formTypeComponents/chec
     MatSlideToggleModule,
     MatSidenavModule,
     MatTabsModule,
+    MatToolbarModule,
     ReactiveFormsModule,
     FormsModule,
     MatDatepickerModule,
