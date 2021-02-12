@@ -85,27 +85,7 @@ export class FormCodeComponent implements OnInit {
 
     //formcontrols + validators
     this.formTemplate.formSavables.forEach(formSavable => {
-
       componentTSFile.addToCodeLines(formSavable.getFormControl())
-
-      // if (formSavable.formOptions.rules !== undefined) {
-      //   if (formSavable.formOptions.rules.length > 0) {
-      //     componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\', ['])
-      //   } else {
-      //     componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),'])
-      //   }
-
-      //   formSavable.formOptions.rules.forEach(rule => {
-      //     componentTSFile.addToCodeLines([rule.code + ','])
-      //   });
-
-      //   if (formSavable.formOptions.rules.length > 0) {
-      //     componentTSFile.addToCodeLines(['    ]),'])
-      //   }
-      // } else {
-      //   componentTSFile.addToCodeLines(['    ' + formSavable.formOptions.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),'])
-      // }
-
     });
 
 
@@ -152,7 +132,7 @@ export class FormCodeComponent implements OnInit {
     return componentHTMLFile
   }
 
-  private getComponentCSSCode() : PreviewFile {
+  private getComponentCSSCode(): PreviewFile {
     const componentCSSFile: PreviewFile = new PreviewFile(this.formTemplate.name.toLowerCase() + '.component.css')
 
     componentCSSFile.addToCodeLines([

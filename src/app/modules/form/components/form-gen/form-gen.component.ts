@@ -47,7 +47,7 @@ export class FormGenComponent implements OnInit {
   getFormtemplateById(id: number): FormTemplate {
     switch (id) {
       case 0: {
-        return new FormTemplate('custom_form')
+        return new FormTemplate('Custom')
       }
       case 1: {
         var usernameSavable: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Username', [
@@ -64,7 +64,7 @@ export class FormGenComponent implements OnInit {
         rememberOptions.optionalText = 'Remember me!'
         var rememberSavable: FormSavable = new FormSavable(FormComponentLibrary.checkbox, rememberOptions)
 
-        const formTemplate: FormTemplate = new FormTemplate('login_form')
+        const formTemplate: FormTemplate = new FormTemplate('Login')
         formTemplate.addFormSavable(usernameSavable)
         formTemplate.addFormSavable(passwordSavable)
         formTemplate.addFormSavable(rememberSavable)
@@ -94,12 +94,28 @@ export class FormGenComponent implements OnInit {
         genderOptions.radioOptions = ['m', 'v']
         var genderSavable: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, genderOptions)
 
-        const formTemplate: FormTemplate = new FormTemplate('register_form')
+        const formTemplate: FormTemplate = new FormTemplate('Register')
         formTemplate.addFormSavable(usernameSavable)
         formTemplate.addFormSavable(passwordSavable)
         formTemplate.addFormSavable(emailSavable)
         formTemplate.addFormSavable(birthdaySavable)
         formTemplate.addFormSavable(genderSavable)
+
+        return formTemplate
+      }
+      case 3: {
+        var enabledOptions: FormOptions = new FormOptions('Enabled')
+        enabledOptions.optionalText = 'Sound enabled'
+        var enabledSavable: FormSavable = new FormSavable(FormComponentLibrary.checkbox, enabledOptions)
+
+        var volumeOptions: FormOptions = new FormOptions('Volume')
+        volumeOptions.steps = 5
+        volumeOptions.thumbLabel = true
+        var volumeSavable: FormSavable = new FormSavable(FormComponentLibrary.slider, volumeOptions)
+
+        const formTemplate: FormTemplate = new FormTemplate('Sound settings')
+        formTemplate.addFormSavable(enabledSavable)
+        formTemplate.addFormSavable(volumeSavable)
 
         return formTemplate
       }

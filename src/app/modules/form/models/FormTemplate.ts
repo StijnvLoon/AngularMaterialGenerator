@@ -37,6 +37,6 @@ export class FormTemplate {
     }
 
     public getCodeName() {
-        return this.name.toLowerCase().replace(/\s/g, "-")
+        return this.name.toLowerCase().replace(/\s/g, "")
     }
 }

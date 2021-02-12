@@ -9,6 +9,11 @@ export class FormOptions {
     public radioOptions: string[]
     public optionalText: string
     public rules: Rule[] = []
+    public thumbLabel: boolean
+    public inverted: boolean
+    public min: number
+    public max: number
+    public steps: number
 
     constructor(public modelName: string, rules?: Rule[]) {
         this.rules = rules
