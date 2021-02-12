@@ -4,6 +4,7 @@ import { DateInputComponent } from "src/app/modules/form/components/form-gen/for
 import { NumberInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/number-input/number-input.component";
 import { PasswordInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/password-input/password-input.component";
 import { RadioButtonComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/radio-button/radio-button.component";
+import { SliderComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/slider/slider.component";
 import { TextInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/text-input/text-input.component";
 
 export const FormComponentLibrary = {
@@ -13,5 +14,6 @@ export const FormComponentLibrary = {
   dateinput: DateInputComponent,
   colorinput: ColorInputComponent,
   radiobutton: RadioButtonComponent,
-  checkbox: CheckboxComponent
+  checkbox: CheckboxComponent,
+  slider: SliderComponent
 }

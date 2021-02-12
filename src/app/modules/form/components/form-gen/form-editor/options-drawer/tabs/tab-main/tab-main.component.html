@@ -15,6 +15,24 @@
             <mat-error *ngIf="modelNameControl.hasError('maxlength')">The text can't exceed 20 characters</mat-error>
         </mat-form-field>
     </mat-list-item>
+    <mat-list-item *ngIf="options.min !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label>Min number</mat-label>
+            <input type="number" matInput [(ngModel)]="options.min">
+        </mat-form-field>
+    </mat-list-item>
+    <mat-list-item *ngIf="options.max !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label>Max number</mat-label>
+            <input type="number" matInput [(ngModel)]="options.max">
+        </mat-form-field>
+    </mat-list-item>
+    <mat-list-item *ngIf="options.steps !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label>Steps</mat-label>
+            <input type="number" matInput [(ngModel)]="options.steps" min="1">
+        </mat-form-field>
+    </mat-list-item>
     <mat-list-item *ngIf="options.optionalText !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
         <mat-form-field class="form_field" appearance="fill">
             <mat-label>Label</mat-label>
@@ -25,6 +43,14 @@
     <mat-list-item *ngIf="options.toggleVis !== undefined" @Anim-ListVerItems>
         <mat-slide-toggle  [checked]="options.toggleVis"
             (change)="options.toggleVis = $event.source.checked">Toggle visibility option</mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item *ngIf="options.thumbLabel !== undefined" @Anim-ListVerItems>
+        <mat-slide-toggle  [checked]="options.thumbLabel"
+            (change)="options.thumbLabel = $event.source.checked">Toggle thumb label</mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item *ngIf="options.inverted !== undefined" @Anim-ListVerItems>
+        <mat-slide-toggle  [checked]="options.inverted"
+            (change)="options.inverted = $event.source.checked">Toggle inverted</mat-slide-toggle>
     </mat-list-item>
     <mat-list-item *ngIf="options.editableText !== undefined" @Anim-ListVerItems>
         <mat-slide-toggle [checked]="options.editableText"

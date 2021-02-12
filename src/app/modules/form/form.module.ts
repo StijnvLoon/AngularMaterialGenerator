@@ -43,7 +43,9 @@ import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
 import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 import { ColorInputComponent } from './components/form-gen/formTypeComponents/color-input/color-input.component';
 import { CheckboxComponent } from './components/form-gen/formTypeComponents/checkbox/checkbox.component';
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSliderModule } from '@angular/material/slider';
+import { SliderComponent } from './components/form-gen/formTypeComponents/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
     NumberInputComponent,
     FormGenComponent,
     ColorInputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +98,8 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule
   ],
   providers: [
     MatDatepickerModule

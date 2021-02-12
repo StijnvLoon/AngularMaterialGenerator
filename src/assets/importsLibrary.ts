@@ -9,6 +9,7 @@ export class ImportsLibrary {
     static readonly MATDATEPICKERMODULE: FormImport = new FormImport('MatDatepickerModule', '@angular/material/datepicker')
     static readonly MATCHECKBOXMODULE: FormImport = new FormImport('MatCheckboxModule', '@angular/material/checkbox')
     static readonly MATRADIOBUTTONMODULE: FormImport = new FormImport('MatRadioModule', '@angular/material/radio')
+    static readonly MATSLIDERMODULE: FormImport = new FormImport('MatSliderModule', '@angular/material/slider')
 
     constructor() {}
 }

@@ -71,9 +71,7 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   }
 
   getTSCodeCallback() {
-    return () => {
-      return []
-    }
+    return () => { return [] }
   }
 
   getImportsCallback() {
@@ -85,9 +83,7 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   }
 
   getCssCodeCallback() {
-    return () => {
-      return []
-    }
+    return () => { return [] }
   }
 
   getFormControlCallback() {
