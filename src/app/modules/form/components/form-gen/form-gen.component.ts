@@ -113,12 +113,9 @@ export class FormGenComponent implements OnInit {
         volumeOptions.thumbLabel = true
         var volumeSavable: FormSavable = new FormSavable(FormComponentLibrary.slider, volumeOptions)
 
-        var testSavable: FormSavable = new FormSavable(FormComponentLibrary.switch, new FormOptions('Test switch'))
-
         const formTemplate: FormTemplate = new FormTemplate('Sound settings')
         formTemplate.addFormSavable(enabledSavable)
         formTemplate.addFormSavable(volumeSavable)
-        formTemplate.addFormSavable(testSavable)
 
         return formTemplate
       }

@@ -3,7 +3,7 @@
 
     <mat-form-field class="form_field">
         <mat-label>{{options.modelName}}</mat-label>
-        <input type="text" matInput [formControl]="textFormControl">
+        <input type="text" matInput [formControl]="textFormControl" [placeholder]="options.placeholder">
         <mat-error *ngIf="textFormControl.invalid">{{getErrorMessage(textFormControl)}}</mat-error>
     </mat-form-field>
 

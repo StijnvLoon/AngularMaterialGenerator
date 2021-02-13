@@ -39,8 +39,12 @@ export class NumberInputComponent extends FormTypeConcrete implements IFormType,
   ngAfterViewInit() {
     setTimeout(() => {
       this.animState = 'open'
+
       if (this.options.rules == undefined) {
         this.options.rules = []
+      }
+      if (this.options.placeholder == undefined) {
+        this.options.placeholder = ""
       }
     });
   }
@@ -56,7 +60,7 @@ export class NumberInputComponent extends FormTypeConcrete implements IFormType,
       const array: string[] = [
         '    <mat-form-field>',
         '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input type="number" matInput formControlName="' + controlName + '">',
+        '        <input type="number" matInput formControlName="' + controlName + '"' + this.getPlaceHolder() + '>',
       ]
 
       this.options.rules.forEach(rule => {
@@ -115,5 +119,9 @@ export class NumberInputComponent extends FormTypeConcrete implements IFormType,
     return this.options.getErrorMessage(
       ErrorIdentifier[enumId]
     )
+  }
+
+  private getPlaceHolder(): string {
+    return this.options.placeholder == "" ? '' : ' placeholder="' + this.options.placeholder + '"'
   }
 }
