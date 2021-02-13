@@ -13,7 +13,7 @@ import { IFormType } from '../IformType';
 })
 export class RadioButtonComponent extends FormTypeConcrete implements AfterViewInit, IFormType {
 
-  public category: FormCategoryLibrary = FormCategoryLibrary.RADIOBUTTON;
+  public category: FormCategoryLibrary = FormCategoryLibrary.BUTTON;
   public selectedOption: string
 
   constructor(public dialog: MatDialog, public sidenavService: SidenavService) {

@@ -13,7 +13,7 @@ import { IFormType } from '../IformType';
 })
 export class SwitchComponent extends FormTypeConcrete implements IFormType, AfterViewInit {
 
-  public readonly category: FormCategoryLibrary = FormCategoryLibrary.SWITCH
+  public readonly category: FormCategoryLibrary = FormCategoryLibrary.BUTTON
 
   constructor(public dialog: MatDialog, public sidenavService: SidenavService) {
     super(dialog)

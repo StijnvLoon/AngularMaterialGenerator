@@ -13,7 +13,7 @@ import { IFormType } from '../IformType';
 })
 export class CheckboxComponent extends FormTypeConcrete implements AfterViewInit, IFormType {
 
-  public category: FormCategoryLibrary = FormCategoryLibrary.CHECKBOX;
+  public category: FormCategoryLibrary = FormCategoryLibrary.BUTTON;
   public selectedOption: string
 
   constructor(public dialog: MatDialog, public sidenavService: SidenavService) {

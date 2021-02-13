@@ -5,7 +5,7 @@
     <div *ngFor="let category of categories">
         <h4>{{formCategoryLibrary[category]}}</h4>
 
-        <div style="display: flex;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
             <div *ngFor="let component of getComponentsByCategory(category)">
                 <div class="container_formtype">
                     <mat-checkbox class="checkbox_formtype" [checked]="selectedFormNameList.includes(component)">
