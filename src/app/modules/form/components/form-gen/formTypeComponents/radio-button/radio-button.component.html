@@ -2,11 +2,14 @@
     <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
 
     <div class="form_field">
-        <label>{{options.modelName}}</label>
-        <mat-radio-group [(ngModel)]="selectedOption">
-            <mat-radio-button *ngFor="let option of options.radioOptions; let first as first" [selected]="first" [value]="option">{{option}}
-            </mat-radio-button>
-        </mat-radio-group>
+        <div style="display: block;">
+            <label>{{options.modelName}}</label>
+            <mat-radio-group [(ngModel)]="selectedOption">
+                <mat-radio-button *ngFor="let option of options.radioOptions; let first as first" [selected]="first"
+                    [value]="option">{{option}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
     </div>
 
     <button mat-icon-button class="edit_formitem_button"

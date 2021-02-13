@@ -1,11 +1,11 @@
 <div class="container" *ngIf="!showPreview" [@Anim-formtype]="animState" cdkDragLockAxis="y" cdkDrag>
     <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
 
-    <section style="width: 100%;">
+    <div class="form_field">
         <mat-slide-toggle>
             {{options.modelName}}
         </mat-slide-toggle>
-    </section>
+    </div>
 
     <button mat-icon-button class="edit_formitem_button"
         [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
