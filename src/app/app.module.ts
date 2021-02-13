@@ -19,7 +19,7 @@ import { MatRippleModule } from '@angular/material/core';
   declarations: [
     AppComponent,
     LobbyComponent,
-    ThemeSheet
+    ThemeSheet,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

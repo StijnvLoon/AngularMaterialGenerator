@@ -3,7 +3,7 @@ export enum FormCategoryLibrary {
   INPUT = "Input",
   RADIOBUTTON = "Radio button",
   // TEXTAREA = "Textarea",
-  // SWITCH = "Switch",
+  SWITCH = "Switch",
   SLIDER = "Slider",
   CHECKBOX = "Checkbox"
 }  
