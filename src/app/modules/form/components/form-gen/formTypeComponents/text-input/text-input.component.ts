@@ -33,8 +33,12 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   ngAfterViewInit() {
     setTimeout(() => {
       this.animState = 'open'
+
       if (this.options.rules == undefined) {
         this.options.rules = []
+      }
+      if (this.options.placeholder == undefined) {
+        this.options.placeholder = ""
       }
     });
   }
@@ -57,7 +61,7 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
       const array: string[] = [
         '    <mat-form-field>',
         '        <mat-label>' + this.options.modelName + '</mat-label>',
-        '        <input type="text" matInput formControlName="' + controlName + '">',
+        '        <input type="text" matInput formControlName="' + controlName + '"' + this.getPlaceHolder() + '>'
       ]
 
       this.options.rules.forEach(rule => {
@@ -112,5 +116,9 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
     return this.options.getErrorMessage(
       ErrorIdentifier[enumId]
     )
+  }
+
+  private getPlaceHolder(): string {
+    return this.options.placeholder == "" ? '' : ' placeholder="' + this.options.placeholder + '"'
   }
 }

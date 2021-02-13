@@ -15,6 +15,12 @@
             <mat-error *ngIf="modelNameControl.hasError('maxlength')">The text can't exceed 20 characters</mat-error>
         </mat-form-field>
     </mat-list-item>
+    <mat-list-item *ngIf="options.placeholder !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label>placeholder</mat-label>
+            <input type="text" matInput [(ngModel)]="options.placeholder">
+        </mat-form-field>
+    </mat-list-item>
     <mat-list-item *ngIf="options.min !== undefined" @Anim-ListVerItems style="margin-bottom: 15px !important;">
         <mat-form-field class="form_field" appearance="fill">
             <mat-label>Min number</mat-label>

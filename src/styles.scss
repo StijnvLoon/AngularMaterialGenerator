@@ -34,3 +34,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .mat-app-background {
     transition: all 0.3s ease;
 }
+.mat-form-field-wrapper {
+    width: 100% !important;
+}

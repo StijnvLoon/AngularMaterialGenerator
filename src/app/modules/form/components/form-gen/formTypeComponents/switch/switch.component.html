@@ -1,11 +1,11 @@
 <div class="container" *ngIf="!showPreview" [@Anim-formtype]="animState" cdkDragLockAxis="y" cdkDrag>
     <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
 
-    <mat-form-field class="form_field">
-        <mat-label>{{options.modelName}}</mat-label>
-        <input type="text" matInput [formControl]="textFormControl" [placeholder]="options.placeholder">
-        <mat-error *ngIf="textFormControl.invalid">{{getErrorMessage(textFormControl)}}</mat-error>
-    </mat-form-field>
+    <div class="form_field">
+        <mat-slide-toggle>
+            {{options.modelName}}
+        </mat-slide-toggle>
+    </div>
 
     <button mat-icon-button class="edit_formitem_button"
         [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
@@ -18,8 +18,7 @@
 </div>
 
 <div class="container" *ngIf="showPreview">
-    <mat-form-field class="form_field">
-        <mat-label>{{options.modelName}}</mat-label>
-        <input type="text" matInput>
-    </mat-form-field>
+    <mat-slide-toggle checked="true">
+        Switch
+    </mat-slide-toggle>
 </div>

@@ -14,6 +14,7 @@ export class FormOptions {
     public min: number
     public max: number
     public steps: number
+    public placeholder: string
 
     constructor(public modelName: string, rules?: Rule[]) {
         this.rules = rules

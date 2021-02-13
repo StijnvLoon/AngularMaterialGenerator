@@ -1,16 +1,18 @@
 <div class="container" *ngIf="!showPreview" [@Anim-formtype]="animState" cdkDragLockAxis="y" cdkDrag>
     <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
 
-    <section style="width: 100%;">
-        <div>{{options.modelName}}</div>
-        <mat-slider style="width: 100%;" 
-            [thumbLabel]="options.thumbLabel" 
-            [invert]="options.inverted"
-            [min]="options.min"
-            [max]="options.max"
-            [step]="options.steps">
-        </mat-slider>
-    </section>
+    <div class="form_field">
+        <div style="display: block;">
+            <label>{{options.modelName}}</label>
+            <mat-slider style="width: 100%;" 
+                [thumbLabel]="options.thumbLabel" 
+                [invert]="options.inverted"
+                [min]="options.min"
+                [max]="options.max"
+                [step]="options.steps">
+            </mat-slider>
+        </div>
+    </div>
 
     <button mat-icon-button class="edit_formitem_button"
         [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
@@ -22,6 +24,7 @@
     </button>
 </div>
 
-<div class="container" *ngIf="showPreview">
+<div class="container" style="display: block;" *ngIf="showPreview">
+    <div>Slider</div>
     <mat-slider value="60"></mat-slider>
 </div>

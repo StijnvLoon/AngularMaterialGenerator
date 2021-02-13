@@ -23,7 +23,7 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
     public dialog: MatDialog,
     public sidenavService: SidenavService,
     private iterableDiffers: IterableDiffers) {
-      super(dialog)
+    super(dialog)
     try {
       this.iterableDiffer = this.iterableDiffers.find([]).create(null)
     } catch (err) { }
@@ -50,6 +50,9 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
       if (this.options.rules == undefined) {
         this.options.rules = []
       }
+      if (this.options.placeholder == undefined) {
+        this.options.placeholder = ""
+      }
     });
   }
 
@@ -63,7 +66,7 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
         array = array.concat([
           '    <mat-form-field>',
           '        <mat-label>' + this.options.modelName + '</mat-label>',
-          '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '">',
+          '        <input [type]="' + controlName + 'Visible ? \'text\' : \'password\'" matInput formControlName="' + controlName + '"' + this.getPlaceHolder() + '>',
           '        <button mat-button matSuffix mat-icon-button type="button" (click)="' + controlName + 'Visible = !' + controlName + 'Visible">',
           '            <mat-icon>{{' + controlName + 'Visible ? \'visibility\' : \'visibility_off\'}}</mat-icon>',
           '        </button>',
@@ -85,6 +88,7 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
       return array
     }
   }
+
   getTSCodeCallback() {
     return () => {
       if (this.options.toggleVis) {
@@ -139,4 +143,7 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
     )
   }
 
+  private getPlaceHolder(): string {
+    return this.options.placeholder == "" ? '' : ' placeholder="' + this.options.placeholder + '"'
+  }
 }

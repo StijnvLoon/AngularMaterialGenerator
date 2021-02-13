@@ -5,6 +5,7 @@ import { NumberInputComponent } from "src/app/modules/form/components/form-gen/f
 import { PasswordInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/password-input/password-input.component";
 import { RadioButtonComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/radio-button/radio-button.component";
 import { SliderComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/slider/slider.component";
+import { SwitchComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/switch/switch.component";
 import { TextInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/text-input/text-input.component";
 
 export const FormComponentLibrary = {
@@ -15,5 +16,6 @@ export const FormComponentLibrary = {
   colorinput: ColorInputComponent,
   radiobutton: RadioButtonComponent,
   checkbox: CheckboxComponent,
-  slider: SliderComponent
+  slider: SliderComponent,
+  switch: SwitchComponent
 }

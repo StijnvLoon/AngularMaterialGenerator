@@ -13,7 +13,7 @@ import { IFormType } from '../IformType';
 })
 export class SliderComponent extends FormTypeConcrete implements IFormType, AfterViewInit {
 
-  public readonly category: FormCategoryLibrary = FormCategoryLibrary.SLIDER
+  public readonly category: FormCategoryLibrary = FormCategoryLibrary.REST
 
   constructor(public dialog: MatDialog, public sidenavService: SidenavService) {
     super(dialog)

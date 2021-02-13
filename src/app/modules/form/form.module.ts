@@ -46,6 +46,7 @@ import { CheckboxComponent } from './components/form-gen/formTypeComponents/chec
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { SliderComponent } from './components/form-gen/formTypeComponents/slider/slider.component';
+import { SwitchComponent } from './components/form-gen/formTypeComponents/switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { SliderComponent } from './components/form-gen/formTypeComponents/slider
     FormGenComponent,
     ColorInputComponent,
     CheckboxComponent,
-    SliderComponent
+    SliderComponent,
+    SwitchComponent
   ],
   imports: [
     CommonModule,
