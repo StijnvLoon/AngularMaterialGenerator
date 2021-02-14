@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
@@ -24,7 +26,11 @@ export class FormGenComponent implements OnInit {
   @ViewChild(FormCodeComponent) private formCodeComponent: FormCodeComponent;
   @ViewChild(FormEditorComponent) private formEditorComponent: FormEditorComponent;
 
-  constructor(private sidenavService: SidenavService, private route: ActivatedRoute, private sheet: MatBottomSheet) { }
+  constructor(
+    private sidenavService: SidenavService,
+    private route: ActivatedRoute,
+    private sheet: MatBottomSheet,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     let id: string = this.route.snapshot.paramMap.get('id')
@@ -42,6 +48,23 @@ export class FormGenComponent implements OnInit {
 
   openThemeSheet() {
     this.sheet.open(ThemeSheet);
+  }
+
+  editNameDialog() {
+    const nameCopy: string = this.formTemplate.name
+    const dialogRef = this.dialog.open(TextDialog, {
+      width: '600px',
+      data: {
+        title: 'Change template name',
+        text: nameCopy
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(async name => {
+      if (name) {
+        this.formTemplate.name = name
+      }
+    })
   }
 
   getFormtemplateById(id: number): FormTemplate {
