@@ -1,13 +1,23 @@
 <mat-toolbar color="primary" class="header mat-elevation-z6">
-    <div class="center_content">
-        <button mat-icon-button routerLink="/lobby" class="back_button">
+    <div style="position: absolute;">
+        <button mat-icon-button routerLink="/lobby" class="header_icon_button">
             <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <button mat-icon-button class="header_icon_button" disabled>
+            <mat-icon>save</mat-icon>
+        </button>
+        <button mat-icon-button class="header_icon_button" disabled>
+            <mat-icon>file_download</mat-icon>
         </button>
     </div>
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{formTemplate.name}}</h1>
+        <button mat-icon-button class="header_icon_button" disabled>
+            <mat-icon>edit</mat-icon>
+        </button>
     </div>
+
     <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
         <button mat-button class="btn_themes_fake">
             <span style="color: #ff4242;">T</span>
