@@ -15,4 +15,16 @@ export class FormSavable {
         public name: any,
         public formOptions: FormOptions
     ) { }
+
+    toJson(): IFormSavableJson {
+        return {
+            name: this.name,
+            formOptions: this.formOptions
+        }
+    }
+}
+
+export interface IFormSavableJson {
+    name: any,
+    formOptions: FormOptions
 }

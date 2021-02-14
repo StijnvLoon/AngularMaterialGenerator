@@ -1,6 +1,6 @@
 import { ImportsLibrary } from "src/assets/importsLibrary"
 import { FormImport } from "./FormImport"
-import { FormSavable } from "./FormSavable"
+import { FormSavable, IFormSavableJson } from "./FormSavable"
 
 export class FormTemplate {
 
@@ -39,4 +39,22 @@ export class FormTemplate {
     public getCodeName() {
         return this.name.toLowerCase().replace(/\s/g, "")
     }
+
+    toJson(): IFormTemplateJson {
+        const formSavableJsonArray: IFormSavableJson[] = []
+
+        this.formSavables.forEach((formSavable) => {
+            formSavableJsonArray.push(formSavable.toJson())
+        })
+
+        return {
+            name: this.name,
+            formSavables: formSavableJsonArray
+        }
+    }
+}
+
+export interface IFormTemplateJson {
+    name: any,
+    formSavables: IFormSavableJson[]
 }

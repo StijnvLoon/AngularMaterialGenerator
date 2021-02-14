@@ -12,6 +12,7 @@ import { FormOptions } from '../../models/FormOptions';
 import { FormSavable } from '../../models/FormSavable';
 import { FormTemplate } from '../../models/FormTemplate';
 import { Rule } from '../../models/Rule';
+import { FormTemplateService } from '../../services/formtemplate.service';
 import { FormCodeComponent } from './form-code/form-code.component';
 import { FormEditorComponent } from './form-editor/form-editor.component';
 
@@ -30,7 +31,8 @@ export class FormGenComponent implements OnInit {
     private sidenavService: SidenavService,
     private route: ActivatedRoute,
     private sheet: MatBottomSheet,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    public formtemplateService: FormTemplateService) { }
 
   ngOnInit(): void {
     let id: string = this.route.snapshot.paramMap.get('id')
