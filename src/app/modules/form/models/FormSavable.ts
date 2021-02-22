@@ -12,19 +12,7 @@ export class FormSavable {
     public view: ComponentRef<unknown>                          //layout component is saved in here
 
     constructor(
-        public name: any,
+        public name: string,
         public formOptions: FormOptions
     ) { }
-
-    toJson(): IFormSavableJson {
-        return {
-            name: this.name,
-            formOptions: this.formOptions
-        }
-    }
-}
-
-export interface IFormSavableJson {
-    name: any,
-    formOptions: FormOptions
 }

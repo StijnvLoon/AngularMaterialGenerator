@@ -7,6 +7,7 @@ import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { FormControl } from '@angular/forms';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormTypeConcrete } from '../FormTypeConcrete';
+import { RuleService } from 'src/app/modules/form/services/rule.service';
 
 @Component({
   selector: 'app-text-input',
@@ -23,7 +24,8 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   constructor(
     public dialog: MatDialog,
     public sidenavService: SidenavService,
-    private iterableDiffers: IterableDiffers) {
+    private iterableDiffers: IterableDiffers,
+    private ruleService: RuleService) {
     super(dialog)
     try {
       this.iterableDiffer = this.iterableDiffers.find([]).create(null)
@@ -46,12 +48,12 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   ngDoCheck() {
     let changes = this.iterableDiffer.diff(this.options.rules);
     if (changes) {
-      this.textFormControl.setValidators(this.options.getValidators())
+      this.textFormControl.setValidators(this.ruleService.getValidatorList(this.options.rules))
     }
   }
 
   ngOnInit() {
-    this.textFormControl.setValidators(this.options.getValidators())
+    this.textFormControl.setValidators(this.ruleService.getValidatorList(this.options.rules))
   }
 
   getHTMLCodeCallback() {
@@ -113,9 +115,7 @@ export class TextInputComponent extends FormTypeConcrete implements IFormType, O
   getErrorMessage(formControl: FormControl) {
     const enumId: string = Object.keys(formControl.errors)[0].toUpperCase()
 
-    return this.options.getErrorMessage(
-      ErrorIdentifier[enumId]
-    )
+    return this.ruleService.getErrorMessage(this.options.rules, ErrorIdentifier[enumId])
   }
 
   private getPlaceHolder(): string {

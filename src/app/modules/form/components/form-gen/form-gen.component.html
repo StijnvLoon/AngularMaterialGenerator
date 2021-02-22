@@ -1,4 +1,6 @@
 <mat-toolbar color="primary" class="header mat-elevation-z6">
+    <input style="display: none" type="file" (change)="onTemplateUpload($event)" #fileInput>
+
     <div style="position: absolute;">
         <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button">
             <mat-icon>keyboard_backspace</mat-icon>
@@ -6,7 +8,11 @@
         <button color="warn" mat-icon-button class="header_icon_button" disabled>
             <mat-icon>save</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)">
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()">
+            <mat-icon>file_upload</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button"
+            (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)">
             <mat-icon>file_download</mat-icon>
         </button>
     </div>
@@ -40,7 +46,8 @@
     </div>
 </mat-toolbar>
 
-<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;" (selectedTabChange)="onTabChanged($event);">
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;"
+    (selectedTabChange)="onTabChanged($event);">
     <mat-tab label="Editor" style="height: 100% !important;">
         <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
     </mat-tab>

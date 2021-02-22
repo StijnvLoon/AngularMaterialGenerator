@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { Rule } from '../../models/Rule';
+import { RuleService } from '../../services/rule.service';
 
 export interface DialogData {
     title: string,
@@ -24,7 +24,8 @@ export class AddRuleDialog implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<AddRuleDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+        @Inject(MAT_DIALOG_DATA) public data: DialogData,
+        private ruleService: RuleService) {
 
         Object.keys(ErrorIdentifier).forEach((identifier) => {
             if (!this.data.occupiedIdentifiers.includes(ErrorIdentifier[identifier])) {
@@ -42,7 +43,15 @@ export class AddRuleDialog implements OnInit {
     }
 
     submit() {
-        var rule: Rule = new Rule(this.getValidator(), this.errorMessage, this.selectedIdentifier, this.getCode());
+        var rule;
+        if(this.selectionIsPattern()) {
+            rule = new Rule(this.errorMessage, this.getCode(), this.selectedIdentifier, this.regexString);
+        } else if (this.selectionIsNumber()) {
+            rule = new Rule(this.errorMessage, this.getCode(), this.selectedIdentifier, this.chosenAmount);
+        } else {
+            rule = new Rule(this.errorMessage, this.getCode(), this.selectedIdentifier);
+        }
+        
         this.dialogRef.close(rule)
     }
 
@@ -58,7 +67,6 @@ export class AddRuleDialog implements OnInit {
     }
 
     getCode(): string {
-        console.log(this.selectedIdentifier)
         if(this.selectionIsPattern()) {
             return '      Validators.' + this.selectedIdentifier + '(' + this.regexString.replace('\\', '\\\\') + ')'
         }
@@ -66,35 +74,5 @@ export class AddRuleDialog implements OnInit {
             return '      Validators.' + this.selectedIdentifier + '(' + this.chosenAmount + ')' 
         }
         return '      Validators.' + this.selectedIdentifier
-    }
-
-    getValidator(): ValidatorFn {
-
-        switch (this.selectedIdentifier) {
-            case ErrorIdentifier.REQUIRED: {
-                return Validators.required
-            }
-            case ErrorIdentifier.MIN: {
-                return Validators.min(this.chosenAmount)
-            }
-            case ErrorIdentifier.MAX: {
-                return Validators.max(this.chosenAmount)
-            }
-            case ErrorIdentifier.MINLENGTH: {
-                return Validators.minLength(this.chosenAmount)
-            }
-            case ErrorIdentifier.MAXLENGTH: {
-                return Validators.maxLength(this.chosenAmount)
-            }
-            case ErrorIdentifier.PATTERN: {
-                return Validators.pattern(this.regexString)
-            }
-            case ErrorIdentifier.REQUIREDTRUE: {
-                return Validators.requiredTrue
-            }
-            case ErrorIdentifier.EMAIL: {
-                return Validators.email
-            }
-        }
     }
 }

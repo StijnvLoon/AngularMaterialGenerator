@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -48,6 +47,18 @@ export class FormGenComponent implements OnInit {
     this.formEditorComponent.tabIsActive = $event.tab.textLabel == 'Editor'
   }
 
+  onTemplateUpload($event) {
+    const file = $event.target.files[0]
+
+    this.formtemplateService.convertUploadedFile(file, (formTemplate: FormTemplate) => {
+      this.formTemplate = formTemplate
+      this.formEditorComponent.refreshSavables(this.formTemplate)
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
   openThemeSheet() {
     this.sheet.open(ThemeSheet);
   }
@@ -75,72 +86,72 @@ export class FormGenComponent implements OnInit {
         return new FormTemplate('Custom')
       }
       case 1: {
-        var usernameSavable: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Username', [
-          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required')
+        var usernameSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('Username', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED,)
         ]))
 
         var passwordOptions: FormOptions = new FormOptions('Password', [
-          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required')
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED)
         ])
         passwordOptions.toggleVis = false
-        var passwordSavable: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, passwordOptions)
+        var passwordSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.PasswordInputComponent), passwordOptions)
 
         var rememberOptions: FormOptions = new FormOptions('Remember')
         rememberOptions.optionalText = 'Remember me!'
-        var rememberSavable: FormSavable = new FormSavable(FormComponentLibrary.checkbox, rememberOptions)
+        var rememberSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.CheckboxComponent), rememberOptions)
 
         const formTemplate: FormTemplate = new FormTemplate('Login')
-        formTemplate.addFormSavable(usernameSavable)
-        formTemplate.addFormSavable(passwordSavable)
-        formTemplate.addFormSavable(rememberSavable)
+        formTemplate.formSavables.push(usernameSavable)
+        formTemplate.formSavables.push(passwordSavable)
+        formTemplate.formSavables.push(rememberSavable)
 
         return formTemplate
       }
       case 2: {
-        var usernameSavable: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Username', [
-          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
-          new Rule(Validators.minLength(4), 'The text must be creater than 4 characters.', ErrorIdentifier.MINLENGTH, '      Validators.minLength(4)'),
-          new Rule(Validators.maxLength(40), 'The text must be smaller than 40 characters.', ErrorIdentifier.MAXLENGTH, '      Validators.maxLength(40)')
+        var usernameSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('Username', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED),
+          new Rule('The text must be creater than 4 characters.', '      Validators.minLength(4)', ErrorIdentifier.MINLENGTH, 4),
+          new Rule('The text must be smaller than 40 characters.', '      Validators.maxLength(40)', ErrorIdentifier.MAXLENGTH, 40)
         ]))
 
-        var passwordSavable: FormSavable = new FormSavable(FormComponentLibrary.passwordinput, new FormOptions('Password', [
-          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
-          new Rule(Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$"), 'Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', ErrorIdentifier.PATTERN, '      Validators.pattern(\'^((?=\\\\S*?[A-Z])(?=\\\\S*?[a-z])(?=\\\\S*?[0-9]).{6,})\\\\S$\')')
+        var passwordSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.PasswordInputComponent), new FormOptions('Password', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED),
+          new Rule('Min. 6 characters, at least 1 uppercase , 1 lowercase and 1 number. No spaces.', '      Validators.pattern(\'^((?=\\\\S*?[A-Z])(?=\\\\S*?[a-z])(?=\\\\S*?[0-9]).{6,})\\\\S$\')', ErrorIdentifier.PATTERN, "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$")
         ]))
 
-        var emailSavable: FormSavable = new FormSavable(FormComponentLibrary.textinput, new FormOptions('Email', [
-          new Rule(Validators.required, 'This field is required.', ErrorIdentifier.REQUIRED, '      Validators.required'),
-          new Rule(Validators.email, 'Please, enter a valid email', ErrorIdentifier.EMAIL, '      Validators.email')
+        var emailSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('Email', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED),
+          new Rule('Please, enter a valid email', '      Validators.email', ErrorIdentifier.EMAIL)
         ]))
 
-        var birthdaySavable: FormSavable = new FormSavable(FormComponentLibrary.dateinput, new FormOptions('Birthday'))
+        var birthdaySavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.DateInputComponent), new FormOptions('Birthday'))
 
         var genderOptions: FormOptions = new FormOptions('Gender')
         genderOptions.radioOptions = ['m', 'v']
-        var genderSavable: FormSavable = new FormSavable(FormComponentLibrary.radiobutton, genderOptions)
+        var genderSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.RadioButtonComponent), genderOptions)
 
         const formTemplate: FormTemplate = new FormTemplate('Register')
-        formTemplate.addFormSavable(usernameSavable)
-        formTemplate.addFormSavable(passwordSavable)
-        formTemplate.addFormSavable(emailSavable)
-        formTemplate.addFormSavable(birthdaySavable)
-        formTemplate.addFormSavable(genderSavable)
+        formTemplate.formSavables.push(usernameSavable)
+        formTemplate.formSavables.push(passwordSavable)
+        formTemplate.formSavables.push(emailSavable)
+        formTemplate.formSavables.push(birthdaySavable)
+        formTemplate.formSavables.push(genderSavable)
 
         return formTemplate
       }
       case 3: {
         var enabledOptions: FormOptions = new FormOptions('Enabled')
         enabledOptions.optionalText = 'Sound enabled'
-        var enabledSavable: FormSavable = new FormSavable(FormComponentLibrary.checkbox, enabledOptions)
+        var enabledSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.CheckboxComponent), enabledOptions)
 
         var volumeOptions: FormOptions = new FormOptions('Volume')
         volumeOptions.steps = 5
         volumeOptions.thumbLabel = true
-        var volumeSavable: FormSavable = new FormSavable(FormComponentLibrary.slider, volumeOptions)
+        var volumeSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.SliderComponent), volumeOptions)
 
         const formTemplate: FormTemplate = new FormTemplate('Sound settings')
-        formTemplate.addFormSavable(enabledSavable)
-        formTemplate.addFormSavable(volumeSavable)
+        formTemplate.formSavables.push(enabledSavable)
+        formTemplate.formSavables.push(volumeSavable)
 
         return formTemplate
       }

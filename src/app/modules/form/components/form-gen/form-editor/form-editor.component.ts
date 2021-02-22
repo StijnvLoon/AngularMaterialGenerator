@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AddFormTypeDialog } from 'src/app/modules/form/dialogs/addFormTypeDialog/add-formtype-dialog';
@@ -36,6 +36,16 @@ export class FormEditorComponent implements OnInit {
     //https://stackoverflow.com/questions/57616510/how-to-load-dynamic-components-based-on-a-property-from-object
     //https://angular.io/guide/dynamic-component-loader
     //https://medium.com/front-end-weekly/dynamically-add-components-to-the-dom-with-angular-71b0cb535286
+    this.refreshSavables()
+  }
+
+  refreshSavables(formTemplate?: FormTemplate) {
+    this.appFormTypeHost.viewContainerRef.clear()
+
+    if(formTemplate) {
+      this.formTemplate = formTemplate
+    }
+    
     this.formTemplate.formSavables.forEach(formSavable => {
       this.convertFormSavableToLayout(formSavable)
     });
@@ -46,7 +56,7 @@ export class FormEditorComponent implements OnInit {
   }
 
   convertFormSavableToLayout(formSavable: FormSavable) {
-    const factory = this.factoryResolver.resolveComponentFactory(formSavable.name)
+    const factory = this.factoryResolver.resolveComponentFactory(FormComponentLibrary[formSavable.name])
     const componentRef: ComponentRef<any> = factory.create(this.appFormTypeHost.viewContainerRef.injector)
     const instance: IFormType = componentRef.instance
 
@@ -72,7 +82,7 @@ export class FormEditorComponent implements OnInit {
     //remove from layout
     this.appFormTypeHost.viewContainerRef.remove(this.appFormTypeHost.viewContainerRef.indexOf(formSavable.view.hostView))
     //remove from formtemplate
-    this.formTemplate.removeFormSavable(formSavable)
+    this.formTemplate.formSavables.splice(this.formTemplate.formSavables.indexOf(formSavable), 1)
   }
 
 
@@ -88,8 +98,8 @@ export class FormEditorComponent implements OnInit {
       if (formNames) {
 
         formNames.forEach(formName => {
-          const formSavable = new FormSavable(FormComponentLibrary[formName], new FormOptions(formName + ' model'))
-          this.formTemplate.addFormSavable(formSavable)
+          const formSavable = new FormSavable(formName, new FormOptions(formName + ' model'))
+          this.formTemplate.formSavables.push(formSavable)
           this.convertFormSavableToLayout(formSavable)
         });
       }

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, DoCheck, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { RuleService } from 'src/app/modules/form/services/rule.service';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
@@ -22,7 +23,8 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
   constructor(
     public dialog: MatDialog,
     public sidenavService: SidenavService,
-    private iterableDiffers: IterableDiffers) {
+    private iterableDiffers: IterableDiffers,
+    private ruleService: RuleService) {
     super(dialog)
     try {
       this.iterableDiffer = this.iterableDiffers.find([]).create(null)
@@ -32,12 +34,12 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
   ngDoCheck() {
     let changes = this.iterableDiffer.diff(this.options.rules);
     if (changes) {
-      this.textFormControl.setValidators(this.options.getValidators())
+      this.textFormControl.setValidators(this.ruleService.getValidatorList(this.options.rules))
     }
   }
 
   ngOnInit() {
-    this.textFormControl.setValidators(this.options.getValidators())
+    this.textFormControl.setValidators(this.ruleService.getValidatorList(this.options.rules))
   }
 
   ngAfterViewInit(): void {
@@ -138,9 +140,7 @@ export class PasswordInputComponent extends FormTypeConcrete implements IFormTyp
   getErrorMessage(formControl: FormControl) {
     const enumId: string = Object.keys(formControl.errors)[0].toUpperCase()
 
-    return this.options.getErrorMessage(
-      ErrorIdentifier[enumId]
-    )
+    return this.ruleService.getErrorMessage(this.options.rules, ErrorIdentifier[enumId])
   }
 
   private getPlaceHolder(): string {

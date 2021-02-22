@@ -3,6 +3,7 @@ import { FormImport } from 'src/app/modules/form/models/FormImport';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { FormTemplate } from '../../../models/FormTemplate';
 import { PreviewFile } from '../../../models/previewFile';
+import { FormTemplateService } from '../../../services/formtemplate.service';
 
 @Component({
   selector: 'app-form-code',
@@ -14,7 +15,7 @@ export class FormCodeComponent implements OnInit {
   @Input() formTemplate: FormTemplate
   public previewFileList: PreviewFile[] = []
 
-  constructor() { }
+  constructor(private formTemplateService: FormTemplateService) { }
 
   ngOnInit(): void { }
 
@@ -33,7 +34,7 @@ export class FormCodeComponent implements OnInit {
 
   private getAppModuleFile(): PreviewFile {
     const appModuleFile: PreviewFile = new PreviewFile('app.module.ts')
-    const imports: FormImport[] = this.formTemplate.getImports()
+    const imports: FormImport[] = this.formTemplateService.getImports(this.formTemplate)
 
     //optional imports
     appModuleFile.addToCodeLines(['...'])
@@ -75,12 +76,12 @@ export class FormCodeComponent implements OnInit {
       "import { FormControl, FormGroup } from '@angular/forms';'",
       '',
       '@Component({',
-      "  selector: 'app-" + this.formTemplate.getCodeName() + "',",
-      "  templateUrl: './" + this.formTemplate.getCodeName() + ".component.html',",
-      "  styleUrls: ['./" + this.formTemplate.getCodeName() + ".component.scss'],",
+      "  selector: 'app-" + this.formTemplateService.getCodeName(this.formTemplate) + "',",
+      "  templateUrl: './" + this.formTemplateService.getCodeName(this.formTemplate) + ".component.html',",
+      "  styleUrls: ['./" + this.formTemplateService.getCodeName(this.formTemplate) + ".component.scss'],",
       '})',
-      'export class ' + this.formTemplate.getCodeName() + 'Component' + '{',
-      '  ' + this.formTemplate.getCodeName() + 'Form = new FormGroup({'
+      'export class ' + this.formTemplateService.getCodeName(this.formTemplate) + 'Component' + '{',
+      '  ' + this.formTemplateService.getCodeName(this.formTemplate) + 'Form = new FormGroup({'
     ])
 
     //formcontrols + validators
@@ -101,7 +102,7 @@ export class FormCodeComponent implements OnInit {
 
     componentTSFile.addToCodeLines([
       '  onSubmit() {',
-      '    console.log(this.' + this.formTemplate.getCodeName() + 'Form.value)',
+      '    console.log(this.' + this.formTemplateService.getCodeName(this.formTemplate) + 'Form.value)',
       '  }',
       '}'
     ])
