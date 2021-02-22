@@ -1,18 +1,39 @@
 <h1 mat-dialog-title>Choose template</h1>
 
 <mat-dialog-content class="templates" [className]="themeService.selectedThemeClass">
-    <button mat-button class="template mat-elevation-z8" routerLink="/forms/0" (click)="close()">
-        Empty form
-    </button>
-    <button mat-button class="template mat-elevation-z8" routerLink="/forms/1" (click)="close()">
-        Login form
-    </button>
-    <button mat-button class="template mat-elevation-z8" routerLink="/forms/2" (click)="close()">
-        Register form
-    </button>
-    <button mat-button class="template mat-elevation-z8" routerLink="/forms/3" (click)="close()">
-        Sound settings form
-    </button>
+    <div class="templates">
+        <div class="template">
+            <button mat-button class="button_template mat-elevation-z4" (click)="submit(0, true)">
+                Empty form
+            </button>
+        </div>
+        <div class="template">
+            <button mat-button class="button_template mat-elevation-z4" (click)="submit(1, true)">
+                Login form
+            </button>
+        </div>
+        <div class="template">
+            <button mat-button class="button_template mat-elevation-z4" (click)="submit(2, true)">
+                Register form
+            </button>
+        </div>
+        <div class="template">
+            <button mat-button class="button_template mat-elevation-z4" (click)="submit(3, true)">
+                Sound settings form
+            </button>
+        </div>
+    </div>
+    <div>User templates</div>
+    <div class="templates" @Anim-ListVerHost>
+        <div class="template" *ngFor="let ref of localStorage.getUserFormTemplateReferences(); trackBy: trackByIndex" @Anim-ListVerItems>
+            <button mat-button class="button_template mat-elevation-z4" (click)="submit(ref.id)">
+                {{ref.name}}
+            </button>
+            <button mat-icon-button class="button_remove" color="warn" (click)="deleteTemplate(ref.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

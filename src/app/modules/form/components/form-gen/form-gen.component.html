@@ -5,7 +5,7 @@
         <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button">
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" disabled>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()">
             <mat-icon>save</mat-icon>
         </button>
         <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()">
