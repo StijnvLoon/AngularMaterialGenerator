@@ -12,7 +12,7 @@ export class FormSavable {
     public view: ComponentRef<unknown>                          //layout component is saved in here
 
     constructor(
-        public name: any,
+        public name: string,
         public formOptions: FormOptions
     ) { }
 }

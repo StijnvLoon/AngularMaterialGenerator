@@ -9,13 +9,13 @@ import { SwitchComponent } from "src/app/modules/form/components/form-gen/formTy
 import { TextInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/text-input/text-input.component";
 
 export const FormComponentLibrary = {
-  textinput: TextInputComponent,
-  passwordinput: PasswordInputComponent,
-  numberinput: NumberInputComponent,
-  dateinput: DateInputComponent,
-  colorinput: ColorInputComponent,
-  radiobutton: RadioButtonComponent,
-  checkbox: CheckboxComponent,
-  slider: SliderComponent,
-  switch: SwitchComponent
+  TextInputComponent: TextInputComponent,
+  PasswordInputComponent: PasswordInputComponent,
+  NumberInputComponent: NumberInputComponent,
+  DateInputComponent: DateInputComponent,
+  ColorInputComponent: ColorInputComponent,
+  RadioButtonComponent: RadioButtonComponent,
+  CheckboxComponent: CheckboxComponent,
+  SliderComponent: SliderComponent,
+  SwitchComponent: SwitchComponent
 }

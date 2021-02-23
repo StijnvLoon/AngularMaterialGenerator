@@ -1,13 +1,34 @@
 <mat-toolbar color="primary" class="header mat-elevation-z6">
-    <div class="center_content">
-        <button mat-icon-button routerLink="/lobby" class="back_button">
+    <input style="display: none" type="file" (change)="onTemplateUpload($event)" #fileInput>
+
+    <div style="position: absolute;">
+        <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button" #tooltip="matTooltip"
+            matTooltip="Lobby">
             <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()"
+            #tooltip="matTooltip" matTooltip="Export json">
+            <mat-icon>file_upload</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button"
+            (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)" #tooltip="matTooltip"
+            matTooltip="Import json">
+            <mat-icon>file_download</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
+            matTooltip="Save in localstorage">
+            <mat-icon>save</mat-icon>
         </button>
     </div>
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{formTemplate.name}}</h1>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
+            matTooltip="Edit template name">
+            <mat-icon>edit</mat-icon>
+        </button>
     </div>
+
     <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
         <button mat-button class="btn_themes_fake">
             <span style="color: #ff4242;">T</span>
@@ -30,7 +51,8 @@
     </div>
 </mat-toolbar>
 
-<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;" (selectedTabChange)="onTabChanged($event);">
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;"
+    (selectedTabChange)="onTabChanged($event);">
     <mat-tab label="Editor" style="height: 100% !important;">
         <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
     </mat-tab>

@@ -8,17 +8,14 @@
 .header {
     position: relative;
     font-weight: 500;
-    justify-content: center;
     transition: all 0.3s ease;
-}
-.mat-toolbar div h1 {
-    font-size: 1.4em;
 }
 .header_title {
     margin: 0px;
+    font-size: 1.4em;
 }
-.back_button {
-    margin-left: 10px;
+.header_icon_button {
+    margin-left: 5px;
     transform: scale(1.2);
 }
 .btn_themes {

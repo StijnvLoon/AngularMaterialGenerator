@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { AddRuleDialog } from 'src/app/modules/form/dialogs/addRuleDialog/add-rule-dialog';
 import { FormOptions } from 'src/app/modules/form/models/FormOptions';
+import { RuleService } from 'src/app/modules/form/services/rule.service';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 
 @Component({
@@ -18,7 +19,10 @@ export class TabRulesComponent implements OnInit {
 
   @Input() options: FormOptions
 
-  constructor(public sidenavService: SidenavService, private dialog: MatDialog) { }
+  constructor(
+    public sidenavService: SidenavService,
+    private dialog: MatDialog,
+    private ruleService: RuleService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +32,7 @@ export class TabRulesComponent implements OnInit {
       width: '800px',
       data: {
         title: 'Add rule',
-        occupiedIdentifiers: this.options.getErrorIdentifiers()
+        occupiedIdentifiers: this.ruleService.getErrorIdentifierList(this.options.rules)
       }
     });
 
