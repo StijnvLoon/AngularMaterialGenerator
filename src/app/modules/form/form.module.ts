@@ -23,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormCodeComponent } from 'src/app/modules/form/components/form-gen/form-code/form-code.component';
 import { FormEditorComponent } from 'src/app/modules/form/components/form-gen/form-editor/form-editor.component';
 import { OptionsDrawerComponent } from 'src/app/modules/form/components/form-gen/form-editor/options-drawer/options-drawer.component';
@@ -84,6 +85,7 @@ import { SwitchComponent } from './components/form-gen/formTypeComponents/switch
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,

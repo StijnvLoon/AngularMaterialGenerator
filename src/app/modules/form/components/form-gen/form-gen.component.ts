@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { LocalStorageService } from 'src/app/services/localStorage.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { FormTemplate } from '../../models/FormTemplate';
 import { FormTemplateService } from '../../services/formtemplate.service';
@@ -29,6 +30,7 @@ export class FormGenComponent implements OnInit {
     private dialog: MatDialog,
     public formtemplateService: FormTemplateService,
     private localStorageService: LocalStorageService,
+    private notificationService: NotificationService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -71,8 +73,10 @@ export class FormGenComponent implements OnInit {
     if(idNumber == 0) {
       const newIndex: number = this.localStorageService.saveFormTemplate(this.formTemplate)
       this.router.navigate(['/forms/' + newIndex])
+      this.notificationService.notify("New template saved on index: " + idNumber)
     } else {
       this.localStorageService.updateFormTemplate(idNumber, this.formTemplate)
+      this.notificationService.notify("Template updated")
     }
   }
 

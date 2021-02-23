@@ -6,10 +6,6 @@
             matTooltip="Lobby">
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
-            matTooltip="Save in localstorage">
-            <mat-icon>save</mat-icon>
-        </button>
         <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()"
             #tooltip="matTooltip" matTooltip="Export json">
             <mat-icon>file_upload</mat-icon>
@@ -18,6 +14,10 @@
             (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)" #tooltip="matTooltip"
             matTooltip="Import json">
             <mat-icon>file_download</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
+            matTooltip="Save in localstorage">
+            <mat-icon>save</mat-icon>
         </button>
     </div>
 
