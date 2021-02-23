@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { ErrorIdentifier } from 'dist/AMG/assets/errorIdentifier';
+import { ErrorIdentifier } from 'src/assets/errorIdentifier';
 import { Rule } from '../models/Rule';
 
 @Injectable({
