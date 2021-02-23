@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -85,6 +86,7 @@ import { SwitchComponent } from './components/form-gen/formTypeComponents/switch
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
     MatSelectModule,
     MatListModule,
     MatExpansionModule,

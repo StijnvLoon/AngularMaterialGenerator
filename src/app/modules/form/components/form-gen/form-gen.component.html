@@ -2,24 +2,29 @@
     <input style="display: none" type="file" (change)="onTemplateUpload($event)" #fileInput>
 
     <div style="position: absolute;">
-        <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button">
+        <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button" #tooltip="matTooltip"
+            matTooltip="Lobby">
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()">
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
+            matTooltip="Save in localstorage">
             <mat-icon>save</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()">
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()"
+            #tooltip="matTooltip" matTooltip="Export json">
             <mat-icon>file_upload</mat-icon>
         </button>
         <button color="warn" mat-icon-button class="header_icon_button"
-            (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)">
+            (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)" #tooltip="matTooltip"
+            matTooltip="Import json">
             <mat-icon>file_download</mat-icon>
         </button>
     </div>
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{formTemplate.name}}</h1>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()">
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
+            matTooltip="Edit template name">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
