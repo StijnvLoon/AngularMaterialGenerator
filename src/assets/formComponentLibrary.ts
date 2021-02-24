@@ -1,6 +1,7 @@
 import { CheckboxComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/checkbox/checkbox.component";
 import { ColorInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/color-input/color-input.component";
 import { DateInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/date-input/date-input.component";
+import { FileUploadComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/file-upload/file-upload.component";
 import { NumberInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/number-input/number-input.component";
 import { PasswordInputComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/password-input/password-input.component";
 import { RadioButtonComponent } from "src/app/modules/form/components/form-gen/formTypeComponents/radio-button/radio-button.component";
@@ -17,5 +18,6 @@ export const FormComponentLibrary = {
   RadioButtonComponent: RadioButtonComponent,
   CheckboxComponent: CheckboxComponent,
   SliderComponent: SliderComponent,
-  SwitchComponent: SwitchComponent
+  SwitchComponent: SwitchComponent,
+  FileUploadComponent: FileUploadComponent
 }

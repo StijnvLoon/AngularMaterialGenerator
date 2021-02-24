@@ -24,8 +24,8 @@ export class TabMainComponent implements OnInit {
   ngOnInit(): void {
     this.modelNameControl = new FormControl(this.options.modelName, [
       Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(20),
+      Validators.minLength(2),
+      Validators.maxLength(20)
     ]);
     this.optionalTextControl = new FormControl(this.options.optionalText, [
       Validators.required

@@ -49,6 +49,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { SliderComponent } from './components/form-gen/formTypeComponents/slider/slider.component';
 import { SwitchComponent } from './components/form-gen/formTypeComponents/switch/switch.component';
+import { FileUploadComponent } from './components/form-gen/formTypeComponents/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { SwitchComponent } from './components/form-gen/formTypeComponents/switch
     ColorInputComponent,
     CheckboxComponent,
     SliderComponent,
-    SwitchComponent
+    SwitchComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,

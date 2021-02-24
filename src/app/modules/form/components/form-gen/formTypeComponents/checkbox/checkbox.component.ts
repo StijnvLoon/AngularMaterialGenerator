@@ -45,19 +45,11 @@ export class CheckboxComponent extends FormTypeConcrete implements AfterViewInit
   }
 
   getTSCodeCallback() {
-    return () => {
-      return [
-
-      ]
-    }
+    return () => { return [] }
   }
 
   getCssCodeCallback() {
-    return () => {
-      return [
-
-      ]
-    }
+    return () => { return [] }
   }
 
   getFormControlCallback() {
