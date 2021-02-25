@@ -142,6 +142,43 @@ export class SelectFormTemplateDialog {
 
         return formTemplate
       }
+      case 4: {
+        var firstnameSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('First name', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED)
+        ]))
+        var lastnameSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('Last name', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED)
+        ]))
+        var emailSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextInputComponent), new FormOptions('Email', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED),
+          new Rule('Please, enter a valid email', '      Validators.email', ErrorIdentifier.EMAIL)
+        ]))
+        var birthdaySavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.DateInputComponent), new FormOptions('Birthday'))
+
+        var genderOptions: FormOptions = new FormOptions('Gender')
+        genderOptions.radioOptions = ['m', 'v']
+        var genderSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.RadioButtonComponent), genderOptions)
+
+        var motivationSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.TextAreaComponent), new FormOptions('Motivation', [
+          new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED),
+          new Rule('Youre motivation must contain less than 400 characters.', '      Validators.maxLength(400)', ErrorIdentifier.MAXLENGTH, 400)
+        ]))
+
+        const cvOptions = new FormOptions("CV", [new Rule('This field is required.', '      Validators.required', ErrorIdentifier.REQUIRED)])
+        cvOptions.optionalText = "Upload CV"
+        var cvSavable: FormSavable = new FormSavable(this.formtemplateService.classNameToString(FormComponentLibrary.FileUploadComponent), cvOptions)
+        
+        const formTemplate: FormTemplate = new FormTemplate('Job application form')
+        formTemplate.formSavables.push(firstnameSavable)
+        formTemplate.formSavables.push(lastnameSavable)
+        formTemplate.formSavables.push(emailSavable)
+        formTemplate.formSavables.push(birthdaySavable)
+        formTemplate.formSavables.push(genderSavable)
+        formTemplate.formSavables.push(motivationSavable)
+        formTemplate.formSavables.push(cvSavable)
+
+        return formTemplate
+      }
     }
   }
 }
