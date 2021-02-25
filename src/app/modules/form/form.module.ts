@@ -50,6 +50,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { SliderComponent } from './components/form-gen/formTypeComponents/slider/slider.component';
 import { SwitchComponent } from './components/form-gen/formTypeComponents/switch/switch.component';
 import { FileUploadComponent } from './components/form-gen/formTypeComponents/file-upload/file-upload.component';
+import { TextAreaComponent } from './components/form-gen/formTypeComponents/text-area/text-area.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { FileUploadComponent } from './components/form-gen/formTypeComponents/fi
     CheckboxComponent,
     SliderComponent,
     SwitchComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    TextAreaComponent
   ],
   imports: [
     CommonModule,
