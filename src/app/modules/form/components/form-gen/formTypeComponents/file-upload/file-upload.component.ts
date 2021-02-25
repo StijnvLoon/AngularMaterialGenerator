@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormCategoryLibrary } from 'dist/AMG/assets/formComponentCategoryLibrary';
+import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { FormTypeConcrete } from '../FormTypeConcrete';
