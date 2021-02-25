@@ -1,0 +1,23 @@
+<div class="container" *ngIf="!showPreview" [@Anim-formtype]="animState" cdkDragLockAxis="y" cdkDrag>
+    <mat-icon class="drag_button" cdkDragHandle>drag_indicator</mat-icon>
+
+    <input hidden (change)="setFile($event)" #fileInput type="file">
+    <div class="form_field" style="display: block;">
+        <label>{{options.modelName}}</label>
+        <button type="button" mat-raised-button color="primary" (click)="fileInput.click()" style="width: 100%;">{{uploadedFile ?
+            uploadedFile.name : options.optionalText}}</button>
+    </div>
+
+    <button mat-icon-button class="edit_formitem_button"
+        [class.edit_formitem_button_selected]="sidenavService.activeFormOptions == options" (click)="toggleEdit()">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button class="remove_formitem_button" (click)="remove()"
+        [disabled]="sidenavService.activeFormOptions == options">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+
+<div class="container" *ngIf="showPreview">
+    <button type="button" mat-raised-button color="primary" style="width: 100%;">File upload</button>
+</div>

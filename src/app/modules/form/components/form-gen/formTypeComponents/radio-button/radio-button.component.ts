@@ -38,7 +38,7 @@ export class RadioButtonComponent extends FormTypeConcrete implements AfterViewI
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
       const array: string[] = [
-        '    <div>',
+        '    <section>',
         '        <label>' + this.options.modelName + '</label>',
         '        <mat-radio-group formControlName="' + controlName + '">',
       ]
@@ -49,7 +49,7 @@ export class RadioButtonComponent extends FormTypeConcrete implements AfterViewI
       });
       
       array.push('        </mat-radio-group>')
-      array.push('    </div>')
+      array.push('    </section>')
 
       return array
     }
