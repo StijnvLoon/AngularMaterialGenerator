@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormCategoryLibrary } from 'src/assets/formComponentCategoryLibrary';
-import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
+import { FormTypeEnum, FormTypeService } from '../../services/formtype.service';
 
 export interface DialogData {
     title: string
@@ -15,13 +15,14 @@ export interface DialogData {
 export class AddFormTypeDialog implements OnInit {
 
     public categories: string[] = Object.keys(FormCategoryLibrary)
-    public components: string[] = Object.keys(FormComponentLibrary)
+    public components: string[] = Object.keys(FormTypeEnum)
     public formCategoryLibrary = FormCategoryLibrary
 
     public selectedFormNameList: string[] = []
 
     constructor(
         public dialogRef: MatDialogRef<AddFormTypeDialog>,
+        private formtypeService: FormTypeService,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) {
         }
   
@@ -50,7 +51,8 @@ export class AddFormTypeDialog implements OnInit {
 
     getComponentsByCategory(category: string) {
         return this.components.filter((component) => {
-            return new FormComponentLibrary[component]().category.toString() == FormCategoryLibrary[category]
+            const componentName = this.formtypeService.getComponentByEnum(FormTypeEnum[component])
+            return new componentName().category.toString() == FormCategoryLibrary[category]
         })
     }
 }

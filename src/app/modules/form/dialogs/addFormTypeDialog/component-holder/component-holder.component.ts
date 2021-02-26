@@ -1,9 +1,9 @@
 import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IFormType } from 'src/app/modules/form/components/form-gen/formTypeComponents/IformType';
 import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
-import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { FormOptions } from '../../../models/FormOptions';
 import { FormSavable } from '../../../models/FormSavable';
+import { FormTypeEnum, FormTypeService } from '../../../services/formtype.service';
 
 @Component({
   selector: 'app-component-holder',
@@ -15,15 +15,15 @@ export class ComponentHolderComponent implements OnInit {
   @Input() componentName: string
   @ViewChild(FormTypeHostDirective, { static: true }) appFormTypeHost: FormTypeHostDirective;
 
-  constructor(private factoryResolver: ComponentFactoryResolver) { }
+  constructor(private factoryResolver: ComponentFactoryResolver, private formtypeService: FormTypeService) { }
 
   ngOnInit(): void {
-    const formSavable: FormSavable = new FormSavable(this.componentName, new FormOptions(this.componentName, []))
+    const formSavable: FormSavable = new FormSavable(FormTypeEnum[this.componentName], new FormOptions(this.componentName, []))
     this.convertFormSavableToLayout(formSavable)
   }
 
   convertFormSavableToLayout(formSavable: FormSavable) {
-    const factory = this.factoryResolver.resolveComponentFactory(FormComponentLibrary[formSavable.name])
+    const factory = this.factoryResolver.resolveComponentFactory(this.formtypeService.getComponentByEnum(formSavable.name))
     const componentRef: ComponentRef<any> = factory.create(this.appFormTypeHost.viewContainerRef.injector)
     const instance: IFormType = componentRef.instance
 

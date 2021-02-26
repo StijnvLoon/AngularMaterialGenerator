@@ -73,7 +73,7 @@ export class FormGenComponent implements OnInit {
     if(idNumber == 0) {
       const newIndex: number = this.localStorageService.saveFormTemplate(this.formTemplate)
       this.router.navigate(['/forms/' + newIndex])
-      this.notificationService.notify("New template saved on index: " + idNumber)
+      this.notificationService.notify("New template saved on index: " + idNumber+1)
     } else {
       this.localStorageService.updateFormTemplate(idNumber, this.formTemplate)
       this.notificationService.notify("Template updated")
