@@ -6,11 +6,11 @@ import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animat
 import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
 import { IFormType } from '../formTypeComponents/IformType';
 import { SidenavService } from 'src/app/modules/form/services/sidenav.service';
-import { FormComponentLibrary } from 'src/assets/formComponentLibrary';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormOptions } from '../../../models/FormOptions';
 import { FormSavable } from '../../../models/FormSavable';
 import { FormTemplate } from '../../../models/FormTemplate';
+import { FormTypeService } from '../../../services/formtype.service';
 
 @Component({
   selector: 'app-form-editor',
@@ -29,7 +29,8 @@ export class FormEditorComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private factoryResolver: ComponentFactoryResolver,
-    public sidenavService: SidenavService) {
+    public sidenavService: SidenavService,
+    private formtypeService: FormTypeService) {
   }
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class FormEditorComponent implements OnInit {
   }
 
   convertFormSavableToLayout(formSavable: FormSavable) {
-    const factory = this.factoryResolver.resolveComponentFactory(FormComponentLibrary[formSavable.name])
+    const factory = this.factoryResolver.resolveComponentFactory(this.formtypeService.getComponentByEnum(formSavable.name))
     const componentRef: ComponentRef<any> = factory.create(this.appFormTypeHost.viewContainerRef.injector)
     const instance: IFormType = componentRef.instance
 

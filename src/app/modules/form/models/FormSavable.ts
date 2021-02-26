@@ -1,4 +1,5 @@
 import { ComponentRef } from '@angular/core'
+import { FormTypeEnum } from '../services/formtype.service'
 import { FormImport } from './FormImport'
 import { FormOptions } from './FormOptions'
 
@@ -12,7 +13,7 @@ export class FormSavable {
     public view: ComponentRef<unknown>                          //layout component is saved in here
 
     constructor(
-        public name: string,
+        public name: FormTypeEnum,
         public formOptions: FormOptions
     ) { }
 }
