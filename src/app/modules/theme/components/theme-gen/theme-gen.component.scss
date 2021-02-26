@@ -1,0 +1,34 @@
+:host {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100vw;
+}
+.header {
+    position: relative;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.header_title {
+    margin: 0px;
+    font-size: 1.4em;
+}
+.header_icon_button {
+    margin-left: 5px;
+    transform: scale(1.2);
+}
+.btn_themes {
+    font-size: 1em;
+    border-radius: 20px;
+}
+.btn_themes_fake {
+    font-size: 1em;
+    border-radius: 20px;
+}
+.btn_themes span {
+    transition: ease 0.3s all;
+}
+.btn_themes:hover span {
+    color: transparent;
+}

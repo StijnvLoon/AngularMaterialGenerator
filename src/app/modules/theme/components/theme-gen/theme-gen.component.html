@@ -1,0 +1,63 @@
+
+<mat-toolbar color="primary" class="header mat-elevation-z6">
+    <!-- <input style="display: none" type="file" (change)="onTemplateUpload($event)" #fileInput> -->
+
+    <div style="position: absolute;">
+        <button color="warn" mat-icon-button routerLink="/lobby" class="header_icon_button" #tooltip="matTooltip"
+            matTooltip="Lobby">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <!-- <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()"
+            #tooltip="matTooltip" matTooltip="Import json">
+            <mat-icon>file_upload</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button"
+            (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)" #tooltip="matTooltip"
+            matTooltip="Export json">
+            <mat-icon>file_download</mat-icon>
+        </button>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
+            matTooltip="Save in localstorage">
+            <mat-icon>save</mat-icon>
+        </button> -->
+    </div>
+
+    <div class="center_content" style="width: 100%;">
+        <!-- <h1 class="header_title">{{formTemplate.name}}</h1>
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
+            matTooltip="Edit template name">
+            <mat-icon>edit</mat-icon>
+        </button> -->
+    </div>
+
+    <!-- <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
+        <button mat-button class="btn_themes_fake">
+            <span style="color: #ff4242;">T</span>
+            <span style="color: #26ddfd;">h</span>
+            <span style="color: #d11ad1;">e</span>
+            <span style="color: #49e422;">m</span>
+            <span style="color: #e2cf24;">e</span>
+            <span style="color: #2343f7;">s</span>
+        </button>
+    </div>
+    <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">
+        <button mat-button class="btn_themes" (click)="openThemeSheet()">
+            <span>T</span>
+            <span>h</span>
+            <span>e</span>
+            <span>m</span>
+            <span>e</span>
+            <span>s</span>
+        </button>
+    </div> -->
+</mat-toolbar>
+
+<!-- <mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;"
+    (selectedTabChange)="onTabChanged($event);">
+    <mat-tab label="Editor" style="height: 100% !important;">
+        <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
+    </mat-tab>
+    <mat-tab label="Code" style="height: 100% !important; overflow-y: auto;">
+        <app-form-code [formTemplate]="formTemplate"></app-form-code>
+    </mat-tab>
+</mat-tab-group> -->
