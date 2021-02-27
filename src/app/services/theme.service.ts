@@ -25,6 +25,8 @@ export class ThemeService {
       this.selectedThemeClass = themeClass
       localStorage.setItem('theme', themeClass)
     }
+
+
   }
 
   getAvailableThemes(): ITheme[] {

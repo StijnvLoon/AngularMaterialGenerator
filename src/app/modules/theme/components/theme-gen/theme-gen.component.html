@@ -52,12 +52,13 @@
     </div> -->
 </mat-toolbar>
 
-<!-- <mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;"
-    (selectedTabChange)="onTabChanged($event);">
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;">
     <mat-tab label="Editor" style="height: 100% !important;">
-        <app-form-editor [formTemplate]="formTemplate"></app-form-editor>
+        <input [(ngModel)]="hex">
+        <button (click)="setPrimary()">color 1</button>
+        <!-- <app-form-editor [formTemplate]="formTemplate"></app-form-editor> -->
     </mat-tab>
     <mat-tab label="Code" style="height: 100% !important; overflow-y: auto;">
-        <app-form-code [formTemplate]="formTemplate"></app-form-code>
+        <!-- <app-form-code [formTemplate]="formTemplate"></app-form-code> -->
     </mat-tab>
-</mat-tab-group> -->
+</mat-tab-group>
