@@ -69,7 +69,6 @@ export class LocalStorageService {
     }
 
     getUserFormTemplateReferences(): any[] {
-        //TODO ids + names nodig, ids om te submitten en names voor gebruiker
         const array = this.retrieveFormTemplateStringList()
         const templates = []
 

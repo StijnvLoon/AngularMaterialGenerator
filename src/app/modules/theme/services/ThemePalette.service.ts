@@ -9,6 +9,30 @@ var tinycolor = require("tinycolor2");
 })
 export class ThemePaletteService {
 
+    public systemColors: ThemeColor[] = [
+        new ThemeColor('$mat-red', '#F44236'),
+        new ThemeColor('$mat-pink', '#EA1E63'),
+        new ThemeColor('$mat-purple', '#9C28AF'),
+        new ThemeColor('$mat-deep-purple', '#673BB7'),
+        new ThemeColor('$mat-indigo', '#3F51B5'),
+        new ThemeColor('$mat-blue', '#2196F3'),
+        new ThemeColor('$mat-light-blue', '#03A9F3'),
+        new ThemeColor('$mat-cyan', '#00BCD5'),
+        new ThemeColor('$mat-teal', '#009788'),
+        new ThemeColor('$mat-green', '#4CAF52'),
+        new ThemeColor('$mat-light-green', '#8BC24A'),
+        new ThemeColor('$mat-lime', '#CDDC39'),
+        new ThemeColor('$mat-yellow', '#FFEA3C'),
+        new ThemeColor('$mat-amber', '#FEC107'),
+        new ThemeColor('$mat-orange', '#FF9700'),
+        new ThemeColor('$mat-deep-orange', '#FE5722'),
+        new ThemeColor('$mat-brown', '#795549'),
+        new ThemeColor('$mat-grey', '#9E9E9E'),
+        new ThemeColor('$mat-blue-grey', '#607D8B'),
+        new ThemeColor('$mat-black', '#000000'),
+        new ThemeColor('$mat-white', '#FFFFFF')
+    ]
+
     constructor() {
 
     }
@@ -38,14 +62,14 @@ export class ThemePaletteService {
         )
     }
 
-    multiply(rgb1, rgb2) {
+    private multiply(rgb1, rgb2) {
         rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
         rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
         rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
         return tinycolor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
     };
 
-    getThemeColor(value, name): ThemeColor {
+    private getThemeColor(value, name): ThemeColor {
         var c = tinycolor(value);
 
         return new ThemeColor(

@@ -1,12 +1,12 @@
-import { ThemePalette } from "@angular/material/core";
+import { ThemePalette } from "./ThemePalette";
 
 export class ThemeTemplate {
 
     constructor(
         public name: string,
-        public primary: ThemePalette,
-        public accent: ThemePalette,
-        public warn: ThemePalette,
+        public primaryPalette: ThemePalette,
+        public accentPalette: ThemePalette,
+        public warnPalette: ThemePalette,
         public dark?: boolean
     ) {
         if(dark == undefined) {
