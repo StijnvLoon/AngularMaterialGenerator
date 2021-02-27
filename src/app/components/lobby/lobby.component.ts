@@ -3,6 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectFormTemplateDialog } from 'src/app/dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { SelectThemeTemplateDialog } from 'src/app/dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
 import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 
 @Component({
@@ -26,8 +27,10 @@ export class LobbyComponent implements OnInit {
     });
   }
 
-  navigateThemes() {
-    this.router.navigate(['/themes/0'])
+  selectThemeTemplateDialog() {
+    const dialogRef = this.dialog.open(SelectThemeTemplateDialog, {
+      width: '800px'
+    });
   }
 
   openThemeSheet() {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '../../models/ThemePalette';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ThemeService } from 'src/app/services/theme.service';
+import { ThemeTemplate } from '../../models/ThemeTemplate';
 import { ThemePaletteService } from '../../services/ThemePalette.service';
 
 @Component({
@@ -9,25 +11,21 @@ import { ThemePaletteService } from '../../services/ThemePalette.service';
 })
 export class ThemeGenComponent implements OnInit {
 
-  hex: string = ""
+  public themeTemplate: ThemeTemplate
 
-  constructor(private themePaletteService: ThemePaletteService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private themeService: ThemeService
+    ) { }
 
   ngOnInit(): void {
+    let id: string = this.route.snapshot.paramMap.get('id')
+    let idNumber: number = +id
 
-  }
-
-  setPrimary() {
-    const palette: ThemePalette = this.themePaletteService.generatePallete('test', this.hex)
-
-    for (const color of palette.colors) {
-      const key1 = `--theme-primary-${color.name}`;
-      const value1 = color.hex;
-      const key2 = `--theme-primary-contrast-${color.name}`;
-      const value2 = color.darkContrast ? 'rgba(black, 0.87)' : 'white';
-      document.documentElement.style.setProperty(key1, value1);
-      document.documentElement.style.setProperty(key2, value2);
-    }
+    this.themeTemplate = this.themeService.getThemeTemplateByIndex(idNumber, onError => {
+      console.log('no template found with this index!')
+    })
   }
 
 }

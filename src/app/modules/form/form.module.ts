@@ -42,7 +42,6 @@ import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { FormTypeHostDirective } from 'src/app/directives/form-type-host.directive';
 import { FormGenComponent } from './components/form-gen/form-gen.component';
 import { AddRuleDialog } from './dialogs/addRuleDialog/add-rule-dialog';
-import { SelectFormTemplateDialog } from '../../dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 import { ColorInputComponent } from './components/form-gen/formTypeComponents/color-input/color-input.component';
 import { CheckboxComponent } from './components/form-gen/formTypeComponents/checkbox/checkbox.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -51,11 +50,12 @@ import { SliderComponent } from './components/form-gen/formTypeComponents/slider
 import { SwitchComponent } from './components/form-gen/formTypeComponents/switch/switch.component';
 import { FileUploadComponent } from './components/form-gen/formTypeComponents/file-upload/file-upload.component';
 import { TextAreaComponent } from './components/form-gen/formTypeComponents/text-area/text-area.component';
+import { SelectFormTemplateDialog } from 'src/app/dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { SelectThemeTemplateDialog } from 'src/app/dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
 
 @NgModule({
   declarations: [
     AddFormTypeDialog,
-    SelectFormTemplateDialog,
     AddRuleDialog,
     TextDialog,
     ConfirmDialog,
@@ -78,7 +78,9 @@ import { TextAreaComponent } from './components/form-gen/formTypeComponents/text
     SliderComponent,
     SwitchComponent,
     FileUploadComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    SelectThemeTemplateDialog,
+    SelectFormTemplateDialog
   ],
   imports: [
     CommonModule,

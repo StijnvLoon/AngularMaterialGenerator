@@ -8,7 +8,6 @@ import { FormTemplate } from '../modules/form/models/FormTemplate';
 export class LocalStorageService {
 
     private readonly formTemplateStorage: string = "formtemplates"
-    private readonly themeStorage: string = "themes"
 
     constructor() { }
 

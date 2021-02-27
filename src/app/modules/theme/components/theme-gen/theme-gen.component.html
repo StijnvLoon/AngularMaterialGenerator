@@ -23,8 +23,8 @@
     </div>
 
     <div class="center_content" style="width: 100%;">
-        <!-- <h1 class="header_title">{{formTemplate.name}}</h1>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
+        <h1 class="header_title">{{themeTemplate.name}}</h1>
+        <!-- <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
             matTooltip="Edit template name">
             <mat-icon>edit</mat-icon>
         </button> -->
@@ -54,8 +54,6 @@
 
 <mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;">
     <mat-tab label="Editor" style="height: 100% !important;">
-        <input [(ngModel)]="hex">
-        <button (click)="setPrimary()">color 1</button>
         <!-- <app-form-editor [formTemplate]="formTemplate"></app-form-editor> -->
     </mat-tab>
     <mat-tab label="Code" style="height: 100% !important; overflow-y: auto;">

@@ -7,6 +7,8 @@ import { ThemePaletteService } from '../modules/theme/services/ThemePalette.serv
 })
 export class ThemeService {
 
+  private readonly themeStorage: string = "themetemplates"
+
   public selectedThemeTemplate: ThemeTemplate
   public systemThemeTemplates: ThemeTemplate[] = [
     new ThemeTemplate(
@@ -31,6 +33,30 @@ export class ThemeService {
       this.setTheme(JSON.parse(localStorage.getItem('selectedTheme')))
     } catch (err) {
       this.setTheme(this.systemThemeTemplates[0])
+    }
+
+    this.userThemeTemplates = this.retrieveUserThemes()
+  }
+
+  saveThemeTemplate(themeTemplate: ThemeTemplate, isZeroIndex?: boolean): number {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+
+    if (!isZeroIndex || array[0] == null) {
+        array.push(themeTemplate)
+    } else {
+        array[0] = themeTemplate
+    }
+
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+    return array.indexOf(themeTemplate)
+}
+
+  getThemeTemplateByIndex(index: number, onError): ThemeTemplate {
+    try {
+      return this.userThemeTemplates[index]
+    } catch (err) {
+      onError()
     }
   }
 
@@ -73,7 +99,7 @@ export class ThemeService {
       bodyElement.classList.remove('dynamic-light-theme');
       bodyElement.classList.remove('dynamic-dark-theme');
 
-      if(themeTemplate.dark) {
+      if (themeTemplate.dark) {
         bodyElement.classList.add('dynamic-dark-theme');
       } else {
         bodyElement.classList.add('dynamic-light-theme');
@@ -82,5 +108,15 @@ export class ThemeService {
 
     this.selectedThemeTemplate = themeTemplate
     localStorage.setItem('selectedTheme', JSON.stringify(themeTemplate))
+  }
+
+  private retrieveUserThemes(): ThemeTemplate[] {
+    const resultString: ThemeTemplate[] = JSON.parse(localStorage.getItem(this.themeStorage))
+
+    if (resultString == null) {
+      return []
+    } else {
+      return resultString
+    }
   }
 }

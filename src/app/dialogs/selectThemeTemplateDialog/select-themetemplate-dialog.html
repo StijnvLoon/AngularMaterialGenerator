@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Choose theme template</h1>
+
+<mat-dialog-content class="templates">
+    <p>System themes</p>
+    <button mat-button class="theme_button" *ngFor="let theme of themeService.systemThemeTemplates" (click)="submit(theme, true)">
+        <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark"
+            [class.theme_cat_black]="theme.dark"></div>
+        <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
+        <div class="theme_name">{{theme.name}}</div>
+    </button>
+    <p>User themes</p>
+    <button mat-button class="theme_button" *ngFor="let theme of userThemeTemplates">
+        <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark"
+            [class.theme_cat_black]="theme.dark"></div>
+        <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
+        <div class="theme_name">{{theme.name}}</div>
+    </button>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancel</button>
+</mat-dialog-actions>
