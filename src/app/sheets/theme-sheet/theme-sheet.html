@@ -1,7 +1,18 @@
 <mat-nav-list>
-  <a mat-list-item *ngFor="let theme of availableThemes" (click)="setTheme(theme)">
-    <span mat-line>
-      <button mat-button class="globe" [style.background-color]="theme.primaryPalette.colors[5].hex"></button>
-    </span>
-  </a>
+  <p>System themes</p>
+  <div mat-list-item class="theme_container">
+    <button mat-button class="theme_button" *ngFor="let theme of themeService.systemThemeTemplates" (click)="setTheme(theme)">
+      <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark" [class.theme_cat_black]="theme.dark"></div>
+      <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
+      <div class="theme_name">{{theme.name}}</div>
+    </button>
+  </div>
+  <p *ngIf="themeService.userThemeTemplates.length > 0">User themes</p>
+  <div mat-list-item class="theme_container">
+    <button mat-button class="theme_button" *ngFor="let theme of themeService.userThemeTemplates" (click)="setTheme(theme)">
+      <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark" [class.theme_cat_black]="theme.dark"></div>
+      <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
+      <div class="theme_name">{{theme.name}}</div>
+    </button>
+  </div>
 </mat-nav-list>

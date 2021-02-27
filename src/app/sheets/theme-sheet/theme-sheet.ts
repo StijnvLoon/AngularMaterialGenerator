@@ -10,10 +10,10 @@ import { ThemeService } from "src/app/services/theme.service";
 })
 export class ThemeSheet implements OnInit {
 
-    public availableThemes: ThemeTemplate[]
-
-    constructor(private _bottomSheetRef: MatBottomSheetRef<ThemeSheet>, public themeService: ThemeService) {
-        this.availableThemes = this.themeService.getSystemThemeTemplates()
+    constructor(
+        private _bottomSheetRef: MatBottomSheetRef<ThemeSheet>,
+        public themeService: ThemeService
+    ) {
     }
 
     ngOnInit() {

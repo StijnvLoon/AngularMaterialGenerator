@@ -8,12 +8,29 @@ import { ThemePaletteService } from '../modules/theme/services/ThemePalette.serv
 export class ThemeService {
 
   public selectedThemeTemplate: ThemeTemplate
+  public systemThemeTemplates: ThemeTemplate[] = [
+    new ThemeTemplate(
+      'light blue',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[6].name, this.themePaletteService.systemColors[6].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[13].name, this.themePaletteService.systemColors[13].hex),
+      false
+    ),
+    new ThemeTemplate(
+      'dark blue',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[5].name, this.themePaletteService.systemColors[5].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[12].name, this.themePaletteService.systemColors[12].hex),
+      true
+    )
+  ]
+  public userThemeTemplates: ThemeTemplate[] = []
 
   constructor(private themePaletteService: ThemePaletteService) {
     try {
       this.setTheme(JSON.parse(localStorage.getItem('selectedTheme')))
     } catch (err) {
-      this.setTheme(this.getSystemThemeTemplates()[0])
+      this.setTheme(this.systemThemeTemplates[0])
     }
   }
 
@@ -65,24 +82,5 @@ export class ThemeService {
 
     this.selectedThemeTemplate = themeTemplate
     localStorage.setItem('selectedTheme', JSON.stringify(themeTemplate))
-  }
-
-  getSystemThemeTemplates(): ThemeTemplate[] {
-    return [
-      new ThemeTemplate(
-        'light blue',
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[6].name, this.themePaletteService.systemColors[6].hex),
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[13].name, this.themePaletteService.systemColors[13].hex),
-        false
-      ),
-      new ThemeTemplate(
-        'dark blue',
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[5].name, this.themePaletteService.systemColors[5].hex),
-        this.themePaletteService.generatePallete(this.themePaletteService.systemColors[12].name, this.themePaletteService.systemColors[12].hex),
-        true
-      )
-    ]
   }
 }
