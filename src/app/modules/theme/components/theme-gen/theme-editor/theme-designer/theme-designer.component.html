@@ -1,0 +1,17 @@
+<mat-card class="theme_container">
+    <mat-card-header style="margin-top: 12px;">
+        <mat-card-title>Theme designer</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-slide-toggle [(ngModel)]="themeTemplate.dark">Dark theme</mat-slide-toggle>
+        <div class="theme_color" [style.background-color]="themeTemplate.primaryPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropPrimary($event)">
+            primary
+        </div>
+        <div class="theme_color" [style.background-color]="themeTemplate.accentPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropAccent($event)">
+            accent
+        </div>
+        <div class="theme_color" [style.background-color]="themeTemplate.warnPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropWarn($event)">
+            warn
+        </div>
+    </mat-card-content>
+</mat-card>

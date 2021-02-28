@@ -28,4 +28,8 @@ export class ThemeGenComponent implements OnInit {
     })
   }
 
+  setTheme() {
+    this.themeService.setTheme(this.themeTemplate)
+  }
+
 }

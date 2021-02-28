@@ -1,0 +1,23 @@
+.mat-card {
+    padding: 0px !important;
+}
+.color_palette_container {
+    height: 100%;
+    overflow-y: auto;
+}
+.color_palette_grid {
+    margin-left: 12px;
+    margin-right: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+.color_palette_preview {
+    width: auto;
+    text-align: center;
+}
+.color_palette_color {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin: auto;
+}

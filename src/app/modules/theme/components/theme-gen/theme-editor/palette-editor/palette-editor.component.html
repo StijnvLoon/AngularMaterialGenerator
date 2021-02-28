@@ -1,0 +1,22 @@
+<mat-card class="color_palette_container">
+    <mat-card-header style="margin-top: 12px;">
+        <mat-card-title>Default color palettes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="color_palette_grid" cdkDropList [cdkDropListData]="systemPalettes">
+        <div class="color_palette_preview" *ngFor="let palette of systemPalettes" cdkDrag>
+            <div class="color_palette_color mat-elevation-z4" [style.background-color]="palette.colors[5].hex"></div>
+            <div class="color_palette_name">{{palette.name}}</div>
+            <div class="color_palette_hex">{{palette.colors[5].hex}}</div>
+        </div>
+    </mat-card-content>
+    <mat-card-header>
+        <mat-card-title>User color palettes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="color_palette_grid">
+        <div class="color_palette_preview" *ngFor="let palette of userPalettes" cdkDrag>
+            <div class="color_palette_color mat-elevation-z4" [style.background-color]="palette.colors[5].hex"></div>
+            <div class="color_palette_name">{{palette.name}}</div>
+            <div class="color_palette_hex">{{palette.colors[5].hex}}</div>
+        </div>
+    </mat-card-content>
+</mat-card>
