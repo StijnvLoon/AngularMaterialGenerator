@@ -7,7 +7,7 @@
       <div class="theme_name">{{theme.name}}</div>
     </button>
   </div>
-  <p *ngIf="themeService.userThemeTemplates.length > 0">User themes</p>
+  <p *ngIf="userThemeTemplates.length > 0">User themes</p>
   <div mat-list-item class="theme_container">
     <button mat-button class="theme_button" *ngFor="let theme of userThemeTemplates" (click)="setTheme(theme)">
       <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark" [class.theme_cat_black]="theme.dark"></div>

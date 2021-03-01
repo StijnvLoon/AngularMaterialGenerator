@@ -26,7 +26,7 @@ export class ThemeService {
       true
     )
   ]
-  public userThemeTemplates: ThemeTemplate[] = []
+  private userThemeTemplates: ThemeTemplate[] = []
 
   constructor(private themePaletteService: ThemePaletteService) {
     try {
@@ -38,19 +38,34 @@ export class ThemeService {
     this.userThemeTemplates = this.retrieveUserThemes()
   }
 
+  getUserThemeTemplatesCopy(): ThemeTemplate[] {
+    //copy
+    const copy: ThemeTemplate[] = JSON.parse(JSON.stringify(this.userThemeTemplates))
+    //remove first index
+    copy.shift()
+    return copy
+  }
+
   saveThemeTemplate(themeTemplate: ThemeTemplate, isZeroIndex?: boolean): number {
     const array: ThemeTemplate[] = this.retrieveUserThemes()
 
     if (!isZeroIndex || array[0] == null) {
-        array.push(themeTemplate)
+      array.push(themeTemplate)
     } else {
-        array[0] = themeTemplate
+      array[0] = themeTemplate
     }
 
     this.userThemeTemplates = array
     localStorage.setItem(this.themeStorage, JSON.stringify(array))
     return array.indexOf(themeTemplate)
-}
+  }
+
+  updateThemeTemplate(themeTemplate: ThemeTemplate, index: number) {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+    array[index] = themeTemplate
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+  }
 
   getThemeTemplateByIndex(index: number, onError): ThemeTemplate {
     try {

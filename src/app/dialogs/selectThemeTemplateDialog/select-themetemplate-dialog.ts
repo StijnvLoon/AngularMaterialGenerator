@@ -23,7 +23,7 @@ export class SelectThemeTemplateDialog {
         private router: Router,
         private dialog: MatDialog,
         public themeService: ThemeService) {
-        this.userThemeTemplates = this.themeService.userThemeTemplates.splice(1, 1)
+        this.userThemeTemplates = this.themeService.getUserThemeTemplatesCopy()
     }
 
     submit(themeTemplate: ThemeTemplate, isZeroIndex?: boolean) {
@@ -32,7 +32,7 @@ export class SelectThemeTemplateDialog {
             this.themeService.saveThemeTemplate(themeCopy, true)
             this.router.navigate(['/themes/0'])
         } else {
-            this.router.navigate(['/themes/' + this.themeService.userThemeTemplates.indexOf(themeTemplate)])
+            this.router.navigate(['/themes/' + (this.userThemeTemplates.indexOf(themeTemplate)+1)])
         }
 
         this.close()

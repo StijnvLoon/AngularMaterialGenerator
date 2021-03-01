@@ -6,10 +6,10 @@
             matTooltip="Lobby">
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <button color="warn" mat-icon-button class="header_icon_button" (click)="setTheme()"
+        <!-- <button color="warn" mat-icon-button class="header_icon_button" (click)="setTheme()"
             #tooltip="matTooltip" matTooltip="Set theme (temp)">
             <mat-icon>file_upload</mat-icon>
-        </button>
+        </button> -->
         <!-- <button color="warn" mat-icon-button class="header_icon_button" (click)="fileInput.click()"
             #tooltip="matTooltip" matTooltip="Import json">
             <mat-icon>file_upload</mat-icon>
@@ -18,19 +18,19 @@
             (click)="formtemplateService.downloadFormTemplateJSON(formTemplate)" #tooltip="matTooltip"
             matTooltip="Export json">
             <mat-icon>file_download</mat-icon>
-        </button>
+        </button> -->
         <button color="warn" mat-icon-button class="header_icon_button" (click)="saveTemplate()" #tooltip="matTooltip"
             matTooltip="Save in localstorage">
             <mat-icon>save</mat-icon>
-        </button> -->
+        </button>
     </div>
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{themeTemplate.name}}</h1>
-        <!-- <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
+        <button color="warn" mat-icon-button class="header_icon_button" (click)="editNameDialog()" #tooltip="matTooltip"
             matTooltip="Edit template name">
             <mat-icon>edit</mat-icon>
-        </button> -->
+        </button>
     </div>
 
     <!-- <div style="position: absolute; right: 20px; height: 100%; display: flex; align-items: center;">

@@ -9,7 +9,7 @@
         <div class="theme_name">{{theme.name}}</div>
     </button>
     <p>User themes</p>
-    <button mat-button class="theme_button" *ngFor="let theme of userThemeTemplates">
+    <button mat-button class="theme_button" *ngFor="let theme of userThemeTemplates" (click)="submit(theme, false)">
         <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark"
             [class.theme_cat_black]="theme.dark"></div>
         <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>

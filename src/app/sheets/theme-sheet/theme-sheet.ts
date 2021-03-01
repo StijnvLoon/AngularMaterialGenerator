@@ -16,7 +16,7 @@ export class ThemeSheet implements OnInit {
         private _bottomSheetRef: MatBottomSheetRef<ThemeSheet>,
         public themeService: ThemeService
     ) {
-        this.userThemeTemplates = this.themeService.userThemeTemplates.splice(1, 1)
+        this.userThemeTemplates = this.themeService.getUserThemeTemplatesCopy()
     }
 
     ngOnInit() {
