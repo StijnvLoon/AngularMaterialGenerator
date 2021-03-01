@@ -31,6 +31,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
     background: #519bfc;
 }
 
+.mat-card {
+    transition: all 0.3s ease !important;
+}
 .mat-app-background {
     transition: all 0.3s ease;
 }

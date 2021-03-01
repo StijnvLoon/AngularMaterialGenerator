@@ -4,14 +4,28 @@
     </mat-card-header>
     <mat-card-content>
         <mat-slide-toggle [(ngModel)]="themeTemplate.dark">Dark theme</mat-slide-toggle>
-        <div class="theme_color" [style.background-color]="themeTemplate.primaryPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropPrimary($event)">
-            primary
-        </div>
-        <div class="theme_color" [style.background-color]="themeTemplate.accentPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropAccent($event)">
-            accent
-        </div>
-        <div class="theme_color" [style.background-color]="themeTemplate.warnPalette.colors[5].hex" cdkDropList (cdkDropListDropped)="dropWarn($event)">
-            warn
+        <div class="color_grid">
+            <div class="theme_color">
+                <div class="theme_color_title center_content">Primary</div>
+                <div class="theme_color_drop center_content" cdkDropList (cdkDropListDropped)="dropPrimary($event)">drop palette here</div>
+                <div>{{themeTemplate.primaryPalette.name}}</div>
+                <div class="theme_color_preview mat-elevation-z4" [style.background-color]="themeTemplate.primaryPalette.colors[5].hex">
+                </div>
+            </div>
+            <div class="theme_color">
+                <div class="theme_color_title center_content">Accent</div>
+                <div class="theme_color_drop center_content" cdkDropList (cdkDropListDropped)="dropAccent($event)">drop palette here</div>
+                <div>{{themeTemplate.accentPalette.name}}</div>
+                <div class="theme_color_preview mat-elevation-z4" [style.background-color]="themeTemplate.accentPalette.colors[5].hex">
+                </div>
+            </div>
+            <div class="theme_color">
+                <div class="theme_color_title center_content">Warn</div>
+                <div class="theme_color_drop center_content" cdkDropList (cdkDropListDropped)="dropWarn($event)">drop palette here</div>
+                <div>{{themeTemplate.warnPalette.name}}</div>
+                <div class="theme_color_preview mat-elevation-z4" [style.background-color]="themeTemplate.warnPalette.colors[5].hex">
+                </div>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>
