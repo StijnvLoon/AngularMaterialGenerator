@@ -21,17 +21,18 @@ export class SelectThemeTemplateDialog {
     constructor(
         public dialogRef: MatDialogRef<SelectThemeTemplateDialog>,
         private router: Router,
-        private dialog: MatDialog, 
+        private dialog: MatDialog,
         public themeService: ThemeService) {
-            this.userThemeTemplates = this.themeService.userThemeTemplates.splice(1, 1)
+        this.userThemeTemplates = this.themeService.userThemeTemplates.splice(1, 1)
     }
 
     submit(themeTemplate: ThemeTemplate, isZeroIndex?: boolean) {
         if (isZeroIndex) {
-          this.themeService.saveThemeTemplate(themeTemplate, true)
-          this.router.navigate(['/themes/0'])
+            const themeCopy = JSON.parse(JSON.stringify(themeTemplate))
+            this.themeService.saveThemeTemplate(themeCopy, true)
+            this.router.navigate(['/themes/0'])
         } else {
-          this.router.navigate(['/themes/' + this.themeService.userThemeTemplates.indexOf(themeTemplate)])
+            this.router.navigate(['/themes/' + this.themeService.userThemeTemplates.indexOf(themeTemplate)])
         }
 
         this.close()
