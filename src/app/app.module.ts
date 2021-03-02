@@ -15,12 +15,17 @@ import { ThemeSheet } from './sheets/theme-sheet/theme-sheet';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import { ThemeModule } from './modules/theme/theme.module';
+import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { SelectThemeTemplateDialog } from './dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LobbyComponent,
     ThemeSheet,
+    SelectThemeTemplateDialog,
+    SelectFormTemplateDialog
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -29,6 +34,7 @@ import { ThemeModule } from './modules/theme/theme.module';
     BrowserAnimationsModule,
     FormModule,
     ThemeModule,
+    MatDialogModule,
     MatToolbarModule,
     MatRippleModule,
     MatButtonModule,
