@@ -9,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -17,6 +17,8 @@ import { ThemeEditorComponent } from './components/theme-gen/theme-editor/theme-
 import { ThemeCodeComponent } from './components/theme-gen/theme-code/theme-code.component';
 import { PaletteEditorComponent } from './components/theme-gen/theme-editor/palette-editor/palette-editor.component';
 import { ThemeDesignerComponent } from './components/theme-gen/theme-editor/theme-designer/theme-designer.component';
+import { PaletteGeneratorDialog } from './dialogs/palette-generator/palette-generator-dialog';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ThemeDesignerComponent } from './components/theme-gen/theme-editor/them
     ThemeEditorComponent,
     ThemeCodeComponent,
     PaletteEditorComponent,
-    ThemeDesignerComponent
+    ThemeDesignerComponent,
+    PaletteGeneratorDialog
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,9 @@ import { ThemeDesignerComponent } from './components/theme-gen/theme-editor/them
     FormsModule,
     MatCardModule,
     MatSlideToggleModule,
-    DragDropModule
+    DragDropModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   exports: [ThemeGenComponent]
 })

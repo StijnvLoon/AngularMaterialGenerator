@@ -9,6 +9,8 @@ var tinycolor = require("tinycolor2");
 })
 export class ThemePaletteService {
 
+    private readonly paletteStorage: string = "themepalettes"
+
     public systemColors: ThemeColor[] = [
         new ThemeColor('$mat-red', '#F44236'),
         new ThemeColor('$mat-pink', '#EA1E63'),
@@ -33,8 +35,29 @@ export class ThemePaletteService {
         new ThemeColor('$mat-white', '#FFFFFF')
     ]
 
-    constructor() {
+    public userPalettes: ThemePalette[]
 
+    constructor() {
+        this.userPalettes = JSON.parse(localStorage.getItem(this.paletteStorage))
+        if(!this.userPalettes) {
+            this.userPalettes = []
+        }
+        
+    }
+
+    saveUserPalette(palette: ThemePalette) {
+        this.userPalettes.push(palette)
+        localStorage.setItem(this.paletteStorage, JSON.stringify(this.userPalettes))
+    }
+
+    updateUserPalette(palette: ThemePalette) {
+        this.userPalettes[this.userPalettes.indexOf(palette)] = palette
+        localStorage.setItem(this.paletteStorage, JSON.stringify(this.userPalettes))
+    }
+
+    removeUserPalette(palette: ThemePalette) {
+        this.userPalettes.splice(this.userPalettes.indexOf(palette), 1)
+        localStorage.setItem(this.paletteStorage, JSON.stringify(this.userPalettes))
     }
 
     generatePallete(name: string, hex: string): ThemePalette {
