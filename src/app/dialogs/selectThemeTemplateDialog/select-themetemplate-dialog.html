@@ -9,12 +9,20 @@
         <div class="theme_name">{{theme.name}}</div>
     </button>
     <p>User themes</p>
-    <button mat-button class="theme_button" *ngFor="let theme of userThemeTemplates" (click)="submit(theme, false)">
-        <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark"
-            [class.theme_cat_black]="theme.dark"></div>
-        <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
-        <div class="theme_name">{{theme.name}}</div>
-    </button>
+    <div class="theme_grid">
+        <div class="theme" *ngFor="let theme of userThemeTemplates">
+            <button mat-button class="theme_button" (click)="submit(theme, false)">
+                <div class="theme_cat mat-elevation-z3" [class.theme_cat_white]="!theme.dark"
+                    [class.theme_cat_black]="theme.dark"></div>
+                <div class="theme_primary mat-elevation-z3" [style.background-color]="theme.primaryPalette.colors[5].hex"></div>
+                <div class="theme_name">{{theme.name}}</div>
+            </button>
+            <button mat-icon-button class="button_remove" color="warn" (click)="deleteTheme(theme)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

@@ -1,9 +1,16 @@
 .templates {
 }
 
+.theme_grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+
+.theme {
+    display: inline-flex;
+}
 .theme_button {
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
 }
 .theme_name {
     font-size: 0.8em;

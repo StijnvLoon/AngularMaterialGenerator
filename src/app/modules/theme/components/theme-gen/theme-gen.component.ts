@@ -67,7 +67,7 @@ export class ThemeGenComponent implements OnInit {
     if(idNumber == 0) {
       const newIndex: number = this.themeService.saveThemeTemplate(this.themeTemplate)
       this.router.navigate(['/themes/' + newIndex])
-      this.notificationService.notify("New template saved on index: " + idNumber+1)
+      this.notificationService.notify("New template saved on index: " + (idNumber+1))
     } else {
       this.themeService.updateThemeTemplate(this.themeTemplate, idNumber)
       this.notificationService.notify("Template updated")

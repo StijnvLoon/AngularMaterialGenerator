@@ -81,6 +81,14 @@ export class ThemeService {
     return array.indexOf(themeTemplate)
   }
 
+  deleteThemeTemplate(index: number) {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+    array.splice(index, 1)
+
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+  }
+
   updateThemeTemplate(themeTemplate: ThemeTemplate, index: number) {
     const array: ThemeTemplate[] = this.retrieveUserThemes()
     array[index] = themeTemplate

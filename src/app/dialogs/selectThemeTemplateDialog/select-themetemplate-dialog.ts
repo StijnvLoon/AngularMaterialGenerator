@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { ThemeTemplate } from 'src/app/modules/theme/models/ThemeTemplate';
 import { ThemeService } from 'src/app/services/theme.service';
+import { ConfirmDialog } from '../confirmDialog/confirm-dialog';
 
 @Component({
     selector: 'select-themetemplate-dialog',
@@ -46,18 +47,20 @@ export class SelectThemeTemplateDialog {
         return index;
     }
 
-    deleteTemplate(index: number) {
-        // const dialogRef = this.dialog.open(ConfirmDialog, {
-        //   width: '800px',
-        //   data: {
-        //     title: 'Are you sure you want to remove this formtemplate?'
-        //   }
-        // });
+    deleteTheme(theme: ThemeTemplate){
+        const dialogRef = this.dialog.open(ConfirmDialog, {
+          width: '800px',
+          data: {
+            title: 'Are you sure you want to remove this theme template?'
+          }
+        });
 
-        // dialogRef.afterClosed().subscribe(async bool => {
-        //   if (bool) {
-        //     this.localStorage.deleteFormTemplate(index)
-        //   }
-        // })
+        dialogRef.afterClosed().subscribe(async bool => {
+          if (bool) {
+              const index = this.userThemeTemplates.indexOf(theme)
+              this.userThemeTemplates.splice(index, 1)
+              this.themeService.deleteThemeTemplate(index + 1)
+          }
+        })
     }
 }
