@@ -19,6 +19,7 @@ import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/sel
 import { SelectThemeTemplateDialog } from './dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { BackgroundModule } from './modules/background/background.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     LobbyComponent,
     ThemeSheet,
     SelectThemeTemplateDialog,
-    SelectFormTemplateDialog
+    SelectFormTemplateDialog,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -35,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     FormModule,
     ThemeModule,
+    BackgroundModule,
     MatDialogModule,
     MatToolbarModule,
     MatRippleModule,
