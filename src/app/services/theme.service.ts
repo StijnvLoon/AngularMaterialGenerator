@@ -1,45 +1,166 @@
 import { Injectable } from '@angular/core';
+import { ThemeTemplate } from '../modules/theme/models/ThemeTemplate';
+import { ThemePaletteService } from '../modules/theme/services/ThemePalette.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  public selectedThemeClass: string
+  private readonly themeStorage: string = "themetemplates"
 
-  constructor() {
+  public selectedThemeTemplate: ThemeTemplate
+  public systemThemeTemplates: ThemeTemplate[] = [
+    new ThemeTemplate(
+      'empty',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      false
+    ),
+    new ThemeTemplate(
+      'light blue',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[6].name, this.themePaletteService.systemColors[6].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[13].name, this.themePaletteService.systemColors[13].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[15].name, this.themePaletteService.systemColors[15].hex),
+      false
+    ),
+    new ThemeTemplate(
+      'light pink',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[1].name, this.themePaletteService.systemColors[1].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[11].name, this.themePaletteService.systemColors[11].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[8].name, this.themePaletteService.systemColors[8].hex),
+      false
+    ),
+    new ThemeTemplate(
+      'dark blue',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[14].name, this.themePaletteService.systemColors[14].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[12].name, this.themePaletteService.systemColors[12].hex),
+      true
+    ),
+    new ThemeTemplate(
+      'dark red',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[0].name, this.themePaletteService.systemColors[0].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[10].name, this.themePaletteService.systemColors[10].hex),
+      true
+    )
+  ]
+  private userThemeTemplates: ThemeTemplate[] = []
+
+  constructor(private themePaletteService: ThemePaletteService) {
     try {
-      this.setThemeClass(localStorage.getItem('theme'))
+      this.setTheme(JSON.parse(localStorage.getItem('selectedTheme')))
     } catch (err) {
-      this.setThemeClass(this.getAvailableThemes()[0].className)
+      this.setTheme(this.systemThemeTemplates[0])
+    }
+
+    this.userThemeTemplates = this.retrieveUserThemes()
+  }
+
+  getUserThemeTemplatesCopy(): ThemeTemplate[] {
+    //copy
+    const copy: ThemeTemplate[] = JSON.parse(JSON.stringify(this.userThemeTemplates))
+    //remove first index
+    copy.shift()
+    return copy
+  }
+
+  saveThemeTemplate(themeTemplate: ThemeTemplate, isZeroIndex?: boolean): number {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+
+    if (!isZeroIndex || array[0] == null) {
+      array.push(themeTemplate)
+    } else {
+      array[0] = themeTemplate
+    }
+
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+    return array.indexOf(themeTemplate)
+  }
+
+  deleteThemeTemplate(index: number) {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+    array.splice(index, 1)
+
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+  }
+
+  updateThemeTemplate(themeTemplate: ThemeTemplate, index: number) {
+    const array: ThemeTemplate[] = this.retrieveUserThemes()
+    array[index] = themeTemplate
+    this.userThemeTemplates = array
+    localStorage.setItem(this.themeStorage, JSON.stringify(array))
+  }
+
+  getThemeTemplateByIndex(index: number, onError): ThemeTemplate {
+    try {
+      return this.userThemeTemplates[index]
+    } catch (err) {
+      onError()
     }
   }
 
-  setThemeClass(themeClass: string) {
+  setTheme(themeTemplate: ThemeTemplate) {
+
+    //set primary colors
+    for (const color of themeTemplate.primaryPalette.colors) {
+      const key1 = `--theme-primary-${color.name}`;
+      const value1 = color.hex;
+      const key2 = `--theme-primary-contrast-${color.name}`;
+      const value2 = color.darkContrast ? 'rgba(black, 0.87)' : 'white';
+      document.documentElement.style.setProperty(key1, value1);
+      document.documentElement.style.setProperty(key2, value2);
+    }
+
+    //set accent colors
+    for (const color of themeTemplate.accentPalette.colors) {
+      const key1 = `--theme-accent-${color.name}`;
+      const value1 = color.hex;
+      const key2 = `--theme-accent-contrast-${color.name}`;
+      const value2 = color.darkContrast ? 'rgba(black, 0.87)' : 'white';
+      document.documentElement.style.setProperty(key1, value1);
+      document.documentElement.style.setProperty(key2, value2);
+    }
+
+    //set warn colors
+    for (const color of themeTemplate.warnPalette.colors) {
+      const key1 = `--theme-warn-${color.name}`;
+      const value1 = color.hex;
+      const key2 = `--theme-warn-contrast-${color.name}`;
+      const value2 = color.darkContrast ? 'rgba(black, 0.87)' : 'white';
+      document.documentElement.style.setProperty(key1, value1);
+      document.documentElement.style.setProperty(key2, value2);
+    }
+
+    //set dark/light class
     const bodyElement = document.body;
 
     if (bodyElement) {
-      bodyElement.classList.remove(this.selectedThemeClass);
-      bodyElement.classList.add(themeClass);
+      bodyElement.classList.remove('dynamic-light-theme');
+      bodyElement.classList.remove('dynamic-dark-theme');
 
-      this.selectedThemeClass = themeClass
-      localStorage.setItem('theme', themeClass)
+      if (themeTemplate.dark) {
+        bodyElement.classList.add('dynamic-dark-theme');
+      } else {
+        bodyElement.classList.add('dynamic-light-theme');
+      }
+    }
+
+    this.selectedThemeTemplate = themeTemplate
+    localStorage.setItem('selectedTheme', JSON.stringify(themeTemplate))
+  }
+
+  private retrieveUserThemes(): ThemeTemplate[] {
+    const resultString: ThemeTemplate[] = JSON.parse(localStorage.getItem(this.themeStorage))
+
+    if (resultString == null) {
+      return []
+    } else {
+      return resultString
     }
   }
-
-  getAvailableThemes(): ITheme[] {
-    return [
-      { className: 'light-blue', primary: '#03A9F4' },
-      { className: 'light-pink', primary: '#EA1E63'},
-      { className: 'light-green', primary: '#88C44B'},
-      { className: 'dark-yellow', primary: '#FEC107' },
-      { className: 'dark-red', primary: '#FE5722'},
-      { className: 'dark-purple', primary: '#9C28AF'}
-    ]
-  }
-}
-
-export interface ITheme {
-  className: string
-  primary: string
 }

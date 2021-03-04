@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
-import { ITheme, ThemeService } from "src/app/services/theme.service";
+import { ThemeTemplate } from "src/app/modules/theme/models/ThemeTemplate";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
     selector: 'theme-sheet',
@@ -9,18 +10,21 @@ import { ITheme, ThemeService } from "src/app/services/theme.service";
 })
 export class ThemeSheet implements OnInit {
 
-    public themes: ITheme[]
+    userThemeTemplates: ThemeTemplate[]
 
-    constructor(private _bottomSheetRef: MatBottomSheetRef<ThemeSheet>, public themeService: ThemeService) {
-        this.themes = this.themeService.getAvailableThemes()
+    constructor(
+        private _bottomSheetRef: MatBottomSheetRef<ThemeSheet>,
+        public themeService: ThemeService
+    ) {
+        this.userThemeTemplates = this.themeService.getUserThemeTemplatesCopy()
     }
 
     ngOnInit() {
 
     }
 
-    setTheme(theme: string) {
-        this.themeService.setThemeClass(theme)
+    setTheme(theme: ThemeTemplate) {
+        this.themeService.setTheme(theme)
         this._bottomSheetRef.dismiss();
     }
 }

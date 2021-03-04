@@ -2,55 +2,172 @@
 
 @include mat-core();
 
-.light-blue {
-    $primary: mat-palette($mat-light-blue);
-    $accent: mat-palette($mat-indigo, A200, A100, A400);
-    $warn: mat-palette($mat-amber);
+$dynamic-theme-primary: (
+  50 : var(--theme-primary-50),
+  100 : var(--theme-primary-100),
+  200 : var(--theme-primary-200),
+  300 : var(--theme-primary-300),
+  400 : var(--theme-primary-400),
+  500 : var(--theme-primary-500),
+  600 : var(--theme-primary-600),
+  700 : var(--theme-primary-700),
+  800 : var(--theme-primary-800),
+  900 : var(--theme-primary-900),
+  A100 : var(--theme-primary-A100),
+  A200 : var(--theme-primary-A200),
+  A400 : var(--theme-primary-A400),
+  A700 : var(--theme-primary-A700),
+  contrast: (
+    50: var(--theme-primary-contrast-50),
+    100: var(--theme-primary-contrast-100),
+    200: var(--theme-primary-contrast-200),
+    300: var(--theme-primary-contrast-300),
+    400: var(--theme-primary-contrast-400),
+    500: var(--theme-primary-contrast-500),
+    600: var(--theme-primary-contrast-600),
+    700: var(--theme-primary-contrast-700),
+    800: var(--theme-primary-contrast-800),
+    900: var(--theme-primary-contrast-900),
+    A100: var(--theme-primary-contrast-A100),
+    A200: var(--theme-primary-contrast-A200),
+    A400: var(--theme-primary-contrast-A400),
+    A700: var(--theme-primary-contrast-A700),
+  )
+);
+
+$dynamic-theme-accent: (
+  50 : var(--theme-accent-50),
+  100 : var(--theme-accent-100),
+  200 : var(--theme-accent-200),
+  300 : var(--theme-accent-300),
+  400 : var(--theme-accent-400),
+  500 : var(--theme-accent-500),
+  600 : var(--theme-accent-600),
+  700 : var(--theme-accent-700),
+  800 : var(--theme-accent-800),
+  900 : var(--theme-accent-900),
+  A100 : var(--theme-accent-A100),
+  A200 : var(--theme-accent-A200),
+  A400 : var(--theme-accent-A400),
+  A700 : var(--theme-accent-A700),
+  contrast: (
+    50: var(--theme-accent-contrast-50),
+    100: var(--theme-accent-contrast-100),
+    200: var(--theme-accent-contrast-200),
+    300: var(--theme-accent-contrast-300),
+    400: var(--theme-accent-contrast-400),
+    500: var(--theme-accent-contrast-500),
+    600: var(--theme-accent-contrast-600),
+    700: var(--theme-accent-contrast-700),
+    800: var(--theme-accent-contrast-800),
+    900: var(--theme-accent-contrast-900),
+    A100: var(--theme-accent-contrast-A100),
+    A200: var(--theme-accent-contrast-A200),
+    A400: var(--theme-accent-contrast-A400),
+    A700: var(--theme-accent-contrast-A700),
+  )
+);
+
+$dynamic-theme-warn: (
+  50 : var(--theme-warn-50),
+  100 : var(--theme-warn-100),
+  200 : var(--theme-warn-200),
+  300 : var(--theme-warn-300),
+  400 : var(--theme-warn-400),
+  500 : var(--theme-warn-500),
+  600 : var(--theme-warn-600),
+  700 : var(--theme-warn-700),
+  800 : var(--theme-warn-800),
+  900 : var(--theme-warn-900),
+  A100 : var(--theme-warn-A100),
+  A200 : var(--theme-warn-A200),
+  A400 : var(--theme-warn-A400),
+  A700 : var(--theme-warn-A700),
+  contrast: (
+    50: var(--theme-warn-contrast-50),
+    100: var(--theme-warn-contrast-100),
+    200: var(--theme-warn-contrast-200),
+    300: var(--theme-warn-contrast-300),
+    400: var(--theme-warn-contrast-400),
+    500: var(--theme-warn-contrast-500),
+    600: var(--theme-warn-contrast-600),
+    700: var(--theme-warn-contrast-700),
+    800: var(--theme-warn-contrast-800),
+    900: var(--theme-warn-contrast-900),
+    A100: var(--theme-warn-contrast-A100),
+    A200: var(--theme-warn-contrast-A200),
+    A400: var(--theme-warn-contrast-A400),
+    A700: var(--theme-warn-contrast-A700),
+  )
+);
+
+.dynamic-light-theme {
+    $primary: mat-palette($dynamic-theme-primary);
+    $accent: mat-palette($dynamic-theme-accent);
+    $warn: mat-palette($dynamic-theme-warn);
     $theme: mat-light-theme($primary, $accent, $warn);
 
     @include angular-material-theme($theme);
 }
 
-.light-pink {
-    $primary: mat-palette($mat-pink);
-    $accent: mat-palette($mat-purple, A400, A100, A700);
-    $warn: mat-palette($mat-light-green);
-    $theme: mat-light-theme($primary, $accent, $warn);
+.dynamic-dark-theme {
+    $primary: mat-palette($dynamic-theme-primary);
+    $accent: mat-palette($dynamic-theme-accent);
+    $warn: mat-palette($dynamic-theme-warn);
+    $theme: mat-dark-theme($primary, $accent, $warn);
 
     @include angular-material-theme($theme);
 }
-.light-green {
-    $primary: mat-palette($mat-light-green);
-    $accent: mat-palette($mat-green, A400, A100, A700);
-    $warn: mat-palette($mat-pink);
-    $theme: mat-light-theme($primary, $accent, $warn);
 
-    @include angular-material-theme($theme);
-}
-.dark-yellow {
-    color: $light-primary-text;
-    $dark-primary: mat-palette($mat-amber);
-    $dark-accent: mat-palette($mat-lime, A400, A100, A700);
-    $dark-warn: mat-palette($mat-blue);
-    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+// .light-blue {
+//     $primary: mat-palette($mat-light-blue);
+//     $accent: mat-palette($mat-indigo, A200, A100, A400);
+//     $warn: mat-palette($mat-amber);
+//     $theme: mat-light-theme($primary, $accent, $warn);
 
-    @include angular-material-theme($dark-theme);
-}
-.dark-red {
-    color: $light-primary-text;
-    $dark-primary: mat-palette($mat-deep-orange);
-    $dark-accent: mat-palette($mat-red, A400, A100, A700);
-    $dark-warn: mat-palette($mat-teal);
-    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+//     @include angular-material-theme($theme);
+// }
 
-    @include angular-material-theme($dark-theme);
-}
-.dark-purple {
-    color: $light-primary-text;
-    $dark-primary: mat-palette($mat-purple);
-    $dark-accent: mat-palette($mat-deep-purple, A400, A100, A700);
-    $dark-warn: mat-palette($mat-green);
-    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+// .light-pink {
+//     $primary: mat-palette($mat-pink);
+//     $accent: mat-palette($mat-purple, A400, A100, A700);
+//     $warn: mat-palette($mat-light-green);
+//     $theme: mat-light-theme($primary, $accent, $warn);
 
-    @include angular-material-theme($dark-theme);
-}
+//     @include angular-material-theme($theme);
+// }
+// .light-green {
+//     $primary: mat-palette($mat-light-green);
+//     $accent: mat-palette($mat-green, A400, A100, A700);
+//     $warn: mat-palette($mat-pink);
+//     $theme: mat-light-theme($primary, $accent, $warn);
+
+//     @include angular-material-theme($theme);
+// }
+// .dark-yellow {
+//     color: $light-primary-text;
+//     $dark-primary: mat-palette($mat-amber);
+//     $dark-accent: mat-palette($mat-lime, A400, A100, A700);
+//     $dark-warn: mat-palette($mat-blue);
+//     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+//     @include angular-material-theme($dark-theme);
+// }
+// .dark-red {
+//     color: $light-primary-text;
+//     $dark-primary: mat-palette($mat-deep-orange);
+//     $dark-accent: mat-palette($mat-red, A400, A100, A700);
+//     $dark-warn: mat-palette($mat-teal);
+//     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+//     @include angular-material-theme($dark-theme);
+// }
+// .dark-purple {
+//     color: $light-primary-text;
+//     $dark-primary: mat-palette($mat-purple);
+//     $dark-accent: mat-palette($mat-deep-purple, A400, A100, A700);
+//     $dark-warn: mat-palette($mat-green);
+//     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+//     @include angular-material-theme($dark-theme);
+// }

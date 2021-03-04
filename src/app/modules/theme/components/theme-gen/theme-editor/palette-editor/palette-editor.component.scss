@@ -1,0 +1,34 @@
+.mat-card {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.color_palette_container {
+    height: 100%;
+    overflow-y: auto;
+}
+.color_palette_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+.color_palette_preview {
+    width: auto;
+    text-align: center;
+    cursor: grab;
+}
+.color_palette_preview:active {
+    cursor: grabbing;
+}
+.color_palette_preview_drag {
+    width: 40px;
+    height: 40px;
+    left: 0;
+    border-radius: 50%;
+    cursor: grabbing;
+    transition: 0.1s all;
+}
+.color_palette_color {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin: auto;
+}

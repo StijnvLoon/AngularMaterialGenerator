@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+    <div class="header">
+        <mat-form-field style="width: 60%;" appearance="fill">
+            <mat-label>Color hex</mat-label>
+            <input type="color" matInput [formControl]="colorInput">
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="generatePalette()"
+            [disabled]="nameInput.invalid">Generate</button>
+    </div>
+    <mat-form-field style="width: 60%;" appearance="fill">
+        <mat-label>Palette name</mat-label>
+        <input type="text" matInput [formControl]="nameInput">
+    </mat-form-field>
+
+    <table class="palette_preview" *ngIf="data.palette">
+
+        <tbody>
+            <tr>
+                <td style="width: 20%;">Name</td>
+                <td style="width: 20%;">Hex</td>
+                <td>Preview</td>
+            </tr>
+            <tr class="color_preview" *ngFor="let color of data.palette.colors">
+                <td style="width: 20%;">{{color.name}}</td>
+                <td style="width: 20%;">{{color.hex}}</td>
+                <td [style.background-color]="color.hex"><input type="color" [(ngModel)]="color.hex" style="width: 200px;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-button (click)="submit()" [disabled]="data.palette == undefined || nameInput.invalid">Submit</button>
+</div>

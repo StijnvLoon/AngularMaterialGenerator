@@ -8,7 +8,6 @@ import { FormTemplate } from '../modules/form/models/FormTemplate';
 export class LocalStorageService {
 
     private readonly formTemplateStorage: string = "formtemplates"
-    private readonly themeStorage: string = "themes"
 
     constructor() { }
 
@@ -69,7 +68,6 @@ export class LocalStorageService {
     }
 
     getUserFormTemplateReferences(): any[] {
-        //TODO ids + names nodig, ids om te submitten en names voor gebruiker
         const array = this.retrieveFormTemplateStringList()
         const templates = []
 

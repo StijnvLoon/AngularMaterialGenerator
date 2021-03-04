@@ -1,0 +1,46 @@
+<mat-card class="color_palette_container">
+    <mat-card-header style="margin-top: 12px;">
+        <mat-card-title>Default color palettes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="color_palette_grid" cdkDropList [cdkDropListData]="systemPalettes"
+        [cdkDropListSortPredicate]="sortPredicate">
+        <div class="color_palette_preview" *ngFor="let palette of systemPalettes" cdkDrag
+            (cdkDragMoved)="onDragMove($event, palette.name + 'preview')">
+            <div class="color_palette_color mat-elevation-z4" [style.background-color]="palette.colors[5].hex"></div>
+            <div class="color_palette_name">{{palette.name}}</div>
+            <div class="color_palette_hex">{{palette.colors[5].hex}}</div>
+            <div *cdkDragPlaceholder></div>
+            <div *cdkDragPreview class="color_palette_preview_drag mat-elevation-z8"
+                [style.background-color]="palette.colors[5].hex" [id]="palette.name + 'preview'">
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-header>
+        <mat-card-title>User color palettes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="color_palette_grid" cdkDropList [cdkDropListData]="userPalettes">
+        <div style="display: inline-flex;" *ngFor="let palette of userPalettes">
+            <div class="color_palette_preview" cdkDrag
+                (cdkDragMoved)="onDragMove($event, palette.name + 'preview')">
+                <div class="color_palette_color mat-elevation-z4" [style.background-color]="palette.colors[5].hex">
+                </div>
+                <div class="color_palette_name">{{palette.name}}</div>
+                <div class="color_palette_hex">{{palette.colors[5].hex}}</div>
+                <div *cdkDragPlaceholder></div>
+                <div *cdkDragPreview class="color_palette_preview_drag mat-elevation-z8"
+                    [style.background-color]="palette.colors[5].hex" [id]="palette.name + 'preview'">
+                </div>
+            </div>
+            <button mat-icon-button class="button_remove" color="warn" (click)="deletePalette(palette)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <div class="color_palette_preview" style="cursor: pointer;">
+            <button mat-stroked-button class="color_palette_color" color="accent" (click)="openPaletteGenerator()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <div class="color_palette_name">New palette</div>
+            <div class="color_palette_hex"></div>
+        </div>
+    </mat-card-content>
+</mat-card>

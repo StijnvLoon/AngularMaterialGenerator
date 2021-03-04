@@ -5,8 +5,6 @@ import { FormOptions } from 'src/app/modules/form/models/FormOptions';
 import { FormSavable } from 'src/app/modules/form/models/FormSavable';
 import { FormTemplate } from 'src/app/modules/form/models/FormTemplate';
 import { Rule } from 'src/app/modules/form/models/Rule';
-import { FormTemplateService } from 'src/app/modules/form/services/formtemplate.service';
-import { ThemeService } from 'src/app/services/theme.service';
 import { LocalStorageService } from 'src/app/services/localStorage.service';
 import { Router } from '@angular/router';
 import { ConfirmDialog } from '../confirmDialog/confirm-dialog';
@@ -26,9 +24,7 @@ export class SelectFormTemplateDialog {
 
   constructor(
     public dialogRef: MatDialogRef<SelectFormTemplateDialog>,
-    public themeService: ThemeService,
     private router: Router,
-    private formtemplateService: FormTemplateService,
     public localStorage: LocalStorageService,
     private dialog: MatDialog) {
   }

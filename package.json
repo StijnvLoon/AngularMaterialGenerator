@@ -24,6 +24,7 @@
     "@angular/router": "~11.0.5",
     "firebase": "^8.2.5",
     "rxjs": "~6.6.3",
+    "tinycolor2": "^1.4.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

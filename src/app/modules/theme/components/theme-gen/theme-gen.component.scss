@@ -8,27 +8,15 @@
 .header {
     position: relative;
     font-weight: 500;
-    justify-content: center;
     transition: all 0.3s ease;
 }
-.mat-toolbar h1 {
+.header_title {
+    margin: 0px;
     font-size: 1.4em;
 }
-.container {
-    flex-grow: 1;
-}
-.options {
-    width: 60%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-.option {
-    // margin: 20px;
-}
-.btn_option {
-    height: 200px;
-    width: 200px;
-    border-radius: 25px;
+.header_icon_button {
+    margin-left: 5px;
+    transform: scale(1.2);
 }
 .btn_themes {
     font-size: 1em;

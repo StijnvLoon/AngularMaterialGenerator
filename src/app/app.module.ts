@@ -14,12 +14,19 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ThemeSheet } from './sheets/theme-sheet/theme-sheet';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
+import { ThemeModule } from './modules/theme/theme.module';
+import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
+import { SelectThemeTemplateDialog } from './dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     LobbyComponent,
     ThemeSheet,
+    SelectThemeTemplateDialog,
+    SelectFormTemplateDialog
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -27,11 +34,14 @@ import { MatRippleModule } from '@angular/material/core';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormModule,
+    ThemeModule,
+    MatDialogModule,
     MatToolbarModule,
     MatRippleModule,
     MatButtonModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   bootstrap: [AppComponent]
 })
