@@ -1,6 +1,7 @@
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialog } from 'src/app/dialogs/confirmDialog/confirm-dialog';
 import { PaletteGeneratorDialog } from 'src/app/modules/theme/dialogs/palette-generator/palette-generator-dialog';
 import { ThemePalette } from 'src/app/modules/theme/models/ThemePalette';
 import { ThemePaletteService } from 'src/app/modules/theme/services/ThemePalette.service';
@@ -51,6 +52,21 @@ export class PaletteEditorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async palette => {
       if (palette) {
         this.themePaletteService.saveUserPalette(palette)
+      }
+    })
+  }
+
+  deletePalette(palette: ThemePalette) {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '800px',
+      data: {
+        title: 'Are you sure you want to delete this palette?',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(async bool => {
+      if (bool) {
+        this.themePaletteService.removeUserPalette(palette)
       }
     })
   }
