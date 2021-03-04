@@ -11,12 +11,5 @@
 }
 .canvas {
     background-color: white;
-}
-.canvas_hor {
-    width: 100%;
-    // height: 100px;
-}
-.canvas_ver {
-    height: 100%;
-    // width: 100px;
+    overflow: hidden;
 }

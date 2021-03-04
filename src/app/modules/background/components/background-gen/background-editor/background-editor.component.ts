@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackgroundTemplate } from '../../../models/backgroundtemplate';
 import { BackgroundRatio } from '../../../models/BackgroundRatio';
+import { BackgroundShape } from '../../../models/BackgroundShape';
 
 @Component({
   selector: 'app-background-editor',
@@ -12,7 +13,7 @@ export class BackgroundEditorComponent implements OnInit {
   backgroundTemplate: BackgroundTemplate
 
   constructor() {
-    this.backgroundTemplate = new BackgroundTemplate('test', new BackgroundRatio(16, 9))
+    this.backgroundTemplate = new BackgroundTemplate('test', new BackgroundRatio(16, 9), [new BackgroundShape()])
   }
 
   ngOnInit(): void {
