@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TextDialog } from 'src/app/dialogs/textDialog/text-dialog';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { ThemeTemplate } from '../../models/ThemeTemplate';
 
 @Component({
@@ -20,7 +22,8 @@ export class ThemeGenComponent implements OnInit {
     private router: Router,
     private themeService: ThemeService,
     private dialog: MatDialog,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private sheet: MatBottomSheet
     ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,10 @@ export class ThemeGenComponent implements OnInit {
 
   setTheme() {
     this.themeService.setTheme(this.themeTemplate)
+  }
+
+  openThemeSheet() {
+    this.sheet.open(ThemeSheet);
   }
 
   editNameDialog() {

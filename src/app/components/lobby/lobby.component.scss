@@ -17,8 +17,13 @@
 .container {
     flex-grow: 1;
 }
+.options {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
 .option {
-    margin: 20px;
+    // margin: 20px;
 }
 .btn_option {
     height: 200px;

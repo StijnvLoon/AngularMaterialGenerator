@@ -12,17 +12,38 @@ export class ThemeService {
   public selectedThemeTemplate: ThemeTemplate
   public systemThemeTemplates: ThemeTemplate[] = [
     new ThemeTemplate(
+      'empty',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[20].name, this.themePaletteService.systemColors[20].hex),
+      false
+    ),
+    new ThemeTemplate(
       'light blue',
       this.themePaletteService.generatePallete(this.themePaletteService.systemColors[6].name, this.themePaletteService.systemColors[6].hex),
-      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
       this.themePaletteService.generatePallete(this.themePaletteService.systemColors[13].name, this.themePaletteService.systemColors[13].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[15].name, this.themePaletteService.systemColors[15].hex),
+      false
+    ),
+    new ThemeTemplate(
+      'light pink',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[1].name, this.themePaletteService.systemColors[1].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[11].name, this.themePaletteService.systemColors[11].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[8].name, this.themePaletteService.systemColors[8].hex),
       false
     ),
     new ThemeTemplate(
       'dark blue',
       this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
-      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[5].name, this.themePaletteService.systemColors[5].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[14].name, this.themePaletteService.systemColors[14].hex),
       this.themePaletteService.generatePallete(this.themePaletteService.systemColors[12].name, this.themePaletteService.systemColors[12].hex),
+      true
+    ),
+    new ThemeTemplate(
+      'dark red',
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[0].name, this.themePaletteService.systemColors[0].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[4].name, this.themePaletteService.systemColors[4].hex),
+      this.themePaletteService.generatePallete(this.themePaletteService.systemColors[10].name, this.themePaletteService.systemColors[10].hex),
       true
     )
   ]

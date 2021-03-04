@@ -18,6 +18,7 @@ import { ThemeModule } from './modules/theme/theme.module';
 import { SelectFormTemplateDialog } from './dialogs/selectFormTemplateDialog/select-formtemplate-dialog';
 import { SelectThemeTemplateDialog } from './dialogs/selectThemeTemplateDialog/select-themetemplate-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRippleModule,
     MatButtonModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   bootstrap: [AppComponent]
 })
