@@ -17,13 +17,16 @@ import { BackgroundGenComponent } from './components/background-gen/background-g
 import { BackgroundEditorComponent } from './components/background-gen/background-editor/background-editor.component';
 import { ShapeComponent } from './components/background-gen/background-editor/shape/shape.component';
 import { EditBackgroundTemplateDialog } from './dialogs/editBackgroundTemplateDialog/editbackgroundtemplate-dialog';
+import { ExportImageDialog } from './dialogs/exportImageDalog/exportImage-dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     BackgroundGenComponent,
     BackgroundEditorComponent,
     ShapeComponent,
-    EditBackgroundTemplateDialog
+    EditBackgroundTemplateDialog,
+    ExportImageDialog
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { EditBackgroundTemplateDialog } from './dialogs/editBackgroundTemplateDi
     MatSlideToggleModule,
     DragDropModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   exports: [BackgroundGenComponent]
 })

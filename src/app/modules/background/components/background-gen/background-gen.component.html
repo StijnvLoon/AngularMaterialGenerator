@@ -5,8 +5,9 @@
             matTooltip="Lobby">
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <button color="accent" mat-icon-button (click)="export()" class="header_icon_button">
-            <mat-icon>keyboard_backspace</mat-icon>
+        <button color="accent" mat-icon-button (click)="export()" class="header_icon_button" #tooltip="matTooltip"
+        matTooltip="Export image">
+            <mat-icon>save_alt</mat-icon>
         </button>
     </div>
 
