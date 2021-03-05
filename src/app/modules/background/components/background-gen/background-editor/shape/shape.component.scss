@@ -1,3 +1,8 @@
 .shape {
-    // position: absolute;
+    position: absolute;
+    outline: 3px dashed rgba(0, 0, 255, 0);
+    transition: outline 0.3s ease;
+}
+.shape_selected {
+    outline: 3px dashed blue;
 }

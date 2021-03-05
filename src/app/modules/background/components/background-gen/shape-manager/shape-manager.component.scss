@@ -1,0 +1,34 @@
+.container {
+    position: absolute;
+    background-color: #c5c5c5a4;
+    height: 300px;
+    width: auto;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.shapes_holder {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.shape {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.329);
+    color: black;
+    transition: all 0.3s ease;
+}
+.shape:hover {
+    background-color: rgba(35, 152, 247, 0.26);
+}
+.shape_selected {
+    background-color: rgba(35, 134, 247, 0.404);
+    color: white;
+}
+.buttons_holder {
+    margin-top: 10px;
+    width: 100%;
+}

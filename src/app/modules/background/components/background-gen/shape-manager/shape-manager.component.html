@@ -1,0 +1,22 @@
+<div class="container mat-elevation-z4">
+    <div class="shapes_holder">
+        <div class="shape" *ngFor="let shape of shapeList" [class.shape_selected]="shape == shapeService.selectedShape"
+            (click)="selectShape(shape)">
+            {{shape.name}}
+        </div>
+    </div>
+    <div class="buttons_holder center_content">
+        <button mat-stroked-button color="accent" (click)="addShape()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-stroked-button color="warn" (click)="removeSelectedShape()">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-stroked-button color="accent">
+            <mat-icon>north</mat-icon>
+        </button>
+        <button mat-stroked-button color="accent">
+            <mat-icon>south</mat-icon>
+        </button>
+    </div>
+</div>

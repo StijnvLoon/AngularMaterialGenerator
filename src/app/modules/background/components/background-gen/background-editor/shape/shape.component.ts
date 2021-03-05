@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ShapeService } from 'src/app/modules/background/services/shape.service';
 import { BackgroundShape } from '../../../../models/BackgroundShape';
 
 @Component({
@@ -10,7 +11,7 @@ export class ShapeComponent implements OnInit {
 
   @Input() shape: BackgroundShape
 
-  constructor() { }
+  constructor(public shapeService: ShapeService) { }
 
   ngOnInit(): void {
   }

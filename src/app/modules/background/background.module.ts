@@ -19,6 +19,7 @@ import { ShapeComponent } from './components/background-gen/background-editor/sh
 import { EditBackgroundTemplateDialog } from './dialogs/editBackgroundTemplateDialog/editbackgroundtemplate-dialog';
 import { ExportImageDialog } from './dialogs/exportImageDalog/exportImage-dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { ShapeManagerComponent } from './components/background-gen/shape-manager/shape-manager.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
     BackgroundEditorComponent,
     ShapeComponent,
     EditBackgroundTemplateDialog,
-    ExportImageDialog
+    ExportImageDialog,
+    ShapeManagerComponent
   ],
   imports: [
     CommonModule,

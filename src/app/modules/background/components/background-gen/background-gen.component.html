@@ -42,5 +42,6 @@
 </mat-toolbar>
 
 <div style="flex-grow: 1; overflow-y: auto;">
+    <app-shape-manager [shapeList]="backgroundTemplate.shapes"></app-shape-manager>
     <app-background-editor style="height: 100%;" [backgroundTemplate]="backgroundTemplate"></app-background-editor>
 </div>

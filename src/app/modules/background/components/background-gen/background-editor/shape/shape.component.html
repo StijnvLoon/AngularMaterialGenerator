@@ -1,6 +1,9 @@
-<div class="shape mat-elevation-z6" cdkDrag (cdkDragEnded)="onMoved($event)"
+<div class="shape mat-elevation-z6" cdkDrag
+    (mousedown)="shapeService.selectedShape = shape"
+    (cdkDragEnded)="onMoved($event)"
     [style.width]="getWidth()"
     [style.height]="getHeight()"
-    [style.background-color]="shape.color">
+    [style.background-color]="shape.color"
+    [class.shape_selected]="shape == shapeService.selectedShape">
 
 </div>
