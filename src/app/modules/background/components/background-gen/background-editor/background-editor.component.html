@@ -1,6 +1,7 @@
 <div class="center_content" style="height: 100%;">
     <div class="square">
         <div class="canvas" id="canvas"
+            [style.background-color]="backgroundTemplate.backgroundColor"
             [style.width]="getWidth()"
             [style.height]="getHeight()">
 
@@ -8,6 +9,3 @@
         </div>
     </div>
 </div>
-
-<!-- [class.canvas_hor]="backgroundTemplate.ratio.position == 1"
-[class.canvas_ver]="backgroundTemplate.ratio.position == 0" -->

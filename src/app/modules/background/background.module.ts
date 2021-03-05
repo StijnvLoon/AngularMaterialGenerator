@@ -15,13 +15,15 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatInputModule } from '@angular/material/input';
 import { BackgroundGenComponent } from './components/background-gen/background-gen.component';
 import { BackgroundEditorComponent } from './components/background-gen/background-editor/background-editor.component';
-import { ShapeComponent } from './components/background-gen/shape/shape.component';
+import { ShapeComponent } from './components/background-gen/background-editor/shape/shape.component';
+import { EditBackgroundTemplateDialog } from './dialogs/editBackgroundTemplateDialog/editbackgroundtemplate-dialog';
 
 @NgModule({
   declarations: [
     BackgroundGenComponent,
     BackgroundEditorComponent,
-    ShapeComponent
+    ShapeComponent,
+    EditBackgroundTemplateDialog
   ],
   imports: [
     CommonModule,

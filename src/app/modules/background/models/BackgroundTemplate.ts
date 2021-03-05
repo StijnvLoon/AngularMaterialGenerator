@@ -5,6 +5,7 @@ export class BackgroundTemplate {
 
     constructor(
         public name: string,
+        public backgroundColor: string,
         public ratio: BackgroundRatio,
         public shapes: BackgroundShape[]
     ) { }

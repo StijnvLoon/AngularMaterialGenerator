@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BackgroundShape } from '../../../models/BackgroundShape';
+import { BackgroundShape } from '../../../../models/BackgroundShape';
 
 @Component({
   selector: 'app-shape',

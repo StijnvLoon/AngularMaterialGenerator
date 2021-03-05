@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BackgroundTemplate } from '../../../models/backgroundtemplate';
 import { BackgroundRatio } from '../../../models/BackgroundRatio';
 import { BackgroundShape } from '../../../models/BackgroundShape';
@@ -10,10 +10,9 @@ import { BackgroundShape } from '../../../models/BackgroundShape';
 })
 export class BackgroundEditorComponent implements OnInit {
 
-  backgroundTemplate: BackgroundTemplate
+  @Input() backgroundTemplate: BackgroundTemplate
 
   constructor() {
-    this.backgroundTemplate = new BackgroundTemplate('test', new BackgroundRatio(16, 9), [new BackgroundShape()])
   }
 
   ngOnInit(): void {
