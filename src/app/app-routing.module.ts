@@ -8,7 +8,7 @@ import { ThemeGenComponent } from './modules/theme/components/theme-gen/theme-ge
 const routes: Routes = [
   { path: 'forms/:id', component: FormGenComponent },
   { path: 'themes/:id', component: ThemeGenComponent },
-  { path: 'background', component: BackgroundGenComponent},
+  { path: 'background', component: BackgroundGenComponent },
   { path: 'lobby', component: LobbyComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'lobby' }
 ];

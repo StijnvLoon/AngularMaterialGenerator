@@ -37,14 +37,16 @@ export class ExportImageDialog implements OnInit {
   submit() {
     const node = document.getElementById('canvas')
 
+    console.log(this.extensionControl.value)
+
     switch (this.extensionControl.value) {
       case ".png": {
         htmlToImage.toPng(node)
           .then(url => this.downloadFromUrl(url))
           .catch(error => this.throwError(error))
+        break
       }
       case ".svg": {
-        console.log('svg')
         htmlToImage.toSvg(node, {
           filter: function filter(node) {
             return (node.tagName !== 'i');
@@ -52,11 +54,13 @@ export class ExportImageDialog implements OnInit {
         })
           .then(url => this.downloadFromUrl(url))
           .catch(error => this.throwError(error))
+        break
       }
       case ".jpeg": {
         htmlToImage.toJpeg(node, { quality: (this.qualityControl.value / 100) })
           .then(url => this.downloadFromUrl(url))
           .catch(error => this.throwError(error))
+        break
       }
     }
   }

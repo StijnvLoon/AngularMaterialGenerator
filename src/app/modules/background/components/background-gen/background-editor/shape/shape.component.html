@@ -4,6 +4,7 @@
     [style.width]="getWidth()"
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
     [class.shape_selected]="shape == shapeService.selectedShape">
 
 </div>

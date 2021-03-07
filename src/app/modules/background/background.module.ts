@@ -20,6 +20,8 @@ import { EditBackgroundTemplateDialog } from './dialogs/editBackgroundTemplateDi
 import { ExportImageDialog } from './dialogs/exportImageDalog/exportImage-dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { ShapeManagerComponent } from './components/background-gen/shape-manager/shape-manager.component';
+import { ShapeEditorComponent } from './components/background-gen/shape-editor/shape-editor.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ShapeManagerComponent } from './components/background-gen/shape-manager
     ShapeComponent,
     EditBackgroundTemplateDialog,
     ExportImageDialog,
-    ShapeManagerComponent
+    ShapeManagerComponent,
+    ShapeEditorComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +49,8 @@ import { ShapeManagerComponent } from './components/background-gen/shape-manager
     DragDropModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
   ],
   exports: [BackgroundGenComponent]
 })

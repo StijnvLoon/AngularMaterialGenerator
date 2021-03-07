@@ -1,0 +1,14 @@
+<div class="container">
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>Color</mat-label>
+        <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>y</mat-label>
+        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y" disabled>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>x</mat-label>
+        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x" disabled>
+    </mat-form-field>
+</div>

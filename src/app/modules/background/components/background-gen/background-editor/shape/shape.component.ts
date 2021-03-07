@@ -29,4 +29,8 @@ export class ShapeComponent implements OnInit {
     return this.shape.width + 'px'
   }
 
+  getTop(): string {
+    return 'translateY(' + this.shape.y + ')'
+  }
+
 }
