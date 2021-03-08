@@ -1,4 +1,4 @@
-<div class="shape mat-elevation-z6" cdkDrag
+<div class="shape shape_rectangle" cdkDrag *ngIf="shape.shape == 0"
     (mousedown)="onMouseDown($event)"
     (cdkDragEnded)="onMoved($event)"
     [style.width]="getWidth()"
@@ -8,3 +8,27 @@
     [class.shape_selected]="shape == shapeService.selectedShape">
 
 </div>
+
+<div class="shape shape_triangle" cdkDrag *ngIf="shape.shape == 1"
+    (mousedown)="onMouseDown($event)"
+    (cdkDragEnded)="onMoved($event)"
+    [style.border-bottom]="getHeight() + ' solid ' + shape.color"
+    [style.border-left]="(shape.width/2) + 'px solid transparent'"
+    [style.border-right]="(shape.width/2) + 'px solid transparent'"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
+    [class.shape_selected]="shape == shapeService.selectedShape">
+
+</div>
+
+<div class="shape shape_circle" cdkDrag *ngIf="shape.shape == 2"
+    (mousedown)="onMouseDown($event)"
+    (cdkDragEnded)="onMoved($event)"
+    [style.width]="getWidth()"
+    [style.height]="getHeight()"
+    [style.background-color]="shape.color"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
+    [class.shape_selected]="shape == shapeService.selectedShape">
+
+</div>
+
+<!-- filter: drop-shadow(2px 4px 6px black); -->

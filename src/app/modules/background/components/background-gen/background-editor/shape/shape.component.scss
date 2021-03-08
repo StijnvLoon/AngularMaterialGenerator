@@ -1,10 +1,18 @@
 .shape {
     position: absolute;
-    // position: fixed;
     outline: 3px dashed rgba(0, 0, 255, 0);
     transition: outline 0.3s ease;
-    // transform: translate(150px, 150px);
 }
 .shape_selected {
     outline: 3px dashed blue;
+}
+.shape_rectangle {
+
+}
+.shape_triangle {
+    width: 0;
+    height: 0;
+}
+.shape_circle {
+    border-radius: 50%;
 }

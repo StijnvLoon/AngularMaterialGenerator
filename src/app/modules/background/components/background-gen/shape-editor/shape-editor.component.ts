@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Shape } from '../../../models/BackgroundShape';
 import { ShapeService } from '../../../services/shape.service';
 
 @Component({
@@ -8,9 +9,21 @@ import { ShapeService } from '../../../services/shape.service';
 })
 export class ShapeEditorComponent implements OnInit {
 
+  availableShapes = []
+
   constructor(public shapeService: ShapeService) { }
 
   ngOnInit(): void {
+    for (var shapeEnum in Shape) {
+      var isValueProperty = parseInt(shapeEnum, 10) >= 0
+      if (isValueProperty) {
+        this.availableShapes.push(Shape[shapeEnum])
+      }
+    }
+  }
+
+  getShapeEnum(string: string) {
+    return Shape[string]
   }
 
 }

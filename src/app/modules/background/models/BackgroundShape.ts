@@ -1,6 +1,7 @@
 export class BackgroundShape {
 
     constructor(
+        public shape: Shape = Shape.Rectangle,
         public name: string = 'black square',
         public y: number = 0,
         public x: number = 0,
@@ -8,4 +9,10 @@ export class BackgroundShape {
         public height: number = 200,
         public color: string = '#000000'
     ) { }
+}
+
+export enum Shape {
+    Rectangle,
+    Triangle,
+    Circle
 }

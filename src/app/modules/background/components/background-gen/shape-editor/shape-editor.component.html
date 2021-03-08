@@ -1,5 +1,15 @@
 <div class="container">
     <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>Shape</mat-label>
+        <mat-select [(ngModel)]="shapeService.selectedShape.shape">
+            <mat-option *ngFor="let shape of availableShapes" [value]="getShapeEnum(shape)">{{shape}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
         <mat-label>Color</mat-label>
         <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
     </mat-form-field>
@@ -10,5 +20,13 @@
     <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
         <mat-label>x</mat-label>
         <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x" disabled>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>height</mat-label>
+        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
+        <mat-label>width</mat-label>
+        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
     </mat-form-field>
 </div>
