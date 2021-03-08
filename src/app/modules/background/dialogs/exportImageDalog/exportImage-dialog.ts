@@ -37,11 +37,9 @@ export class ExportImageDialog implements OnInit {
   submit() {
     const node = document.getElementById('canvas')
 
-    console.log(this.extensionControl.value)
-
     switch (this.extensionControl.value) {
       case ".png": {
-        htmlToImage.toPng(node)
+        htmlToImage.toPng(node, { pixelRatio: 1 })
           .then(url => this.downloadFromUrl(url))
           .catch(error => this.throwError(error))
         break
@@ -57,7 +55,7 @@ export class ExportImageDialog implements OnInit {
         break
       }
       case ".jpeg": {
-        htmlToImage.toJpeg(node, { quality: (this.qualityControl.value / 100) })
+        htmlToImage.toJpeg(node, { quality: (this.qualityControl.value / 100), pixelRatio: 1 })
           .then(url => this.downloadFromUrl(url))
           .catch(error => this.throwError(error))
         break

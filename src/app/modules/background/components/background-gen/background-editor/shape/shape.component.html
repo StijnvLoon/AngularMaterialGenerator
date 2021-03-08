@@ -1,5 +1,5 @@
 <div class="shape mat-elevation-z6" cdkDrag
-    (mousedown)="shapeService.selectedShape = shape"
+    (mousedown)="onMouseDown($event)"
     (cdkDragEnded)="onMoved($event)"
     [style.width]="getWidth()"
     [style.height]="getHeight()"

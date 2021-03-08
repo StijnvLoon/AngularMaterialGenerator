@@ -17,8 +17,14 @@ export class ShapeComponent implements OnInit {
   }
 
   onMoved($event) {
+    //when put down update location values
     this.shape.y = this.shape.y + $event.distance.y
     this.shape.x = this.shape.x + $event.distance.x
+  }
+
+  onMouseDown($event) {
+    //when started dragging select this shape
+    this.shapeService.selectedShape = this.shape
   }
 
   getHeight(): string {
