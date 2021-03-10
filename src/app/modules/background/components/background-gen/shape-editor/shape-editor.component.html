@@ -42,6 +42,12 @@
                 <mat-option *ngFor="let item of [].constructor(elevationDept); let i = index" [value]="'z' + i">z{{i}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <section>
+            <label>Opacity</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" thumbLabel="true"
+                [(ngModel)]="shapeService.selectedShape.opacity">
+            </mat-slider>
+        </section>
     </div>
 
 </div>

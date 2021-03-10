@@ -5,6 +5,7 @@
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
@@ -16,6 +17,7 @@
     [style.border-left]="(shape.width/2) + 'px solid transparent'"
     [style.border-right]="(shape.width/2) + 'px solid transparent'"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
@@ -27,6 +29,7 @@
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
