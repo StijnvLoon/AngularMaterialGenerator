@@ -7,7 +7,9 @@ export class BackgroundShape {
         public x: number = 0,
         public width: number = 200,
         public height: number = 200,
-        public color: string = '#000000'
+        public color: string = '#000000',
+        public shadowLvl: string = 'z0',
+        public rotation: number = 0
     ) { }
 }
 

@@ -1,32 +1,47 @@
 <div class="container">
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>Shape</mat-label>
-        <mat-select [(ngModel)]="shapeService.selectedShape.shape">
-            <mat-option *ngFor="let shape of availableShapes" [value]="getShapeEnum(shape)">{{shape}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>Name</mat-label>
-        <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>Color</mat-label>
-        <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>y</mat-label>
-        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y" disabled>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>x</mat-label>
-        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x" disabled>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>height</mat-label>
-        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="formfield" *ngIf="shapeService.selectedShape">
-        <mat-label>width</mat-label>
-        <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
-    </mat-form-field>
+    <div *ngIf="shapeService.selectedShape">
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Shape</mat-label>
+            <mat-select [(ngModel)]="shapeService.selectedShape.shape">
+                <mat-option *ngFor="let shape of availableShapes" [value]="getShapeEnum(shape)">{{shape}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Color</mat-label>
+            <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>y</mat-label>
+            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y" disabled>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>x</mat-label>
+            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x" disabled>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>height</mat-label>
+            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>width</mat-label>
+            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
+        </mat-form-field>
+        <section>
+            <label>Rotation</label>
+            <mat-slider class="formfield" max="180" min="-180" step="5" thumbLabel="true"
+                [(ngModel)]="shapeService.selectedShape.rotation">
+            </mat-slider>
+        </section>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Elevation</mat-label>
+            <mat-select [(ngModel)]="shapeService.selectedShape.shadowLvl">
+                <mat-option *ngFor="let item of [].constructor(elevationDept); let i = index" [value]="'z' + i">z{{i}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
 </div>

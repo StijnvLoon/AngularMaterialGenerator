@@ -1,34 +1,32 @@
-<div class="shape shape_rectangle" cdkDrag *ngIf="shape.shape == 0"
+<div [className]="'shape shape_rectangle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 0"
     (mousedown)="onMouseDown($event)"
     (cdkDragEnded)="onMoved($event)"
     [style.width]="getWidth()"
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
-    [class.shape_selected]="shape == shapeService.selectedShape">
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
 
-<div class="shape shape_triangle" cdkDrag *ngIf="shape.shape == 1"
+<div [className]="'shape shape_triangle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 1"
     (mousedown)="onMouseDown($event)"
     (cdkDragEnded)="onMoved($event)"
-    [style.border-bottom]="getHeight() + ' solid ' + shape.color"
+    [style.border-bottom]="shape.height + 'px solid ' + shape.color"
     [style.border-left]="(shape.width/2) + 'px solid transparent'"
     [style.border-right]="(shape.width/2) + 'px solid transparent'"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
-    [class.shape_selected]="shape == shapeService.selectedShape">
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
 
-<div class="shape shape_circle" cdkDrag *ngIf="shape.shape == 2"
+<div [className]="'shape shape_circle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 2"
     (mousedown)="onMouseDown($event)"
     (cdkDragEnded)="onMoved($event)"
     [style.width]="getWidth()"
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px)'}"
-    [class.shape_selected]="shape == shapeService.selectedShape">
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
 </div>
-
-<!-- filter: drop-shadow(2px 4px 6px black); -->

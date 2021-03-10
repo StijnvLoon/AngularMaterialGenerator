@@ -10,6 +10,7 @@ import { ShapeService } from '../../../services/shape.service';
 export class ShapeEditorComponent implements OnInit {
 
   availableShapes = []
+  elevationDept = 13
 
   constructor(public shapeService: ShapeService) { }
 

@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ShapeManagerComponent } from './components/background-gen/shape-manager/shape-manager.component';
 import { ShapeEditorComponent } from './components/background-gen/shape-editor/shape-editor.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSliderModule
   ],
   exports: [BackgroundGenComponent]
 })
