@@ -1,8 +1,10 @@
 .container {
     position: absolute;
-    background-color: #c5c5c5a4;
+    background-color: var(--theme-primary-contrast-500);
+    left: 5px;
+    top: 5px;
     height: 300px;
-    width: auto;
+    width: 200px;
     border-radius: 5px;
     padding: 10px;
     display: flex;
@@ -16,19 +18,39 @@
     flex-direction: column;
 }
 .shape {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.329);
+    width: 80%;
+    display: flex;
+    padding: 2px;
+    border-radius: 1px;
     color: black;
     transition: all 0.3s ease;
 }
 .shape:hover {
-    background-color: rgba(35, 152, 247, 0.26);
+    cursor: pointer;
+    width: 90%;
+}
+.shape_text {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+.shape_icon {
+    margin-right: 5px;
+    margin-left: 5px;
 }
 .shape_selected {
-    background-color: rgba(35, 134, 247, 0.404);
-    color: white;
+    background-color: var(--theme-primary-400);
+    color: var(--theme-primary-contrast-400);
+    width: 90%;
 }
 .buttons_holder {
     margin-top: 10px;
     width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 5px;
+}
+.action_button {
+    border-radius: 5px;
 }
