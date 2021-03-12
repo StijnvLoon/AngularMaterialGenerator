@@ -1,4 +1,12 @@
 <div class="container">
+    <div class="tab_header">
+        <button class="close_side_bar_button" mat-icon-button color="accent"
+            (click)="shapeService.selectedShape = null">
+            <mat-icon>close</mat-icon>
+        </button>
+        <h2>Shape editor</h2>
+    </div>
+
     <div *ngIf="shapeService.selectedShape">
         <mat-form-field appearance="fill" class="formfield">
             <mat-label>Shape</mat-label>
@@ -10,44 +18,57 @@
             <mat-label>Name</mat-label>
             <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
         </mat-form-field>
+
+        <section>
+            <label>Position</label>
+            <div class="row">
+                <mat-form-field appearance="fill" class="formfield">
+                    <mat-label>y</mat-label>
+                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="formfield">
+                    <mat-label>x</mat-label>
+                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x">
+                </mat-form-field>
+            </div>
+        </section>
+
+        <section>
+            <label>Dimensions</label>
+            <div class="row">
+                <mat-form-field appearance="fill" class="formfield">
+                    <mat-label>height</mat-label>
+                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="formfield">
+                    <mat-label>width</mat-label>
+                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
+                </mat-form-field>
+            </div>
+        </section>
+
         <mat-form-field appearance="fill" class="formfield">
             <mat-label>Color</mat-label>
             <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
         </mat-form-field>
-        <mat-form-field appearance="fill" class="formfield">
-            <mat-label>y</mat-label>
-            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y" disabled>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="formfield">
-            <mat-label>x</mat-label>
-            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x" disabled>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="formfield">
-            <mat-label>height</mat-label>
-            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="formfield">
-            <mat-label>width</mat-label>
-            <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
-        </mat-form-field>
         <section>
-            <label>Rotation</label>
-            <mat-slider class="formfield" max="180" min="-180" step="5" thumbLabel="true"
-                [(ngModel)]="shapeService.selectedShape.rotation">
+            <label>Opacity {{shapeService.selectedShape.opacity}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.opacity" (input)="updateOpacity($event)">
+            </mat-slider>
+        </section>
+
+        <section>
+            <label>Rotation {{shapeService.selectedShape.rotation}}<span style="font-size: 1.4em;">°</span></label>
+            <mat-slider class="formfield" max="180" min="-180" step="5" [value]="shapeService.selectedShape.rotation" (input)="updateRotation($event)">
             </mat-slider>
         </section>
         <mat-form-field appearance="fill" class="formfield">
             <mat-label>Elevation</mat-label>
             <mat-select [(ngModel)]="shapeService.selectedShape.shadowLvl">
-                <mat-option *ngFor="let item of [].constructor(elevationDept); let i = index" [value]="'z' + i">z{{i}}</mat-option>
+                <mat-option *ngFor="let item of [].constructor(elevationDept); let i = index" [value]="'z' + i">z{{i}}
+                </mat-option>
             </mat-select>
         </mat-form-field>
-        <section>
-            <label>Opacity</label>
-            <mat-slider class="formfield" max="100" min="0" step="1" thumbLabel="true"
-                [(ngModel)]="shapeService.selectedShape.opacity">
-            </mat-slider>
-        </section>
     </div>
 
 </div>

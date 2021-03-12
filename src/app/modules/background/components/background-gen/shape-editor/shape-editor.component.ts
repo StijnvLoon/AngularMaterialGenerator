@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
 import { Shape } from '../../../models/BackgroundShape';
 import { ShapeService } from '../../../services/shape.service';
 
@@ -25,6 +26,14 @@ export class ShapeEditorComponent implements OnInit {
 
   getShapeEnum(string: string) {
     return Shape[string]
+  }
+
+  updateOpacity($event: MatSliderChange) {
+    this.shapeService.selectedShape.opacity = $event.value
+  }
+
+  updateRotation($event: MatSliderChange) {
+    this.shapeService.selectedShape.rotation = $event.value
   }
 
 }
