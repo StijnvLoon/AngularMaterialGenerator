@@ -4,7 +4,7 @@
     [style.width]="getWidth()"
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
-    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
@@ -16,7 +16,7 @@
     [style.border-bottom]="shape.height + 'px solid ' + shape.color"
     [style.border-left]="(shape.width/2) + 'px solid transparent'"
     [style.border-right]="(shape.width/2) + 'px solid transparent'"
-    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
@@ -28,7 +28,7 @@
     [style.width]="getWidth()"
     [style.height]="getHeight()"
     [style.background-color]="shape.color"
-    [style.outline]="shape == shapeService.selectedShape ? '3px dashed blue' : ''"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
     [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
 
