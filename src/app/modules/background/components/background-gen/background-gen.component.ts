@@ -6,8 +6,9 @@ import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { EditBackgroundTemplateDialog } from '../../dialogs/editBackgroundTemplateDialog/editbackgroundtemplate-dialog';
 import { ExportImageDialog } from '../../dialogs/exportImageDalog/exportImage-dialog';
 import { BackgroundRatio } from '../../models/BackgroundRatio';
-import { BackgroundShape } from '../../models/BackgroundShape';
+import { BackgroundShape, Shape } from '../../models/BackgroundShape';
 import { BackgroundTemplate } from '../../models/backgroundtemplate';
+import { ShapeService } from '../../services/shape.service';
 
 @Component({
   selector: 'app-background-gen',
@@ -20,10 +21,12 @@ export class BackgroundGenComponent implements OnInit, AfterViewInit {
 
   backgroundTemplate: BackgroundTemplate
 
-  constructor(private sheet: MatBottomSheet, private dialog: MatDialog) { }
+  constructor(private sheet: MatBottomSheet, private dialog: MatDialog, private shapeService: ShapeService) { }
 
   ngOnInit(): void {
     const shape: BackgroundShape = new BackgroundShape()
+    shape.shape = Shape.Circle
+    shape.color = '#E33131'
     this.backgroundTemplate = new BackgroundTemplate('test', '#ffffff', new BackgroundRatio(16, 9), [shape])
   }
 
@@ -63,6 +66,7 @@ export class BackgroundGenComponent implements OnInit, AfterViewInit {
   }
 
   export() {
+    this.shapeService.selectedShape = null
 
     const dialogRef = this.dialog.open(ExportImageDialog, {
       width: '600px',

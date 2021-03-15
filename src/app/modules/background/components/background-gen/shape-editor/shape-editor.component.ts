@@ -28,6 +28,22 @@ export class ShapeEditorComponent implements OnInit {
     return Shape[string]
   }
 
+  updateY($event: MatSliderChange) {
+    this.shapeService.selectedShape.y = $event.value
+  }
+
+  updateX($event: MatSliderChange) {
+    this.shapeService.selectedShape.x = $event.value
+  }
+
+  updateHeight($event: MatSliderChange) {
+    this.shapeService.selectedShape.height = $event.value
+  }
+
+  updateWidth($event: MatSliderChange) {
+    this.shapeService.selectedShape.width = $event.value
+  }
+
   updateOpacity($event: MatSliderChange) {
     this.shapeService.selectedShape.opacity = $event.value
   }

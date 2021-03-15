@@ -1,35 +1,32 @@
-<div [className]="'shape shape_rectangle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 0"
-    (mousedown)="onMouseDown($event)"
-    (cdkDragEnded)="onMoved($event)"
-    [style.width]="getWidth()"
-    [style.height]="getHeight()"
+<div [className]="'shape shape_rectangle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 0"
+    (click)="onClick($event)"
+    [style.width]="getWidth() + 'px'"
+    [style.height]="getHeight() + 'px'"
     [style.background-color]="shape.color"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
+    [ngStyle]="{'transform': getTransformString()}">
 
 </div>
 
-<div [className]="'shape shape_triangle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 1"
-    (mousedown)="onMouseDown($event)"
-    (cdkDragEnded)="onMoved($event)"
-    [style.border-bottom]="shape.height + 'px solid ' + shape.color"
-    [style.border-left]="(shape.width/2) + 'px solid transparent'"
-    [style.border-right]="(shape.width/2) + 'px solid transparent'"
+<div [className]="'shape shape_triangle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 1"
+    (click)="onClick($event)"
+    [style.border-bottom]="getHeight() + 'px solid ' + shape.color"
+    [style.border-left]="(getWidth()/2) + 'px solid transparent'"
+    [style.border-right]="(getWidth()/2) + 'px solid transparent'"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
+    [ngStyle]="{'transform': getTransformString()}">
 
 </div>
 
-<div [className]="'shape shape_circle shadow_' + shape.shadowLvl" cdkDrag *ngIf="shape.shape == 2"
-    (mousedown)="onMouseDown($event)"
-    (cdkDragEnded)="onMoved($event)"
-    [style.width]="getWidth()"
-    [style.height]="getHeight()"
+<div [className]="'shape shape_circle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 2"
+    (click)="onClick($event)"
+    [style.width]="getWidth() + 'px'"
+    [style.height]="getHeight() + 'px'"
     [style.background-color]="shape.color"
     [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
     [style.opacity]="shape.opacity + '%'"
-    [ngStyle]="{'transform': 'translate(' + shape.x + 'px, ' + shape.y + 'px) rotate(' + shape.rotation + 'deg)'}">
+    [ngStyle]="{'transform': getTransformString()}">
 
 </div>

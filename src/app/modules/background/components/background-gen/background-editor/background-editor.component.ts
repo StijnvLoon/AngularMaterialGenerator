@@ -1,21 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { BackgroundTemplate } from '../../../models/backgroundtemplate';
 import { BackgroundRatio } from '../../../models/BackgroundRatio';
 import { BackgroundShape } from '../../../models/BackgroundShape';
+import { ShapeService } from '../../../services/shape.service';
 
 @Component({
   selector: 'app-background-editor',
   templateUrl: './background-editor.component.html',
   styleUrls: ['./background-editor.component.scss']
 })
-export class BackgroundEditorComponent implements OnInit {
+export class BackgroundEditorComponent implements OnInit, AfterViewInit {
 
   @Input() backgroundTemplate: BackgroundTemplate
 
-  constructor() {
+  constructor(private shapeService: ShapeService) {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.shapeService.setCanvas(document.getElementById('canvas'))
   }
 
   getWidth(): string {

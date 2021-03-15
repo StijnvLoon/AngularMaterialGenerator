@@ -19,38 +19,33 @@
             <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
         </mat-form-field>
 
-        <section>
-            <label>Position</label>
-            <div class="row">
-                <mat-form-field appearance="fill" class="formfield">
-                    <mat-label>y</mat-label>
-                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.y">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="formfield">
-                    <mat-label>x</mat-label>
-                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.x">
-                </mat-form-field>
-            </div>
-        </section>
-
-        <section>
-            <label>Dimensions</label>
-            <div class="row">
-                <mat-form-field appearance="fill" class="formfield">
-                    <mat-label>height</mat-label>
-                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.height">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="formfield">
-                    <mat-label>width</mat-label>
-                    <input type="number" matInput [(ngModel)]="shapeService.selectedShape.width">
-                </mat-form-field>
-            </div>
-        </section>
-
         <mat-form-field appearance="fill" class="formfield">
             <mat-label>Color</mat-label>
             <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
         </mat-form-field>
+
+        <section>
+            <label>Pos Y {{shapeService.selectedShape.y}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.y" (input)="updateY($event)">
+            </mat-slider>
+        </section>
+        <section>
+            <label>Pos X {{shapeService.selectedShape.x}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.x" (input)="updateX($event)">
+            </mat-slider>
+        </section>
+
+        <section>
+            <label>Width {{shapeService.selectedShape.width}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.height" (input)="updateHeight($event)">
+            </mat-slider>
+        </section>
+        <section>
+            <label>Height {{shapeService.selectedShape.height}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.width" (input)="updateWidth($event)">
+            </mat-slider>
+        </section>
+
         <section>
             <label>Opacity {{shapeService.selectedShape.opacity}}%</label>
             <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.opacity" (input)="updateOpacity($event)">

@@ -16,27 +16,29 @@ export class ShapeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onMoved($event) {
-    //when put down update location values
-    this.shape.y = this.shape.y + $event.distance.y
-    this.shape.x = this.shape.x + $event.distance.x
-  }
-
-  onMouseDown($event) {
+  onClick($event) {
     //when started dragging select this shape
     this.shapeService.selectedShape = this.shape
   }
 
-  getHeight(): string {
-    return this.shape.height + 'px'
+  getHeight(): number {
+    return this.shapeService.yPercentToPixels(this.shape.height)
   }
 
-  getWidth(): string {
-    return this.shape.width + 'px'
+  getWidth(): number {
+    return this.shapeService.xPercentToPixels(this.shape.width)
   }
 
   getTop(): string {
     return 'translateY(' + this.shape.y + ')'
+  }
+
+  getTransformString(): string {
+    //percentage of canvas - own shape length / 2 to center position
+    const x = this.shapeService.xPercentToPixels(this.shape.x) - this.shapeService.xPercentToPixels(this.shape.width)/2
+    const y = this.shapeService.yPercentToPixels(this.shape.y) - this.shapeService.yPercentToPixels(this.shape.height)/2
+
+    return 'translate(' + x + 'px, ' + y + 'px) rotate(' + this.shape.rotation + 'deg)'
   }
 
 }
