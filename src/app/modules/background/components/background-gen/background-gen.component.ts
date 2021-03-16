@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -21,7 +21,11 @@ export class BackgroundGenComponent implements OnInit, AfterViewInit {
 
   backgroundTemplate: BackgroundTemplate
 
-  constructor(private sheet: MatBottomSheet, private dialog: MatDialog, private shapeService: ShapeService) { }
+  constructor(
+    private sheet: MatBottomSheet,
+    private dialog: MatDialog,
+    private shapeService: ShapeService,
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const shape: BackgroundShape = new BackgroundShape()
@@ -36,7 +40,6 @@ export class BackgroundGenComponent implements OnInit, AfterViewInit {
         this.sidenav.open()
       }  
     });
-
   }
 
   openThemeSheet() {
@@ -61,6 +64,10 @@ export class BackgroundGenComponent implements OnInit, AfterViewInit {
         this.backgroundTemplate.ratio.width = data.width_ratioControl
         this.backgroundTemplate.ratio.height = data.height_ratioControl
         this.backgroundTemplate.backgroundColor = data.background_colorControl
+
+        setTimeout(() => {
+          this.changeDetector.detectChanges()
+        }, 500);
       }
     })
   }

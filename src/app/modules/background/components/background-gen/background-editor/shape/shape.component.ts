@@ -17,8 +17,12 @@ export class ShapeComponent implements OnInit {
   }
 
   onClick($event) {
-    //when started dragging select this shape
-    this.shapeService.selectedShape = this.shape
+    //when already selected, deselect
+    if(this.shapeService.selectedShape == this.shape) {
+      this.shapeService.selectedShape = null
+    } else {
+      this.shapeService.selectedShape = this.shape
+    }
   }
 
   getHeight(): number {
@@ -27,10 +31,6 @@ export class ShapeComponent implements OnInit {
 
   getWidth(): number {
     return this.shapeService.xPercentToPixels(this.shape.width)
-  }
-
-  getTop(): string {
-    return 'translateY(' + this.shape.y + ')'
   }
 
   getTransformString(): string {
