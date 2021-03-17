@@ -20,6 +20,7 @@ import { SelectThemeTemplateDialog } from './dialogs/selectThemeTemplateDialog/s
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { BackgroundModule } from './modules/background/background.module';
+import { AnimationModule } from './modules/animation/animation.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { BackgroundModule } from './modules/background/background.module';
     FormModule,
     ThemeModule,
     BackgroundModule,
+    AnimationModule,
     MatDialogModule,
     MatToolbarModule,
     MatRippleModule,
