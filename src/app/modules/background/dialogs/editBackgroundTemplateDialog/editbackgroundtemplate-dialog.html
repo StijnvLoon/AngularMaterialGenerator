@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="backgroundTemplateForm">
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="nameControl">
+            <mat-error *ngIf="backgroundTemplateForm.get('nameControl').hasError('required')">Is required
+            </mat-error>
+            <mat-error *ngIf="backgroundTemplateForm.get('nameControl').hasError('maxLength')">Can't exceed 60
+                characters</mat-error>
+        </mat-form-field>
+
+        <table class="formfield" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" class="formfield">
+                        <mat-label>Width ratio</mat-label>
+                        <input type="number" matInput formControlName="width_ratioControl" placeholder="1-20">
+                        <mat-error *ngIf="backgroundTemplateForm.get('width_ratioControl').hasError('min')">
+                            Must
+                            be bigger than 1</mat-error>
+                        <mat-error *ngIf="backgroundTemplateForm.get('width_ratioControl').hasError('max')">
+                            Must
+                            be smaller than 20</mat-error>
+                        <mat-error
+                            *ngIf="backgroundTemplateForm.get('width_ratioControl').hasError('required')">
+                            Is required</mat-error>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="fill" class="formfield">
+                        <mat-label>Height ratio</mat-label>
+                        <input type="number" matInput formControlName="height_ratioControl" placeholder="1-20">
+                        <mat-error *ngIf="backgroundTemplateForm.get('height_ratioControl').hasError('min')">
+                            Must be bigger than 1</mat-error>
+                        <mat-error *ngIf="backgroundTemplateForm.get('height_ratioControl').hasError('max')">
+                            Must be smaller than 20</mat-error>
+                        <mat-error
+                            *ngIf="backgroundTemplateForm.get('height_ratioControl').hasError('required')">Is
+                            required</mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Background color</mat-label>
+            <input matInput type="color" formControlName="background_colorControl">
+        </mat-form-field>
+
+    </form>
+
+</div>
+
+<div mat-dialog-actions class="actions">
+    <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()"
+        [disabled]="backgroundTemplateForm.invalid">Submit</button>
+</div>

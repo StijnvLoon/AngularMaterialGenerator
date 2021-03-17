@@ -1,0 +1,32 @@
+<div [className]="'shape shape_rectangle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 0"
+    (click)="onClick($event)"
+    [style.width]="getWidth() + 'px'"
+    [style.height]="getHeight() + 'px'"
+    [style.background-color]="shape.color"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
+    [style.opacity]="shape.opacity + '%'"
+    [ngStyle]="{'transform': getTransformString()}">
+
+</div>
+
+<div [className]="'shape shape_triangle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 1"
+    (click)="onClick($event)"
+    [style.border-bottom]="getHeight() + 'px solid ' + shape.color"
+    [style.border-left]="(getWidth()/2) + 'px solid transparent'"
+    [style.border-right]="(getWidth()/2) + 'px solid transparent'"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
+    [style.opacity]="shape.opacity + '%'"
+    [ngStyle]="{'transform': getTransformString()}">
+
+</div>
+
+<div [className]="'shape shape_circle shadow_' + shape.shadowLvl" *ngIf="shape.shape == 2"
+    (click)="onClick($event)"
+    [style.width]="getWidth() + 'px'"
+    [style.height]="getHeight() + 'px'"
+    [style.background-color]="shape.color"
+    [style.outline]="shape == shapeService.selectedShape ? '3px dashed var(--theme-primary-700)' : ''"
+    [style.opacity]="shape.opacity + '%'"
+    [ngStyle]="{'transform': getTransformString()}">
+
+</div>

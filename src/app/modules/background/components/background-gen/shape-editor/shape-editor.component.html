@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="tab_header">
+        <button class="close_side_bar_button" mat-icon-button color="accent"
+            (click)="shapeService.selectedShape = null">
+            <mat-icon>close</mat-icon>
+        </button>
+        <h2>Shape editor</h2>
+    </div>
+
+    <div *ngIf="shapeService.selectedShape">
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Shape</mat-label>
+            <mat-select [(ngModel)]="shapeService.selectedShape.shape">
+                <mat-option *ngFor="let shape of availableShapes" [value]="getShapeEnum(shape)">{{shape}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="shapeService.selectedShape.name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Color</mat-label>
+            <input type="color" matInput [(ngModel)]="shapeService.selectedShape.color">
+        </mat-form-field>
+
+        <section>
+            <label>Pos Y {{shapeService.selectedShape.y}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.y" (input)="updateY($event)">
+            </mat-slider>
+        </section>
+        <section>
+            <label>Pos X {{shapeService.selectedShape.x}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.x" (input)="updateX($event)">
+            </mat-slider>
+        </section>
+
+        <section>
+            <label>Width {{shapeService.selectedShape.width}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.width" (input)="updateWidth($event)">
+            </mat-slider>
+        </section>
+        <section>
+            <label>Height {{shapeService.selectedShape.height}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.height" (input)="updateHeight($event)">
+            </mat-slider>
+        </section>
+
+        <section>
+            <label>Opacity {{shapeService.selectedShape.opacity}}%</label>
+            <mat-slider class="formfield" max="100" min="0" step="1" [value]="shapeService.selectedShape.opacity" (input)="updateOpacity($event)">
+            </mat-slider>
+        </section>
+
+        <section>
+            <label>Rotation {{shapeService.selectedShape.rotation}}<span style="font-size: 1.4em;">°</span></label>
+            <mat-slider class="formfield" max="180" min="-180" step="5" [value]="shapeService.selectedShape.rotation" (input)="updateRotation($event)">
+            </mat-slider>
+        </section>
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Elevation</mat-label>
+            <mat-select [(ngModel)]="shapeService.selectedShape.shadowLvl">
+                <mat-option *ngFor="let item of [].constructor(elevationDept); let i = index" [value]="'z' + i">z{{i}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>

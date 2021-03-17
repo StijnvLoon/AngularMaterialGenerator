@@ -1,0 +1,32 @@
+<div class="container mat-elevation-z4">
+    <div style="font-weight: 500;">Shapes:</div>
+    <div class="shapes_holder">
+        <div class="shape mat-elevation-z2" *ngFor="let shape of shapeList"
+            [class.shape_selected]="shape == shapeService.selectedShape" (click)="selectShape(shape)">
+            <span class="shape_text">{{shape.name}}</span>
+            <span class="shape_icon" *ngIf="shape.shape == 0">▮</span>
+            <span class="shape_icon" *ngIf="shape.shape == 1">▲</span>
+            <span class="shape_icon" *ngIf="shape.shape == 2">⬤</span>
+        </div>
+    </div>
+    <div class="buttons_holder center_content">
+        <button mat-icon-button color="accent" (click)="addShape()" class="action_button mat-elevation-z1"
+            #tooltip="matTooltip" matTooltip="New shape">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removeSelectedShape()" class="action_button mat-elevation-z1"
+            [disabled]="!shapeService.selectedShape" #tooltip="matTooltip" matTooltip="Remove shape">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="moveSelectedShape(-1)" class="action_button mat-elevation-z1"
+            [disabled]="!shapeService.selectedShape || shapeList.indexOf(shapeService.selectedShape) == 0"
+            #tooltip="matTooltip" matTooltip="Move shape up">
+            <mat-icon>north</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="moveSelectedShape(1)" class="action_button mat-elevation-z1"
+            [disabled]="!shapeService.selectedShape || shapeList.indexOf(shapeService.selectedShape) == shapeList.length-1"
+            #tooltip="matTooltip" matTooltip="Move shape down">
+            <mat-icon>south</mat-icon>
+        </button>
+    </div>
+</div>

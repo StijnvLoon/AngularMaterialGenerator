@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="formfield">
+        <mat-label>File extension</mat-label>
+        <mat-select [formControl]="extensionControl">
+            <mat-option value=".png">.png</mat-option>
+            <mat-option value=".svg">.svg</mat-option>
+            <mat-option value=".jpeg">.jpeg</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="formfield" *ngIf="extensionControl.value == '.jpeg'">
+        <mat-label>Jpeg quality</mat-label>
+        <input matInput type="number" [formControl]="qualityControl" placeholder="0 - 100">
+        <div matSuffix>%</div>
+        <mat-error *ngIf="qualityControl.hasError('min')">
+            Must be bigger than 0</mat-error>
+        <mat-error *ngIf="qualityControl.hasError('max')">
+            Must be smaller than or equals to 100</mat-error>
+        <mat-error *ngIf="qualityControl.hasError('required')">Is
+            required</mat-error>
+    </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions class="actions">
+    <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()" [disabled]="extensionControl.value == '.jpeg' && qualityControl.invalid">Submit</button>
+</div>

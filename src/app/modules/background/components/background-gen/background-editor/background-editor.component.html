@@ -1,0 +1,11 @@
+<div class="center_content" style="height: 100%;">
+    <div class="square">
+        <div class="canvas" id="canvas"
+            [style.background-color]="backgroundTemplate.backgroundColor"
+            [style.width]="getWidth()"
+            [style.height]="getHeight()">
+
+            <app-shape *ngFor="let shape of backgroundTemplate.shapes" [shape]="shape"></app-shape>
+        </div>
+    </div>
+</div>
