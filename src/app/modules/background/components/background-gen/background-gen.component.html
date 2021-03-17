@@ -6,15 +6,27 @@
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
         <button color="accent" mat-icon-button (click)="export()" class="header_icon_button" #tooltip="matTooltip"
-        matTooltip="Export image">
+            matTooltip="Export image">
             <mat-icon>save_alt</mat-icon>
+        </button>
+        <button color="accent" mat-icon-button class="header_icon_button" #tooltip="matTooltip" matTooltip="Import json"
+            disabled>
+            <mat-icon>file_upload</mat-icon>
+        </button>
+        <button color="accent" mat-icon-button class="header_icon_button" #tooltip="matTooltip" matTooltip="Export json"
+            disabled>
+            <mat-icon>file_download</mat-icon>
+        </button>
+        <button color="accent" mat-icon-button class="header_icon_button" #tooltip="matTooltip"
+            matTooltip="Save in localstorage" disabled>
+            <mat-icon>save</mat-icon>
         </button>
     </div>
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{backgroundTemplate.name}}</h1>
-        <button color="accent" mat-icon-button class="header_icon_button" (click)="editBackgroundTemplateDialog()" #tooltip="matTooltip"
-            matTooltip="Edit template name">
+        <button color="accent" mat-icon-button class="header_icon_button" (click)="editBackgroundTemplateDialog()"
+            #tooltip="matTooltip" matTooltip="Edit template name">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
@@ -42,12 +54,12 @@
 </mat-toolbar>
 
 <div style="flex-grow: 1; overflow-y: auto;">
-    
+
 
     <mat-drawer-container style="background-color: transparent; height: 100%;" autosize>
         <app-shape-manager [shapeList]="backgroundTemplate.shapes"></app-shape-manager>
         <app-background-editor style="height: 100%;" [backgroundTemplate]="backgroundTemplate"></app-background-editor>
-    
+
         <mat-drawer #drawer mode="side" position="end">
             <app-shape-editor></app-shape-editor>
         </mat-drawer>
