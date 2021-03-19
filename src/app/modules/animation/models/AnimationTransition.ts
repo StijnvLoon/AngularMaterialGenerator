@@ -1,4 +1,4 @@
-export class AnimationAnim {
+export class AnimationTransition {
 
     constructor(
         public name: string = 'anim1',

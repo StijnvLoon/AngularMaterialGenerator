@@ -1,0 +1,13 @@
+.container {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+.mock_object {
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    background-color: #c9e93b;
+    border-radius: 8px;
+    padding: 20px;
+}

@@ -10,10 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimationGenComponent } from './components/animation-gen/animation-gen.component';
+import { AnimationEditorComponent } from './components/animation-gen/animation-editor/animation-editor.component';
 
 @NgModule({
   declarations: [
-    AnimationGenComponent
+    AnimationGenComponent,
+    AnimationEditorComponent
   ],
   imports: [
     CommonModule,

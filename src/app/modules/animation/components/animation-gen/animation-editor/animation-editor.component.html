@@ -1,0 +1,7 @@
+<div class="container center_content">
+    <div class="mock_object" [ngStyle]="getStyleString()">
+        The animated element
+    </div>
+    <button mat-button (click)="isOpen = !isOpen">Run</button>
+    <input type="number" [(ngModel)]="delay">
+</div>
