@@ -11,11 +11,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimationGenComponent } from './components/animation-gen/animation-gen.component';
 import { AnimationEditorComponent } from './components/animation-gen/animation-editor/animation-editor.component';
+import { StateManagerComponent } from './components/animation-gen/state-manager/state-manager.component';
 
 @NgModule({
   declarations: [
     AnimationGenComponent,
-    AnimationEditorComponent
+    AnimationEditorComponent,
+    StateManagerComponent
   ],
   imports: [
     CommonModule,

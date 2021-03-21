@@ -1,0 +1,22 @@
+.container {
+    background-color: var(--theme-primary-contrast-500);
+    height: 300px;
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 5px;
+    top: 70px;
+}
+.states_holder {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.state {
+
+}

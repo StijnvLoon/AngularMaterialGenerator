@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AnimationTemplate } from '../../../models/AnimationTemplate';
+import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'app-animation-editor',
@@ -9,21 +10,33 @@ import { AnimationTemplate } from '../../../models/AnimationTemplate';
 export class AnimationEditorComponent implements OnInit {
 
   @Input() animationTemplate: AnimationTemplate
-  isOpen: boolean = true
-  delay: number = 3
 
-  constructor() { }
+  constructor(private stateService: StateService) { }
 
   ngOnInit(): void {
   }
 
-  getStyleString() {
-    const backgroundcolor = this.isOpen ? 'red' : 'blue'
+  getStyleJSON() {
+    return this.mapToJson(this.stateService.selectedState.values)
+  }
 
-    return {
-      'background-color': backgroundcolor,
-      'transition': 'all ' + this.delay*0.1 + 's ease'
-    }
+  private mapToJson(map: Map<String, String>) {
+    var string = '{'
+
+    var index = 0
+    var lastIndex = map.size-1
+
+    map.forEach((value, key) => {
+      if(index == lastIndex) {
+        string = string.concat('\"' + key + '\":\"' + value + '\"')
+      } else {
+        string = string.concat('\"' + key + '\":\"' + value + '\",')
+      }
+      index++
+    });
+
+    string = string.concat('}')
+    return JSON.parse(string)
   }
 
 }

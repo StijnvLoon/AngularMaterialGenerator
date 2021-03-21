@@ -1,0 +1,6 @@
+<div class="container mat-elevation-z4">
+    <div style="font-weight: 500;">States:</div>
+    <div class="states_holder">
+        <div *ngFor="let state of statesMap.values()" class="state" (click)="onStateSelect(state)">{{state.name}}</div>
+    </div>
+</div>
