@@ -1,5 +1,4 @@
 .container {
-    background-color: var(--theme-primary-contrast-500);
     height: 300px;
     width: 200px;
     border-radius: 5px;
@@ -17,6 +16,25 @@
     display: flex;
     flex-direction: column;
 }
+.buttons_holder {
+    margin-top: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 5px;
+}
+.action_button {
+    border-radius: 5px;
+}
 .state {
-
+    text-align: start;
+    background-color: #00000010;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+.state:hover {
+    cursor: pointer;
+    background-color: #00000018;
 }

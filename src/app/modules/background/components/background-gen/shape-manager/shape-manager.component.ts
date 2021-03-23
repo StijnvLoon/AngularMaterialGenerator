@@ -1,12 +1,17 @@
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { BackgroundShape } from '../../../models/BackgroundShape';
 import { ShapeService } from '../../../services/shape.service';
 
 @Component({
   selector: 'app-shape-manager',
   templateUrl: './shape-manager.component.html',
-  styleUrls: ['./shape-manager.component.scss']
+  styleUrls: ['./shape-manager.component.scss'],
+  animations: [
+    verticalListAnimation,
+    verticalListItemAnimation
+  ]
 })
 export class ShapeManagerComponent implements OnInit {
 

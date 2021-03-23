@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimationGenComponent } from './components/animation-gen/animation-gen.component';
@@ -31,6 +32,7 @@ import { StateManagerComponent } from './components/animation-gen/state-manager/
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatRadioModule
   ],
   exports: [AnimationGenComponent]
 })
