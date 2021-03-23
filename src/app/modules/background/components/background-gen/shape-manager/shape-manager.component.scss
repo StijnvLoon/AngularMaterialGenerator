@@ -1,6 +1,5 @@
 .container {
     position: absolute;
-    background-color: var(--theme-primary-contrast-500);
     left: 5px;
     top: 5px;
     height: 300px;
@@ -22,7 +21,7 @@
     display: flex;
     padding: 2px;
     border-radius: 1px;
-    color: black;
+    color: var(--theme-primary-contrast-200);
     transition: all 0.3s ease;
 }
 .shape:hover {
