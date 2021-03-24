@@ -1,19 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { verticalListAnimation, verticalListItemAnimation } from 'src/app/animations/vert-list';
 import { AnimationState } from '../../../models/AnimationState';
+import { AnimationTransition } from '../../../models/AnimationTransition';
 import { AnimationService } from '../../../services/animation.service';
 
 @Component({
-  selector: 'app-state-manager',
-  templateUrl: './state-manager.component.html',
-  styleUrls: ['./state-manager.component.scss'],
+  selector: 'app-transition-manager',
+  templateUrl: './transition-manager.component.html',
+  styleUrls: ['./transition-manager.component.scss'],
   animations: [
     verticalListAnimation,
     verticalListItemAnimation
   ]
 })
-export class StateManagerComponent implements OnInit {
+export class TransitionManagerComponent implements OnInit {
 
+  @Input() transitionsList: AnimationTransition[]
   @Input() statesMap: Map<String, AnimationState>
 
   constructor(private animationService: AnimationService) { }
@@ -21,17 +23,8 @@ export class StateManagerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onStateSelect(state: AnimationState) {
-    this.animationService.selectedState = state
-  }
-
-  removeCurrentState() {
-    this.statesMap.delete(this.animationService.selectedState.name)
-    this.animationService.selectedState = this.getStateList()[0]
-  }
-
-  getStateList(): AnimationState[] {
-    return Array.from(this.statesMap.values())
+  playAnimation(transit: AnimationTransition) {
+    this.animationService.playTransition(transit, this.statesMap.get(transit.targetState))
   }
 
 }

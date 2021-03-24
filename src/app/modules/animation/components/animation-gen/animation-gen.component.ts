@@ -3,7 +3,8 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { AnimationState } from '../../models/AnimationState';
 import { AnimationTemplate } from '../../models/AnimationTemplate';
-import { StateService } from '../../services/state.service';
+import { AnimationTransition } from '../../models/AnimationTransition';
+import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-animation-gen',
@@ -14,7 +15,7 @@ export class AnimationGenComponent implements OnInit {
 
   animationTemplate: AnimationTemplate = new AnimationTemplate()
 
-  constructor(private sheet: MatBottomSheet, private stateService: StateService) { }
+  constructor(private sheet: MatBottomSheet, private animationService: AnimationService) { }
 
   ngOnInit(): void {
     const state1: AnimationState = new AnimationState("closed")
@@ -28,7 +29,10 @@ export class AnimationGenComponent implements OnInit {
     this.animationTemplate.statesMap.set(state1.name, state1)
     this.animationTemplate.statesMap.set(state2.name, state2)
 
-    this.stateService.selectedState = state1
+    this.animationService.selectedState = state1
+
+    const transition: AnimationTransition = new AnimationTransition(state1.name, state2.name)
+    this.animationTemplate.transitionsList.push(transition)
   }
 
   openThemeSheet() {

@@ -2,7 +2,7 @@
     <div style="font-weight: 500;">States:</div>
     <div class="states_holder" @Anim-ListVerHost>
         <mat-radio-button *ngFor="let state of getStateList()" class="state mat-elevation-z1"
-            [checked]="state == stateService.selectedState" (click)="onStateSelect(state)" @Anim-ListVerItems>
+            [checked]="state == animationService.selectedState" (click)="onStateSelect(state)" @Anim-ListVerItems>
             {{state.name}}</mat-radio-button>
     </div>
     <div class="buttons_holder center_content">

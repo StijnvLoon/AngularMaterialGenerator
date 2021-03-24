@@ -13,12 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimationGenComponent } from './components/animation-gen/animation-gen.component';
 import { AnimationEditorComponent } from './components/animation-gen/animation-editor/animation-editor.component';
 import { StateManagerComponent } from './components/animation-gen/state-manager/state-manager.component';
+import { TransitionManagerComponent } from './components/animation-gen/transition-manager/transition-manager.component';
 
 @NgModule({
   declarations: [
     AnimationGenComponent,
     AnimationEditorComponent,
-    StateManagerComponent
+    StateManagerComponent,
+    TransitionManagerComponent
   ],
   imports: [
     CommonModule,

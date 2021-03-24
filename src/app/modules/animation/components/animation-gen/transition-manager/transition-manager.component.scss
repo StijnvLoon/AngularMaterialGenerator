@@ -5,33 +5,21 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
-.states_holder {
+.transitions_holder {
     height: 100%;
     width: 100%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
-.buttons_holder {
-    margin-top: 10px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 5px;
-}
-.action_button {
-    border-radius: 5px;
-}
-.state {
+.transition {
     text-align: start;
     background-color: #00000010;
     margin-bottom: 5px;
     border-radius: 5px;
     padding: 8px;
     transition: all 0.3s ease;
-}
-.state:hover {
-    cursor: pointer;
-    background-color: #00000018;
+    display: flex;
 }

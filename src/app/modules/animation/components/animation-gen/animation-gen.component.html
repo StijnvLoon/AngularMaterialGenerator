@@ -21,8 +21,8 @@
 
     <div class="center_content" style="width: 100%;">
         <h1 class="header_title">{{animationTemplate.name}}</h1>
-        <button color="accent" mat-icon-button class="header_icon_button"
-            #tooltip="matTooltip" matTooltip="Edit template name">
+        <button color="accent" mat-icon-button class="header_icon_button" #tooltip="matTooltip"
+            matTooltip="Edit template name">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
@@ -51,5 +51,10 @@
 
 <div style="flex-grow: 1; overflow-y: auto;">
     <app-animation-editor style="height: 100%;" [animationTemplate]="animationTemplate"></app-animation-editor>
-    <app-state-manager [statesMap]="animationTemplate.statesMap"></app-state-manager>
+    <div style="position: absolute; left: 5px; top: 70px;">
+        <app-state-manager [statesMap]="animationTemplate.statesMap"></app-state-manager>
+        <app-transition-manager [statesMap]="animationTemplate.statesMap"
+            [transitionsList]="animationTemplate.transitionsList"></app-transition-manager>
+    </div>
+
 </div>

@@ -1,0 +1,11 @@
+<div class="container mat-elevation-z4 mat-app-background">
+    <div style="font-weight: 500;">Transitions:</div>
+    <div class="transitions_holder" @Anim-ListVerHost>
+        <div *ngFor="let transit of transitionsList" class="transition mat-elevation-z1" @Anim-ListVerItems>
+            <button mat-icon-button color="accent" #tooltip="matTooltip" matTooltip="Play" (click)="playAnimation(transit)">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            {{transit.sourceState}} => {{transit.targetState}}
+        </div>
+    </div>
+</div>
