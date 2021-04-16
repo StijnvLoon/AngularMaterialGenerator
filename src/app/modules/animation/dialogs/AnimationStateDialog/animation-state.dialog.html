@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="formfield">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput [formControl]="nameFormControl">
+        <mat-error *ngIf="nameFormControl.errors?.required">Is required
+        </mat-error>
+        <mat-error *ngIf="nameFormControl.hasError('maxlength')">Can't exceed 20
+            characters</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="nameIsOccupied()">This name is not unique</mat-error>
+
+    <div class="value_keeper formfield" *ngFor="let cssValue of data.values ">
+        <div class="value_text">{{cssValue.key}}</div>
+        <input [(ngModel)]="cssValue.value" class="value_input">
+        <div class="value_remove">
+            <button mat-icon-button color="warn" #tooltip="matTooltip" matTooltip="Remove"
+                (click)="removeValue(cssValue)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <mat-form-field appearance="fill" class="formfield">
+        <mat-label>Add css value</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let option of getAvailableCss()" (click)="addCss(option)">{{option}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions class="actions">
+    <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()"
+        [disabled]='nameFormControl.invalid || nameIsOccupied()'>Submit</button>
+</div>

@@ -16,7 +16,7 @@ import { AnimationService } from '../../../services/animation.service';
 export class TransitionManagerComponent implements OnInit {
 
   @Input() transitionsList: AnimationTransition[]
-  @Input() statesMap: Map<String, AnimationState>
+  @Input() readonly statesMap: Map<String, AnimationState>
 
   constructor(private animationService: AnimationService) { }
 
@@ -25,6 +25,10 @@ export class TransitionManagerComponent implements OnInit {
 
   playAnimation(transit: AnimationTransition) {
     this.animationService.playTransition(transit, this.statesMap.get(transit.targetState))
+  }
+
+  playDisabled(transit: AnimationTransition): boolean {
+    return this.animationService.selectedState.name !== transit.sourceState
   }
 
 }

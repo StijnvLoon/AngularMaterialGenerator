@@ -14,13 +14,19 @@ import { AnimationGenComponent } from './components/animation-gen/animation-gen.
 import { AnimationEditorComponent } from './components/animation-gen/animation-editor/animation-editor.component';
 import { StateManagerComponent } from './components/animation-gen/state-manager/state-manager.component';
 import { TransitionManagerComponent } from './components/animation-gen/transition-manager/transition-manager.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { AnimationStateDialog } from './dialogs/AnimationStateDialog/animation-state.dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AnimationGenComponent,
     AnimationEditorComponent,
     StateManagerComponent,
-    TransitionManagerComponent
+    TransitionManagerComponent,
+    AnimationStateDialog
   ],
   imports: [
     CommonModule,
@@ -34,7 +40,13 @@ import { TransitionManagerComponent } from './components/animation-gen/transitio
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [AnimationGenComponent]
 })

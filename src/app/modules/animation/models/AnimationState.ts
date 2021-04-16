@@ -1,7 +1,9 @@
+import { CssValue } from "./CssValue";
+
 export class AnimationState {
 
     constructor(
         public name: string,
-        public values: Map<string, string> = new Map()
+        public cssValues: CssValue[] = []
     ) { }
 }

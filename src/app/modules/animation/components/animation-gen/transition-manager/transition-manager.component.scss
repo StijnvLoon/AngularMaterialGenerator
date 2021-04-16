@@ -23,3 +23,12 @@
     transition: all 0.3s ease;
     display: flex;
 }
+.transit_text {
+    align-self: center;
+    display: flex;
+    margin: 5px;
+}
+.action_button {
+    border-radius: 50%;
+    background-color: #00000010;
+}

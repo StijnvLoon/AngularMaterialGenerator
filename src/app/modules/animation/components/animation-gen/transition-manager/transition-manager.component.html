@@ -2,10 +2,30 @@
     <div style="font-weight: 500;">Transitions:</div>
     <div class="transitions_holder" @Anim-ListVerHost>
         <div *ngFor="let transit of transitionsList" class="transition mat-elevation-z1" @Anim-ListVerItems>
-            <button mat-icon-button color="accent" #tooltip="matTooltip" matTooltip="Play" (click)="playAnimation(transit)">
+            <button mat-icon-button color="accent" class="action_button mat-elevation-z1" #tooltip="matTooltip"
+                matTooltip="Play" (click)="playAnimation(transit)" [disabled]="playDisabled(transit)">
                 <mat-icon>play_arrow</mat-icon>
             </button>
-            {{transit.sourceState}} => {{transit.targetState}}
+            <div class="transit_text">
+                {{transit.sourceState}}
+                <mat-icon style="margin: 0px 2px 0px 2px;" color="accent">east</mat-icon>
+                {{transit.targetState}}
+            </div>
+            <button mat-icon-button color="accent" #tooltip="matTooltip" matTooltip="Options"
+                [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
         </div>
     </div>
 </div>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <mat-icon color="accent">edit</mat-icon>
+        <span>Edit transition</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon color="warn">delete</mat-icon>
+        <span>Delete transition</span>
+    </button>
+</mat-menu>

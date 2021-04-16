@@ -17,7 +17,7 @@ export class AnimationEditorComponent implements OnInit {
   }
 
   getStyleJSON() {
-    return this.animationService.mapToJson(this.animationService.selectedState.values)
+    return this.animationService.cssValuesToJson(this.animationService.selectedState.cssValues)
   }
 
 }
