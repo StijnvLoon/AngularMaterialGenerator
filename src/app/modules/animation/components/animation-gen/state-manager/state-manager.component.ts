@@ -5,6 +5,7 @@ import { AnimationStateDialog } from '../../../dialogs/AnimationStateDialog/anim
 import { AnimationState } from '../../../models/AnimationState';
 import { AnimationService } from '../../../services/animation.service';
 import { JSONLib }from 'src/assets/jsonLibrary';
+import { AnimationTransition } from '../../../models/AnimationTransition';
 
 @Component({
   selector: 'app-state-manager',
@@ -18,6 +19,7 @@ import { JSONLib }from 'src/assets/jsonLibrary';
 export class StateManagerComponent implements OnInit {
 
   @Input() statesMap: Map<String, AnimationState>
+  @Input() transitionsList: AnimationTransition[]
 
   constructor(
     private animationService: AnimationService,
@@ -51,8 +53,22 @@ export class StateManagerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async data => {
       if (data) {
+        const oldName: string = this.animationService.selectedState.name
+
         this.animationService.selectedState.name = data.name
         this.animationService.selectedState.cssValues = data.values
+
+        this.transitionsList.forEach(transit => {
+          if(transit.sourceState == oldName) {
+            transit.sourceState = data.name
+          }
+          if(transit.targetState == oldName) {
+            transit.targetState = data.name
+          }
+        });
+
+        this.statesMap.set(data.name, this.statesMap.get(oldName))
+        this.statesMap.delete(oldName)
       }
     })
   }

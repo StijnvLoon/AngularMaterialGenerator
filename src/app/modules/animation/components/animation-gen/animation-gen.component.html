@@ -52,7 +52,7 @@
 <div style="flex-grow: 1; overflow-y: auto;">
     <app-animation-editor style="height: 100%;" [animationTemplate]="animationTemplate"></app-animation-editor>
     <div style="position: absolute; left: 5px; top: 70px;">
-        <app-state-manager [statesMap]="animationTemplate.statesMap"></app-state-manager>
+        <app-state-manager [statesMap]="animationTemplate.statesMap" [transitionsList]="animationTemplate.transitionsList"></app-state-manager>
         <app-transition-manager [statesMap]="animationTemplate.statesMap"
             [transitionsList]="animationTemplate.transitionsList"></app-transition-manager>
     </div>
