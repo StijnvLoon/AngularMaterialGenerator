@@ -19,6 +19,7 @@ import { AnimationStateDialog } from './dialogs/AnimationStateDialog/animation-s
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AnimationTransitionDialog } from './dialogs/AnimationTransitionDialog/animation-transition.dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AnimationEditorComponent,
     StateManagerComponent,
     TransitionManagerComponent,
-    AnimationStateDialog
+    AnimationStateDialog,
+    AnimationTransitionDialog
   ],
   imports: [
     CommonModule,

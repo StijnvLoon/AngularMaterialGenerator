@@ -37,7 +37,7 @@ export class StateManagerComponent implements OnInit {
   }
 
   editCurrentState() {
-    const currentStateCopy: AnimationState = JSONLib.deepCopy(this.animationService.selectedState)
+    const currentStateCopy: AnimationState = JSONLib.deepCopyObject(this.animationService.selectedState)
 
     const dialogRef = this.dialog.open(AnimationStateDialog, {
       width: '80%',
@@ -60,7 +60,7 @@ export class StateManagerComponent implements OnInit {
   addNewState() {
     const state: AnimationState = new AnimationState(
       'New state', 
-      JSONLib.deepCopy(this.animationService.selectedState.cssValues)
+      JSONLib.deepCopyObject(this.animationService.selectedState.cssValues)
     )
 
     const dialogRef = this.dialog.open(AnimationStateDialog, {

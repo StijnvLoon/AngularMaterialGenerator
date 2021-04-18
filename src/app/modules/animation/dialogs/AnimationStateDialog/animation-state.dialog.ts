@@ -16,14 +16,17 @@ export interface DialogData {
     templateUrl: './animation-state.dialog.html',
     styleUrls: ['./animation-state.dialog.scss']
 })
-export class AnimationStateDialog implements OnInit {
+export class AnimationStateDialog {
 
     cssKeys: string[] = [
         'height',
         'width',
         'color',
         'background',
-        'border'
+        'border',
+        'transform',
+        'opacity',
+        'border-radius'
     ]
 
     nameFormControl: FormControl = new FormControl(this.data.name, [
@@ -39,10 +42,7 @@ export class AnimationStateDialog implements OnInit {
         this.dialogRef.close();
     }
 
-    ngOnInit() {
-    }
-
-    submit() {
+    submit(): void {
         this.dialogRef.close({
             name: this.nameFormControl.value,
             values: this.data.values

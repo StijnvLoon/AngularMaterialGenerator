@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="transitionForm">
+        <div class="states_picker">
+            <mat-form-field appearance="fill" class="formfield">
+                <mat-label>Source state</mat-label>
+                <mat-select formControlName="sourceStateControl">
+                    <mat-option *ngFor="let sourceName of data.availableStateNames" [value]="sourceName"
+                        [disabled]="sourceName == transitionForm.get('targetStateControl').value">{{sourceName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="transitionForm.get('sourceStateControl').hasError('required')">Is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-icon style="margin: 0px 10px 0px 10px;" color="accent">east</mat-icon>
+
+            <mat-form-field appearance="fill" class="formfield">
+                <mat-label>Target state</mat-label>
+                <mat-select formControlName="targetStateControl">
+                    <mat-option *ngFor="let targetName of data.availableStateNames" [value]="targetName"
+                        [disabled]="targetName == transitionForm.get('sourceStateControl').value">{{targetName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="transitionForm.get('targetStateControl').hasError('required')">Is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Duration</mat-label>
+            <input type="number" matInput formControlName="durationControl" onkeydown="return event.keyCode !== 69">
+            <span matSuffix>ms</span>
+            <mat-error *ngIf="transitionForm.get('durationControl').hasError('required')">Is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Target CSS</mat-label>
+            <input type="text" matInput formControlName="targetCssControl">
+            <mat-error *ngIf="transitionForm.get('targetCssControl').hasError('required')">Is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="formfield">
+            <mat-label>Easing function</mat-label>
+            <input type="text" matInput formControlName="easingFunctionControl">
+            <mat-icon matSuffix color="accent" #tooltip="matTooltip" matTooltip="Easing functions cheat sheet">
+                <a href="https://easings.net/" target="_blank"
+                    style="text-decoration: none; color: inherit">tips_and_updates</a>
+            </mat-icon>
+            <mat-error *ngIf="transitionForm.get('easingFunctionControl').hasError('required')">Is required
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+</div>
+
+<div mat-dialog-actions class="actions">
+    <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()" [disabled]="transitionForm.invalid">Submit</button>
+</div>

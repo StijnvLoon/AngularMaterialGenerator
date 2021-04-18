@@ -15,17 +15,21 @@
                 [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editTransition(transit)">
+                    <mat-icon color="accent">edit</mat-icon>
+                    <span>Edit transition</span>
+                </button>
+                <button mat-menu-item (click)="removeTransition(transit)">
+                    <mat-icon color="warn">delete</mat-icon>
+                    <span>Delete transition</span>
+                </button>
+            </mat-menu>
         </div>
+        <button mat-icon-button color="primary" #tooltip="matTooltip" matTooltip="Add"
+            class="add_state_button mat-elevation-z1" (click)="newTransition()">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
 </div>
-
-<mat-menu #menu="matMenu">
-    <button mat-menu-item>
-        <mat-icon color="accent">edit</mat-icon>
-        <span>Edit transition</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon color="warn">delete</mat-icon>
-        <span>Delete transition</span>
-    </button>
-</mat-menu>
