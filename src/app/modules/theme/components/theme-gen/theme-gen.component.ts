@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +8,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { ThemeSheet } from 'src/app/sheets/theme-sheet/theme-sheet';
 import { ThemeTemplate } from '../../models/ThemeTemplate';
+import { ThemeCodeComponent } from './theme-code/theme-code.component';
 
 @Component({
   selector: 'app-theme-gen',
@@ -16,6 +18,7 @@ import { ThemeTemplate } from '../../models/ThemeTemplate';
 export class ThemeGenComponent implements OnInit {
 
   public themeTemplate: ThemeTemplate
+  @ViewChild(ThemeCodeComponent) private themeCodeComponent: ThemeCodeComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +36,12 @@ export class ThemeGenComponent implements OnInit {
     this.themeTemplate = this.themeService.getThemeTemplateByIndex(idNumber, onError => {
       console.log('no template found with this index!')
     })
+  }
+
+  onTabChanged($event) {
+    if ($event.tab.textLabel == 'Code') {
+      this.themeCodeComponent.updatePreview()
+    }
   }
 
   setTheme() {

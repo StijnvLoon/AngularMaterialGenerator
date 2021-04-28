@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormImport } from 'src/app/modules/form/models/FormImport';
 import { ImportsLibrary } from 'src/assets/importsLibrary';
 import { FormTemplate } from '../../../models/FormTemplate';
-import { PreviewFile } from '../../../models/previewFile';
+import { PreviewFile } from '../../../../../models/PreviewFile';
 import { FormTemplateService } from '../../../services/formtemplate.service';
 
 @Component({

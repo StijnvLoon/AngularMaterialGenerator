@@ -55,7 +55,7 @@
     </div>
 </mat-toolbar>
 
-<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;">
+<mat-tab-group mat-align-tabs="center" style="flex-grow: 1; overflow-y: auto;" (selectedTabChange)="onTabChanged($event);">
     <mat-tab label="Editor" style="height: 100% !important;">
         <app-theme-editor [themeTemplate]="themeTemplate"></app-theme-editor>
     </mat-tab>
