@@ -23,40 +23,38 @@
 </mat-toolbar>
 
 <div class="container center_content">
-    <div class="options">
-        <div class="option">
-            <button mat-button class="btn_option mat-elevation-z8" (click)="selectFormTemplateDialog()">
-                Forms
-            </button>
-            <ul>
-                <li>Angular CLI: V 11.0 + </li>
-                <li>Angular Material: V 11.0 + </li>
-            </ul>
+    <div class="menu">
+        <div class="menu_button" (click)="selectFormTemplateDialog()">
+            <div>
+                <mat-icon class="material-icons-outlined icon_left">text_fields</mat-icon>
+                <mat-icon class="material-icons-outlined icon_center">assignment</mat-icon>
+                <mat-icon class="material-icons-outlined icon_right">quiz</mat-icon>
+            </div>
+            <label>Forms</label>
         </div>
-    
-        <div class="option">
-            <button mat-button class="btn_option mat-elevation-z8" routerLink="/backgrounds">
-                Backgrounds
-            </button>
+        <div class="menu_button" routerLink="/backgrounds">
+            <div>
+                <mat-icon class="material-icons-filled icon_left">network_cell</mat-icon>
+                <mat-icon class="material-icons-outlined icon_center">wallpaper</mat-icon>
+                <mat-icon class="material-icons-filled icon_right">circle</mat-icon>
+            </div>
+            <label>Backgrounds</label>
         </div>
-    
-        <div class="option">
-            <button mat-button class="btn_option mat-elevation-z8" routerLink="/animations">
-                Animations
-            </button>
-            <ul>
-                <li>Angular CLI: V 11.0 + </li>
-            </ul>
+        <div class="menu_button" routerLink="/animations">
+            <div>
+                <mat-icon class="material-icons-filled icon_left">fast_forward</mat-icon>
+                <mat-icon class="material-icons-outlined icon_center">animation</mat-icon>
+                <mat-icon class="material-icons-filled icon_right">auto_awesome_motion</mat-icon>
+            </div>
+            <label>Animations</label>
         </div>
-    
-        <div class="option">
-            <button mat-button class="btn_option mat-elevation-z8" (click)="selectThemeTemplateDialog()">
-                Themes
-            </button>
-            <ul>
-                <li>Angular CLI: V 11.0 + </li>
-                <li>Angular Material: V 11.0 + </li>
-            </ul>
+        <div class="menu_button" (click)="selectThemeTemplateDialog()">
+            <div>
+                <mat-icon class="material-icons-outlined icon_left">colorize</mat-icon>
+                <mat-icon class="material-icons-outlined icon_center">palette</mat-icon>
+                <mat-icon class="material-icons-outlined icon_right">format_paint</mat-icon>
+            </div>
+            <label>Themes</label>
         </div>
     </div>
 </div>

@@ -17,30 +17,57 @@
 .container {
     flex-grow: 1;
 }
-.options {
+.menu {
     width: 60%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    margin-bottom: 100px;
 }
-.option {
-    // margin: 20px;
+.menu_button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
-.btn_option {
-    height: 200px;
-    width: 200px;
-    border-radius: 25px;
+.menu_button:hover label {
+    opacity: 100;
+    letter-spacing: normal;
+    cursor: pointer;
 }
-.btn_themes {
-    font-size: 1em;
-    border-radius: 20px;
+.menu_button label {
+    opacity: 0;
+    letter-spacing: 3px;
+    transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
 }
-.btn_themes_fake {
-    font-size: 1em;
-    border-radius: 20px;
+.mat-icon {
+    width: auto;
+    height: auto;
+    font-size: 5em;
 }
-.btn_themes span {
-    transition: ease 0.3s all;
+
+.menu_button:hover .icon_center {
+    transform: scale(1.1);
 }
-.btn_themes:hover span {
-    color: transparent;
+.menu_button:hover .icon_left {
+    opacity: 60%;
+    transform: translateX(5px) scale(0.8);
+}
+.menu_button:hover .icon_right {
+    opacity: 20%;
+    transform: translateX(-5px) scale(0.6);
+}
+.icon_center {
+    transition: 0.3s ease;
+}
+.icon_left {
+    opacity: 0;
+    transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+    transform: scale(0.6);
+}
+.icon_right {
+    opacity: 0;
+    transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+    transform: scale(0.4);
 }
