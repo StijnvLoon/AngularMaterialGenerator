@@ -51,11 +51,11 @@
     transform: scale(1.1);
 }
 .menu_button:hover .icon_left {
-    opacity: 60%;
+    opacity: 0.6;
     transform: translateX(5px) scale(0.8);
 }
 .menu_button:hover .icon_right {
-    opacity: 20%;
+    opacity: 0.2;
     transform: translateX(-5px) scale(0.6);
 }
 .icon_center {
