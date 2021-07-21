@@ -73,7 +73,7 @@ export class FormCodeComponent implements OnInit {
 
     componentTSFile.addToCodeLines([
       "import { Component } from '@angular/core';",
-      "import { FormControl, FormGroup } from '@angular/forms';'",
+      "import { FormControl, FormGroup } from '@angular/forms';",
       '',
       '@Component({',
       "  selector: 'app-" + this.formTemplateService.getCodeName(this.formTemplate) + "',",

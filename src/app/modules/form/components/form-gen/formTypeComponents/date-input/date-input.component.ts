@@ -43,25 +43,14 @@ export class DateInputComponent extends FormTypeConcrete implements IFormType, A
     return () => {
       const controlName = this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control'
 
-      if (this.options.editableText) {
-        return [
-          '    <mat-form-field>',
-          '        <mat-label>' + this.options.modelName + '</mat-label>',
-          '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '>',
-          '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
-          '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
-          '    </mat-form-field>'
-        ]
-      } else {
-        return [
-          '    <mat-form-field (click)="picker.open()">',
-          '        <mat-label>' + this.options.modelName + '</mat-label>',
-          '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '" disabled>',
-          '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
-          '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
-          '    </mat-form-field>'
-        ]
-      }
+      return [
+        '    <mat-form-field>',
+        '        <mat-label>' + this.options.modelName + '</mat-label>',
+        '        <input matInput [matDatepicker]="picker" formControlName="' + controlName + '>',
+        '        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>',
+        '        <mat-datepicker #picker disabled="false"></mat-datepicker>',
+        '    </mat-form-field>'
+      ]
     }
   }
 
@@ -79,7 +68,11 @@ export class DateInputComponent extends FormTypeConcrete implements IFormType, A
 
   getFormControlCallback() {
     return () => {
-      return ['    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),']
+      if(this.options.editableText) {
+        return ['    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl(\'\'),']
+      } else {
+        return ['    ' + this.options.modelName.toLowerCase().replace(/\s/g, "_") + 'Control: new FormControl({ value: \'\', disabled=\'true\'}),']
+      }
     }
   }
 

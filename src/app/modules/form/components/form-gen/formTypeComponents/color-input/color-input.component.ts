@@ -61,7 +61,7 @@ export class ColorInputComponent extends FormTypeConcrete implements IFormType, 
       ]
 
       this.options.rules.forEach(rule => {
-        array.push('        <mat-error *ngIf="' + formGroupName + '.get(\'' + controlName.toLowerCase() + '\').hasError(\'' + rule.errorIdentifier.toLowerCase() + '\')">' + rule.errorMessage + '</mat-error>')
+        array.push('        <mat-error *ngIf="' + formGroupName + '.get(\'' + controlName + '\').hasError(\'' + rule.errorIdentifier.toLowerCase() + '\')">' + rule.errorMessage + '</mat-error>')
       });
 
       array.push('    </mat-form-field>')
